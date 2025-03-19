@@ -26,13 +26,7 @@ const Igor = () => {
             <div className="profile-curriculum">
                 <h3>Experiência:</h3>
                 <p>
-                    Advogado. Bacharel em Direito pela Universidade Católica de Pernambuco.
-                    Pós-Graduado em Direito da Saúde pela Verbo Jurídico. Possui experiência
-                    em Direito Médico e da Saúde, com vasta atuação em escritórios
-                    especializados em Direito Médico e da Saúde. Membro do GT de Saúde
-                    Suplementar da Comissão de Direito do Consumidor da OAB-PE e Membro
-                    da Comissão de Direito Médico e da Saúde da OAB -JABOATÃO. Professor e
-                    Palestrante em cursos de Prática Jurídica em Saúde.
+                Advogado. Bacharel em Direito pela Universidade Católica de Pernambuco. Vice-Presidente da Comissão de Direito Médico e da Saúde da OAB/Jaboatão (2025 - atualmente). Secretário-Geral da Comissão de Direito Médico e da Saúde da OAB/Jaboatão (2024). Pós-graduado em Direito da Saúde pela Verbo Jurídico. Possui experiência em Direito Médico e da Saúde, com ampla atuação em escritórios especializados na área. Membro do GT de Saúde Suplementar da Comissão de Direito do Consumidor da OAB-PE (2022), da Comissão de Direito de Família da OAB-PE (2022) e da Comissão de Direito Médico e da Saúde da OAB/Jaboatão. Assessor jurídico parlamentar em Direito Público (2024). Tutor em Direito Tributário para preparatórios do exame da Ordem (2022 - atualmente). Professor, Autor de obras jurídicas e palestrante em cursos de prática jurídica em saúde.
                 </p>
             </div>
             </section>

@@ -1,4 +1,5 @@
 import "../styles/areasAtuacao.css";
+import { Link } from "react-router-dom";
 
 const AreasAtuacao = () => {
     const areas = [
@@ -24,7 +25,7 @@ const AreasAtuacao = () => {
                                 <h2 className="service-h2">{area.title}</h2>
                                 <p className="service-p">{area.text}</p>
                                 {area.link ? (
-                                    <a className="saiba-mais" href={area.link}>Saiba Mais</a>
+                                    <Link className="saiba-mais" to={area.link}>Saiba Mais</Link>
                                 ) : (
                                     <button className="saiba-mais">Saiba Mais</button>
                                 )}

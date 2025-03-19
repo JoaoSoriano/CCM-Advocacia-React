@@ -48,9 +48,9 @@ const AdvogadoCard = ({ advogado }) => (
   <div className="team-two__single">
     <div className="team-two__single-overlay-bg"></div>
     <div className="team-two__single-img">
-      <a className="foto-link" href={advogado.link}>
+      <Link className="foto-link" to={advogado.link}>
         <img src={advogado.img} alt={advogado.nome} />
-      </a>
+      </Link>
       <div className="social-share-box">
         <span className="icon-plus">
           <img src={plusSvg} className="plus" alt="plus" />
@@ -81,7 +81,7 @@ const AdvogadoCard = ({ advogado }) => (
       </div>
     </div>
     <div className="team-two__single-content">
-      <h3><a href={advogado.link}>{advogado.nome}</a></h3>
+      <h3><Link to={advogado.link}>{advogado.nome}</Link></h3>
       <p>{advogado.oab}</p>
     </div>
   </div>
