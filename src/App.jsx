@@ -23,6 +23,7 @@ import DirSaude from "./pages/DirSaude";
 import DirLGPD from "./pages/DirLGPD";
 import AreaMediacao from "./pages/AreaMediacao";
 import SaudeSuplementar from "./pages/SaudeSuplementar";
+import ScrollToTop from "./components/ScrollToTop";
 
 function Home() {
   return (
@@ -40,6 +41,7 @@ function Home() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sobreNos" element={<SobreNos />} />
@@ -59,9 +61,6 @@ function App() {
         <Route path="/direitoLGPD" element={<DirLGPD />} />
         <Route path="/areaMediacao" element={<AreaMediacao />} />
         <Route path="/saudeSuplementar" element={<SaudeSuplementar />} />
-
-
-
       </Routes>
     </Router>
   );
