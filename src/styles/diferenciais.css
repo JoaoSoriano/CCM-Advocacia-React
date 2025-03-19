@@ -124,7 +124,7 @@
 
 .swiper-button-next, .swiper-button-prev {
   position: absolute !important;
-  top: 60%;
+  top: 55%;
   transform: translateY(-50%);
   z-index: 1000;
   color: #bb8a28;
