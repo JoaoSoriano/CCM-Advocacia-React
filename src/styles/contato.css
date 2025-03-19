@@ -1,0 +1,211 @@
+/* contato.css */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+  
+h2 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.logo-box-one img {
+    width: 280px;
+    height: auto;
+    max-height: 80px;
+    position: relative;
+    display: inline-block;
+}
+
+.contact-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 30px;
+    margin-bottom: 80px;
+}
+  
+.left-side, .right-side {
+    width: 48%;
+}
+  
+.left-side {
+    margin-right: 20px;
+}
+
+.right-side iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+}
+
+.entre-em-contato {
+    margin-bottom: 40px;
+    margin-left: 15px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 50px;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.icon-container {
+    background-color: rgb(226, 218, 198);
+    border-radius: 50%;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-item strong {
+    display: block;
+    margin-bottom: 4px;
+    text-align: left;
+    margin-top: 5px;
+}
+
+.contact-item p {
+    margin: 0;
+    text-align: left;
+    margin-top: 5px;
+    word-wrap: break-word;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.form-button {
+    background-color: #1a1a1a; /* Cor escura para elegância */
+    color: #ffffff; /* Texto branco para contraste */
+    font-size: 1.2em; /* Tamanho do texto */
+    font-family: 'Montserrat', sans-serif; /* Fonte moderna */
+    padding: 12px 24px; /* Espaçamento interno */
+    border: 2px solid #1a1a1a; /* Borda sutil */
+    border-radius: 8px; /* Cantos arredondados */
+    cursor: pointer; /* Ícone de clique */
+    transition: all 0.3s ease-in-out; /* Suaviza transições */
+    display: flex; /* Centraliza o texto */
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Faz o botão se ajustar */
+    max-width: 200px; /* Mantém um tamanho agradável */
+    margin: auto; /* Centraliza */
+}
+
+.form-button:hover {
+    background-color: transparent; /* Deixa apenas a borda visível */
+    color: #1a1a1a; /* Inverte a cor do texto */
+}
+
+/* Responsividade */
+@media only screen and (max-width: 970px) {
+    .contact-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-side {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .right-side {
+        width: 100%;
+    }
+
+    .contact-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .icon-container {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .contact-item strong,
+    .contact-item p {
+        text-align: center;
+    }
+
+    .right-side iframe {
+        width: 90%;
+        height: 300px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    input, textarea {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .dados-contato {
+        font-size: 12px;
+    }
+    
+}

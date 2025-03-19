@@ -1,0 +1,138 @@
+.areas-atuacao-section {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.areas-atuacao {
+    min-height: 100vh;
+    width: 100%;
+    background-image: url(../img/PATER.png);
+    background-position: center;
+    background-repeat: repeat;
+    background-color: rgba(255, 255, 255, 0.8);
+    background-blend-mode: overlay;
+}
+
+.service-wrapper {
+    padding: 5% 8%;
+}
+
+.service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+.service-p {
+    color: #1b1b1b;
+    text-align: left;
+    width: 100%;
+    margin: 20px 0;
+    flex-grow: 1; /* Faz com que o parágrafo ocupe o espaço disponível */
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px; /* Aumentei o gap para evitar que os cards encostem */
+    margin-top: 42px;
+    justify-items: center;
+
+}
+
+.card {
+    max-height: 330px;
+    max-width: 370px;
+    background-color: rgb(226, 218, 198);
+    padding: 3% 8%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Para organizar o conteúdo interno */
+    overflow: hidden;
+    width: 80% !important;
+}
+
+.card i {
+    color: #bb8a28;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+}
+
+.service-h2 {
+    color: black;
+    font-size: 20px;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.saiba-mais {
+    background-color: #bb8a28; /* Cor escura para elegância */
+    color: #ffffff; /* Texto branco para contraste */
+    font-size: 1.0em; /* Tamanho do texto */
+    font-family: 'Montserrat', sans-serif; /* Fonte moderna */
+    padding: 8px 4px; /* Espaçamento interno */
+    border: 2px solid #bb8a28; /* Borda sutil */
+    border-radius: 8px; /* Cantos arredondados */
+    cursor: pointer; /* Ícone de clique */
+    transition: all 0.3s ease-in-out; /* Suaviza transições */
+    display: flex; /* Centraliza o texto */
+    justify-content: center;
+    width: 100%; /* Faz o botão se ajustar */
+    max-width: 150px; /* Mantém um tamanho agradável */
+    margin-bottom: 20px;
+}
+
+.saiba-mais:hover {
+    background-color: #ffffff;
+    color: #bb8a28;
+    border: 2px solid #bb8a28; /* Borda sutil */
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 1200px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .service-wrapper {
+        padding-bottom: 60px;
+    }
+}
+
+@media (max-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .service {
+        padding-top: 30px;
+        padding-bottom: 0px;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-p {
+        width: 90%;
+    }
+
+}
+
+@media (max-width: 500px) {
+    .card {
+        max-height: 320px;
+        width: 90%;
+        margin: 0 auto; /* Garante que o card fique centralizado */
+    }
+
+    .card i {
+        margin-top: 10px;
+    }
+
+    .service-p {
+        width: 100%;
+    }
+}

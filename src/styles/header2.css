@@ -1,0 +1,160 @@
+header {
+    background-color: #a49483;
+    color: white;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.header-perfil {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    padding: 0 20px; /* Adiciona espaçamento nas laterais */
+}
+
+.header-logo img {
+    max-width: 100%; /* Garante que a imagem nunca ultrapasse o header */
+    height: auto; /* Mantém a proporção */
+    max-width: 250px; /* Tamanho padrão */
+}
+
+/* Botão de Contato */
+.header-contact {
+    display: flex;
+    align-items: center;
+}
+
+.contact-button-2 {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 5px 20px;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    line-height: 45px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: capitalize;
+    border-radius: 4px;
+    transition: all 0.3s linear;
+    z-index: 2;
+    text-decoration: none;
+}
+
+.contact-button-2:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 1;
+    transform: scaleX(1);
+    transition-duration: 800ms;
+    background-color: black;
+    z-index: -1;
+}
+
+.contact-button-2:hover:after {
+    transform: scaleX(0);
+    transition-duration: 1500ms;
+}
+
+.contact-button-2:before {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    right: -50px;
+    content: "";
+    background: #bb8a28;
+    transform: translateY(100%);
+    transition-duration: 800ms;
+    z-index: 1;
+    bottom: 0;
+}
+
+.contact-button-2:hover:before {
+    left: 0;
+    right: 0;
+    transform: translateX(0);
+}
+
+.contact-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    z-index: 1;
+}
+
+.header-contact .contact-button-2:before {
+    background: #bb8a28;
+}
+
+.header-contact .contact-button-2:hover {
+    color: black;
+}
+
+@media (max-width: 748px) {
+
+    .header-perfil {
+        height: auto; /* Permite ajuste dinâmico */
+        padding: 10px 15px; /* Mantém espaçamento nas laterais */
+    }
+
+    .header-logo img {
+        max-width: 200px; /* Reduz a logo para caber melhor */
+    }
+
+    .contact-button-2 {
+        padding: 6px 20px; /* Reduz o tamanho do botão */
+        font-size: 12px; /* Diminui a fonte do botão */
+        line-height: normal; /* Ajusta a altura do texto */
+        margin-right: 10px; /* Mantém margem na lateral */
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .contact-button-2 {
+        padding: 6px 20px; /* Reduz o tamanho do botão */
+        font-size: 10px; /* Diminui a fonte do botão */
+        line-height: normal; /* Ajusta a altura do texto */
+        margin-right: 0; /* Mantém margem na lateral */
+    }
+    
+}
+
+@media screen and (max-width: 320px) {
+
+    .contact-button-2 {
+        padding: 2px 10px; /* Reduz o tamanho do botão */
+        font-size: 10px; /* Diminui a fonte do botão */
+        line-height: normal; /* Ajusta a altura do texto */
+        margin-right: 0; /* Mantém margem na lateral */
+    }
+    
+}
+
+/* Ajusta a altura do header no modo paisagem (landscape) */
+@media (max-width: 1024px) and (orientation: landscape) {
+    .header-perfil {
+        height: 22vh; /* Aumenta a altura do header */
+    }
+
+    .header-logo img {
+        max-width: 250px; /* Mantém um tamanho adequado para a logo */
+    }
+
+    .contact-button-2 {
+        padding: 6px 20px; /* Reduz o tamanho do botão */
+        font-size: 14px; /* Diminui a fonte do botão */
+        line-height: normal; /* Ajusta a altura do texto */
+        margin-right: 10px; /* Mantém margem na lateral */
+    }
+}
