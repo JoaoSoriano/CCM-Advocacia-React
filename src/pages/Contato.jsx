@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef } from "react";
+import emailjs from '@emailjs/browser';
 import HeaderSimples from "../components/HeaderSimples";
 import Footer from "../components/Footer";
 import "../styles/contato.css";
@@ -9,6 +10,27 @@ import phone from "../img/phone.svg";
 import address from "../img/maps-and-flags (1).png";
 
 const Contato = () => {
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm('service_jdh4tlx', 'template_n8vitb5', form.current, {
+        publicKey: 'VfZHrEohvKZLPH_7V',
+      })
+      .then(
+        () => {
+          alert('Email enviado com sucesso!');
+          form.current.reset();
+        },
+        (error) => {
+          console.log(error);
+          alert('Erro ao enviar email: ', error);
+        },
+      );
+  };
+
   return (
     <>
       <HeaderSimples />
@@ -70,7 +92,7 @@ const Contato = () => {
 
       <div className="form-container">
         <h1>Fale Conosco</h1>
-        <form id="contactForm" action="https://formsubmit.co/joaorafael2502@gmail.com" method="POST">
+        <form ref={form} onSubmit={sendEmail}>
           <div className="form-group">
             <label htmlFor="name">Nome</label>
             <input type="text" id="name" name="name" required />
