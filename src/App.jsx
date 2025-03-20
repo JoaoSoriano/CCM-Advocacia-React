@@ -24,6 +24,7 @@ import DirLGPD from "./pages/DirLGPD";
 import AreaMediacao from "./pages/AreaMediacao";
 import SaudeSuplementar from "./pages/SaudeSuplementar";
 import ScrollToTop from "./components/ScrollToTop";
+import { Analytics } from "@vercel/analytics/react";
 
 function Home() {
   return (
@@ -62,6 +63,7 @@ function App() {
         <Route path="/areaMediacao" element={<AreaMediacao />} />
         <Route path="/saudeSuplementar" element={<SaudeSuplementar />} />
       </Routes>
+      <Analytics />
     </Router>
   );
 }
