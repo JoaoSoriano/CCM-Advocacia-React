@@ -81,7 +81,7 @@ const AdvogadoCard = ({ advogado }) => (
       </div>
     </div>
     <div className="team-two__single-content">
-      <h3><Link to={advogado.link}>{advogado.nome}</Link></h3>
+      <h3 className="link-underline"><Link to={advogado.link}>{advogado.nome}</Link></h3>
       <p>{advogado.oab}</p>
     </div>
   </div>

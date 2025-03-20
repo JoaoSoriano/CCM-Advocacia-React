@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/header.css";
-import logo from "../img/Carrazzoni Campelo e Medeiros Horizontal_2.jpg"
+import logo from "../img/Carrazzoni Campelo e Medeiros Horizontal_2.jpg";
 import { useState, useEffect } from "react";
 
 const Header = () => {
@@ -33,6 +33,11 @@ const Header = () => {
     setIsActive(!isActive);
   };
 
+  const handleLinkClick = () => {
+    setIsActive(false); // Fecha o menu ao clicar no link
+    setMenuListActive(false); // Remove a classe 'active' da lista de menu
+  };
+
   const animateLinks = (open) => {
     const navLinks = document.querySelectorAll(".menu-list li");
     navLinks.forEach((link, index) => {
@@ -59,10 +64,7 @@ const Header = () => {
       <nav>
         {/* Logo */}
         <div className="header-logo">
-          <img
-            src={logo}
-            alt="Logo do Escritório"
-          />
+          <img src={logo} alt="Logo do Escritório" />
         </div>
 
         <div className="mobile-menu-container">
@@ -80,19 +82,29 @@ const Header = () => {
           <div className="header-navigation">
             <ul className={`menu-list ${menuListActive ? "active" : ""}`}>
               <li>
-                <Link to="/sobrenos">Sobre Nós</Link>
+                <Link to="/sobrenos" onClick={handleLinkClick}>
+                  Sobre Nós
+                </Link>
               </li>
               <li>
-                <a href="#advogados">Advogados</a>
+                <a href="#advogados" onClick={handleLinkClick}>
+                  Advogados
+                </a>
               </li>
               <li>
-                <a href="#areas-atuacao">Áreas de Atuação</a>
+                <a href="#areas-atuacao" onClick={handleLinkClick}>
+                  Áreas de Atuação
+                </a>
               </li>
               <li>
-                <a href="#diferenciais">Diferenciais</a>
+                <a href="#diferenciais" onClick={handleLinkClick}>
+                  Diferenciais
+                </a>
               </li>
               <li className="mobile-only">
-                <Link to="/contato">Contato</Link>
+                <Link to="/contato" onClick={handleLinkClick}>
+                  Contato
+                </Link>
               </li>
             </ul>
           </div>
@@ -100,10 +112,11 @@ const Header = () => {
           {/* Botão de Contato */}
           <div>
             <div className="header-contact">
-              <Link 
-              className="contact-button" 
-              to="/contato"
-              style={{ display: isActive ? "none" : "inline-flex" }}>
+              <Link
+                className="contact-button"
+                to="/contato"
+                style={{ display: isActive ? "none" : "inline-flex" }}
+              >
                 <span className="contact-text">
                   Contato ⇁
                   <i className="icon-next"></i>

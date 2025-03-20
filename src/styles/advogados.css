@@ -354,6 +354,13 @@
       .foto-link {
           pointer-events: none;
       }
+
+      .link-underline {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+        color: inherit;
+    }
   }
   
   @media screen and (max-width: 350px) {
