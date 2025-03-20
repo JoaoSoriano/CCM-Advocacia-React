@@ -5,13 +5,7 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (window.pageYOffset > 0) {
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        document.documentElement.scrollTop = 0; // Para compatibilidade extra
-        document.body.scrollTop = 0;
-      }, 50); // Pequeno delay para garantir a execução
-    }
+    window.scrollTo(0, 0); // Move para o topo sem animação
   }, [pathname]);
 
   return null;
