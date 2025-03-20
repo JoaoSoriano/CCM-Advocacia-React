@@ -5,7 +5,11 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Sempre rola para o topo ao mudar de rota
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0; // Para alguns navegadores móveis
+      document.body.scrollTop = 0; // Para compatibilidade extra
+    }, 100); // Pequeno delay para garantir que o scroll seja aplicado
   }, [pathname]);
 
   return null;
