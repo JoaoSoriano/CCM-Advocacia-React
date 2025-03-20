@@ -5,11 +5,13 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0; // Para alguns navegadores móveis
-      document.body.scrollTop = 0; // Para compatibilidade extra
-    }, 100); // Pequeno delay para garantir que o scroll seja aplicado
+    if (window.pageYOffset > 0) {
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        document.documentElement.scrollTop = 0; // Para compatibilidade extra
+        document.body.scrollTop = 0;
+      }, 50); // Pequeno delay para garantir a execução
+    }
   }, [pathname]);
 
   return null;
