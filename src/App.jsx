@@ -9,7 +9,6 @@ import Diferenciais from "./components/Diferenciais";
 import Contato from "./pages/Contato";
 import Larissa from "./pages/Larissa";
 import Igor from "./pages/Igor";
-import Maurilio from "./pages/Maurilio";
 import DirMed from "./pages/DirMed";
 import SobreNos from "./pages/SobreNos";
 import DirTrab from "./pages/DirTrab";
@@ -49,7 +48,6 @@ function App() {
         <Route path="/contato" element={<Contato />} />
         <Route path='/larissa' element={<Larissa />} />
         <Route path='/igor' element={<Igor />} />
-        <Route path='/maurilio' element={<Maurilio />} />
         <Route path='/direitoMedico' element={<DirMed />} />
         <Route path='/direitoTrabalhista' element={<DirTrab />} />
         <Route path='/direitoConsumidor' element={<DirCons />} />
