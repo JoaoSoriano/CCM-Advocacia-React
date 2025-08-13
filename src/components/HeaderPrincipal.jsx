@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/header.css";
-import logo from "../img/Carrazzoni Campelo e Medeiros Horizontal_2.jpg";
+import logo from "../img/NOVO_CLARO.jpg";
 import { useState, useEffect } from "react";
 
 const Header = () => {

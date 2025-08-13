@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../img/Carrazzoni Campelo e Medeiros Horizontal Médio_2.jpg";
+import logo from "../img/NOVO_BEGE.jpg";
 import "../styles/header2.css";
 
 const HeaderSimples = () => {

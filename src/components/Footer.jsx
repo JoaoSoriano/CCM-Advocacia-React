@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/footer.css';
-import logoEscura from '../img/Carrazzoni Campelo e Medeiros Horizontal Escuro_2.jpg';
+import logoEscura from '../img/NOVO_ESCURO.jpg';
 import instagramIcon from '../img/instagram.svg';
 import whatsappIcon from '../img/whatsapp.svg';
 

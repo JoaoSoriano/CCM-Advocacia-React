@@ -4,7 +4,7 @@ import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import "../styles/diferenciais.css";
 import medico from "../img/medico.jpg";
-import escritorio from "../img/AssJur.jpg";
+import escritorio from "../img/ASSE_NOVO.jpeg";
 import privacidade from "../img/dados.jpg"; 
 import tecnologia from "../img/tec.jpg";
 import shakehand from "../img/shakehand.jpg";

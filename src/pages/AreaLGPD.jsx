@@ -16,7 +16,7 @@ const AreaLgpd = () => {
             <div className="imagem-container">
                 <img src={dados} alt="Imagem - Dados Pessoais" />
             </div>
-            <p className="info-text">A CCM Advocacia é referência em assessoria jurídica
+            <p className="info-text">A CC Advocacia é referência em assessoria jurídica
                 preventiva para empresas de saúde na adequação e implementação da LGPD.
                 Nossa equipe especializada oferece consultoria e
                 adequação, realizando avaliações de conformidade e

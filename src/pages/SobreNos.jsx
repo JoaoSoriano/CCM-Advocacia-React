@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderSimples from '../components/HeaderSimples';
 import Footer from '../components/Footer';
-import sociedade from '../img/sociedade.jpg';
+import sociedade from '../img/ESC_NOVO.jpeg';
 import '../styles/info.css';
 import '../styles/perfil.css';
 

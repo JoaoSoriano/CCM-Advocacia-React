@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderSimples from '../components/HeaderSimples';
 import Footer from '../components/Footer';
-import time from '../img/AssJur.jpg';
+import time from '../img/ASSE_NOVO.jpeg';
 import '../styles/info.css';
 import '../styles/perfil.css';
 

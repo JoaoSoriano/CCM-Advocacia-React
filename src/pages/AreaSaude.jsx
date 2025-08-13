@@ -16,7 +16,7 @@ const AreaSaude = () => {
             <div className="imagem-container">
                 <img src={medico} alt="Médico" />
             </div>
-            <p className="info-text">A CCM advocacia é um escritório especializado em direito para profissionais da saúde, com uma
+            <p className="info-text">A CC advocacia é um escritório especializado em direito para profissionais da saúde, com uma
                 vasta experiência em demandas dessas classes. Nosso time é composto
                 por um departamento técnico altamente qualificado, preparado para oferecer soluções abrangentes
                 em questões judiciais, contratuais, administrativas e regulatórias relacionadas a profissionais e empresas de saúde como clínicas, laboratórios e hospitais. 

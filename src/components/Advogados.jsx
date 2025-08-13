@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import "../styles/advogados.css";
 import larissaImg from "../img/FotoLarissa .jpg";
 import igorImg from "../img/igor.jpg";
-import maurilioImg from "../img/MaurilioFoto.jpg";
 import plusSvg from "../img/plus.svg";
 import wppSvg from "../img/whatsapp.svg";
 import instagramSvg from "../img/instagram.svg";
-import linkedInSvg from "../img/icons8-linkedin (1).svg";
+
 
 const advogados = [
   {
@@ -31,17 +30,6 @@ const advogados = [
       whatsapp: "https://wa.me/5581996085372"
     }
   },
-  {
-    nome: "Maurílio Medeiros",
-    oab: "OAB/PB nº 18.693",
-    img: maurilioImg,
-    link: "/maurilio",
-    social: {
-      instagram: "https://www.instagram.com/mauriliomedeiros.adv/",
-      whatsapp: "https://wa.me/5583999643070",
-      linkedin: "https://www.linkedin.com/in/maur%C3%ADlio-rodrigues-210240100/"
-    }
-  }
 ];
 
 const AdvogadoCard = ({ advogado }) => (
@@ -67,13 +55,6 @@ const AdvogadoCard = ({ advogado }) => (
             <li>
               <a href={advogado.social.whatsapp} target="_blank" rel="noopener noreferrer">
                 <img src={wppSvg} className="social-icon" alt="whatsapp" />
-              </a>
-            </li>
-          )}
-          {advogado.social.linkedin && (
-            <li>
-              <a href={advogado.social.linkedin} target="_blank" rel="noopener noreferrer">
-                <img src={linkedInSvg} className="social-icon" alt="LinkedIn" />
               </a>
             </li>
           )}
