@@ -50,7 +50,7 @@ const Diferenciais = () => {
                   <Link to={item.link} className="card-link">
                     <img src={item.img} alt={item.alt} className="card-image" />
                     <h2 className="card-title">{item.title}</h2>
-                    <button className='card-button material-symbols-outlined'>read_more</button>
+                    <button className='card-button material-symbols-outlined'>⮎</button>
                   </Link>
                 </SwiperSlide>
               ))}
