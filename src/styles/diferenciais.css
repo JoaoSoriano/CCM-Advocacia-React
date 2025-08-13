@@ -117,6 +117,11 @@
   width: fit-content; /* Ajusta largura ao conteúdo */
 }
 
+.card-arrow {
+  font-size: 1.5rem; /* Tamanho do ícone */
+  transition: transform 0.3s ease; /* Transição suave para o hover */
+}
+
 .card-list .card-link:hover .card-button {
   color: #fff;
   background: #bb8a28;
