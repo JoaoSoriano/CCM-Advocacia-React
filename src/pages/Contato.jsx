@@ -49,7 +49,7 @@ const Contato = () => {
               </div>
               <div>
                 <strong>Email:</strong>
-                <p className="dados-contato">carrazzonicampeloemedeiros@gmail.com</p>
+                <p className="dados-contato">carrazzonicampelo@gmail.com</p>
               </div>
             </div>
 

@@ -40,7 +40,7 @@ const Footer = () => {
             </footer>
             <div className="footer-bottom">
             <p>
-                Copyright © Carrazzoni, Campêlo e Medeiros Advocacia - Desenvolvido por: 
+                Copyright © Carrazzoni & Campêlo Advocacia - Desenvolvido por:
                 <a className="joao" href="https://www.linkedin.com/in/jo%C3%A3o-rafael-soriano-correia-3106351a1/" target="_blank" rel="noopener noreferrer">
                     João Rafael Soriano
                 </a>
