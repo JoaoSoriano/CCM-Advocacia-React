@@ -1,138 +1,187 @@
+/* ==========================================================================
+   Áreas de Atuação
+   ========================================================================== */
+
 .areas-atuacao-section {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
+/* O padrão da marca vira textura de fundo, suavizado por uma camada sólida
+   em cima — mais previsível que background-blend-mode. */
 .areas-atuacao {
-    min-height: 100vh;
     width: 100%;
-    background-image: url(../img/PATER.png);
-    background-position: center;
-    background-repeat: repeat;
-    background-color: rgba(255, 255, 255, 0.8);
-    background-blend-mode: overlay;
+    background-image: linear-gradient(
+            rgba(248, 246, 242, 0.94),
+            rgba(248, 246, 242, 0.94)
+        ),
+        url(../img/PATER.png);
+    background-repeat: repeat, repeat;
+    background-position: center, center;
+    background-size: auto, 84px;
 }
 
 .service-wrapper {
-    padding: 5% 8%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: var(--section-y) var(--gutter);
 }
 
 .service {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 50px;
-}
-
-.service-p {
-    color: #1b1b1b;
-    text-align: left;
-    width: 100%;
-    margin: 20px 0;
-    flex-grow: 1; /* Faz com que o parágrafo ocupe o espaço disponível */
+    text-align: center;
+    padding-bottom: 0;
 }
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px; /* Aumentei o gap para evitar que os cards encostem */
-    margin-top: 42px;
-    justify-items: center;
-
+    /* auto-fit substitui os três breakpoints de coluna do CSS antigo. */
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: clamp(var(--space-5), 2.5vw, var(--space-8));
+    margin-top: var(--space-16);
+    align-items: stretch;
 }
 
+/* --- Card ---------------------------------------------------------------- */
+
 .card {
-    max-height: 330px;
-    max-width: 370px;
-    background-color: rgb(226, 218, 198);
-    padding: 3% 8%;
-    border-radius: 8px;
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Para organizar o conteúdo interno */
+    align-items: flex-start;
+    height: 100%;
+    padding: var(--space-8);
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
     overflow: hidden;
-    width: 80% !important;
+    transition: transform var(--duration) var(--ease-out),
+        box-shadow var(--duration) var(--ease-out),
+        border-color var(--duration) var(--ease-out);
+}
+
+/* Filete dourado no topo, revelado no hover. */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--hover-sand), var(--warm-300));
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--duration-slow) var(--ease-out);
+}
+
+@media (hover: hover) {
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--border-default);
+    }
+
+    .card:hover::before {
+        transform: scaleX(1);
+    }
 }
 
 .card i {
-    color: #bb8a28;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    font-size: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin: 0 0 var(--space-6);
+    background-color: var(--gold-050);
+    border-radius: var(--radius-full);
+    color: var(--gold-600);
+    font-size: 1.5rem;
+    transition: background-color var(--duration) var(--ease-out),
+        color var(--duration) var(--ease-out);
+}
+
+@media (hover: hover) {
+    .card:hover i {
+        background-color: var(--hover-sand);
+        color: #fff;
+    }
 }
 
 .service-h2 {
-    color: black;
-    font-size: 20px;
-    margin: 10px 0;
-    font-weight: 500;
+    color: var(--text-strong);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 var(--space-3);
+    text-align: left;
+    text-wrap: balance;
 }
+
+.service-p {
+    color: var(--text-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    text-align: left;
+    width: 100%;
+    margin: 0 0 var(--space-8);
+    flex-grow: 1;
+    text-wrap: pretty;
+}
+
+/* --- Botão "Saiba Mais" -------------------------------------------------- */
 
 .saiba-mais {
-    background-color: #bb8a28; /* Cor escura para elegância */
-    color: #ffffff; /* Texto branco para contraste */
-    font-size: 1.0em; /* Tamanho do texto */
-    font-family: 'Montserrat', sans-serif; /* Fonte moderna */
-    padding: 8px 4px; /* Espaçamento interno */
-    border: 2px solid #bb8a28; /* Borda sutil */
-    border-radius: 8px; /* Cantos arredondados */
-    cursor: pointer; /* Ícone de clique */
-    transition: all 0.3s ease-in-out; /* Suaviza transições */
-    display: flex; /* Centraliza o texto */
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    width: 100%; /* Faz o botão se ajustar */
-    max-width: 150px; /* Mantém um tamanho agradável */
-    margin-bottom: 20px;
+    gap: var(--space-2);
+    width: auto;
+    margin-top: auto;
+    padding: var(--space-3) var(--space-6);
+    background-color: transparent;
+    color: var(--gold-600);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    border: 1px solid var(--gold-500);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: background-color var(--duration) var(--ease-out),
+        color var(--duration) var(--ease-out),
+        border-color var(--duration) var(--ease-out),
+        box-shadow var(--duration) var(--ease-out);
 }
 
-.saiba-mais:hover {
-    background-color: #ffffff;
-    color: #bb8a28;
-    border: 2px solid #bb8a28; /* Borda sutil */
+.saiba-mais:hover,
+.saiba-mais:focus-visible {
+    background-color: var(--hover-sand);
+    border-color: var(--hover-sand);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
 }
 
-/* RESPONSIVIDADE */
-@media (max-width: 1200px) {
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .service-wrapper {
-        padding-bottom: 60px;
-    }
+.saiba-mais:active {
+    background-color: var(--warm-500);
+    border-color: var(--warm-500);
+    color: #fff;
 }
 
-@media (max-width: 900px) {
-    .cards {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .service {
-        padding-top: 30px;
-        padding-bottom: 0px;
-    }
-}
-
-@media (max-width: 768px) {
-    .service-p {
-        width: 90%;
-    }
-
-}
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
 
 @media (max-width: 500px) {
     .card {
-        max-height: 320px;
-        width: 90%;
-        margin: 0 auto; /* Garante que o card fique centralizado */
+        padding: var(--space-6);
     }
 
-    .card i {
-        margin-top: 10px;
-    }
-
-    .service-p {
-        width: 100%;
+    .cards {
+        margin-top: var(--space-10);
     }
 }

@@ -1,160 +1,126 @@
-header {
-    background-color: #a49483;
-    color: white;
-    text-align: center;
-    padding-left: 20px;
-    padding-right: 20px;
-}
+/* ==========================================================================
+   Header das páginas internas
+   ========================================================================== */
 
 .header-perfil {
+    /* Deve casar exatamente com o fundo embutido no JPG da logo bege. */
+    --header-perfil-bg: #A49580;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 10vh;
-    padding: 0 20px; /* Adiciona espaçamento nas laterais */
+    gap: var(--space-4);
+    min-height: var(--header-h);
+    padding: var(--space-3) var(--gutter);
+    background-color: var(--header-perfil-bg);
+    color: #fff;
+    text-align: center;
 }
 
-.header-logo img {
-    max-width: 100%; /* Garante que a imagem nunca ultrapasse o header */
-    height: auto; /* Mantém a proporção */
-    max-width: 250px; /* Tamanho padrão */
-}
-
-/* Botão de Contato */
-.header-contact {
+.header-perfil .header-logo {
     display: flex;
     align-items: center;
 }
 
+.header-perfil .header-logo img {
+    width: auto;
+    max-width: 240px;
+    max-height: calc(var(--header-h) - var(--space-6));
+    height: auto;
+    /* A cor do header já casa com o fundo embutido no JPG (#A49580), então não
+       há nada a dissolver. Declarado explicitamente porque multiply(A, A) =
+       A²/255 escurece em vez de fundir, e o CSS global do projeto já vazou
+       esse valor para cá uma vez. */
+    mix-blend-mode: normal;
+    transition: opacity var(--duration) var(--ease-out);
+}
+
+.header-perfil .header-logo img:hover {
+    opacity: 0.82;
+}
+
+/* --- Botão "Home" -------------------------------------------------------- */
+
+.header-perfil .header-contact {
+    display: flex;
+    align-items: center;
+}
+
+/* Mesma receita ghost do header principal. Sobre o taupe do header a tinta é
+   branca e o rótulo escurece — a inversão fica mais nítida que um véu claro. */
 .contact-button-2 {
     position: relative;
-    display: inline-flex;
-    align-items: center;
     overflow: hidden;
-    padding: 5px 20px;
-    background-color: transparent;
-    color: white;
-    font-size: 16px;
-    line-height: 45px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    text-transform: capitalize;
-    border-radius: 4px;
-    transition: all 0.3s linear;
-    z-index: 2;
-    text-decoration: none;
-}
-
-.contact-button-2:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    opacity: 1;
-    transform: scaleX(1);
-    transition-duration: 800ms;
-    background-color: black;
-    z-index: -1;
-}
-
-.contact-button-2:hover:after {
-    transform: scaleX(0);
-    transition-duration: 1500ms;
-}
-
-.contact-button-2:before {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    right: -50px;
-    content: "";
-    background: #bb8a28;
-    transform: translateY(100%);
-    transition-duration: 800ms;
-    z-index: 1;
-    bottom: 0;
-}
-
-.contact-button-2:hover:before {
-    left: 0;
-    right: 0;
-    transform: translateX(0);
-}
-
-.contact-text {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    position: relative;
     display: inline-flex;
     align-items: center;
-    z-index: 1;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    color: rgba(255, 255, 255, 0.92);
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: var(--radius-sm);
+    /* Acompanha a duração da tinta para o rótulo nunca ficar claro sobre claro. */
+    transition: color var(--duration-slow) var(--ease-out),
+        border-color var(--duration-slow) var(--ease-out);
 }
 
-.header-contact .contact-button-2:before {
-    background: #bb8a28;
+.contact-button-2::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-color: #fff;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform var(--duration-slow) var(--ease-out);
 }
 
-.header-contact .contact-button-2:hover {
-    color: black;
+.contact-button-2:hover,
+.contact-button-2:focus-visible {
+    color: var(--warm-900);
+    border-color: #fff;
 }
+
+.contact-button-2:hover::before,
+.contact-button-2:focus-visible::before {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
 
 @media (max-width: 748px) {
-
     .header-perfil {
-        height: auto; /* Permite ajuste dinâmico */
-        padding: 10px 15px; /* Mantém espaçamento nas laterais */
+        min-height: auto;
+        padding: var(--space-3) var(--space-4);
     }
 
-    .header-logo img {
-        max-width: 200px; /* Reduz a logo para caber melhor */
+    .header-perfil .header-logo img {
+        max-width: 180px;
     }
 
     .contact-button-2 {
-        padding: 6px 20px; /* Reduz o tamanho do botão */
-        font-size: 12px; /* Diminui a fonte do botão */
-        line-height: normal; /* Ajusta a altura do texto */
-        margin-right: 10px; /* Mantém margem na lateral */
+        padding: var(--space-2) var(--space-5);
+        font-size: var(--text-xs);
     }
 }
 
-@media screen and (max-width: 480px) {
-
-    .contact-button-2 {
-        padding: 6px 20px; /* Reduz o tamanho do botão */
-        font-size: 10px; /* Diminui a fonte do botão */
-        line-height: normal; /* Ajusta a altura do texto */
-        margin-right: 0; /* Mantém margem na lateral */
-    }
-    
-}
-
-@media screen and (max-width: 320px) {
-
-    .contact-button-2 {
-        padding: 2px 10px; /* Reduz o tamanho do botão */
-        font-size: 10px; /* Diminui a fonte do botão */
-        line-height: normal; /* Ajusta a altura do texto */
-        margin-right: 0; /* Mantém margem na lateral */
-    }
-    
-}
-
-/* Ajusta a altura do header no modo paisagem (landscape) */
-@media (max-width: 1024px) and (orientation: landscape) {
-    .header-perfil {
-        height: 22vh; /* Aumenta a altura do header */
-    }
-
-    .header-logo img {
-        max-width: 250px; /* Mantém um tamanho adequado para a logo */
+@media screen and (max-width: 380px) {
+    .header-perfil .header-logo img {
+        max-width: 150px;
     }
 
     .contact-button-2 {
-        padding: 6px 20px; /* Reduz o tamanho do botão */
-        font-size: 14px; /* Diminui a fonte do botão */
-        line-height: normal; /* Ajusta a altura do texto */
-        margin-right: 10px; /* Mantém margem na lateral */
+        padding: var(--space-2) var(--space-4);
     }
 }

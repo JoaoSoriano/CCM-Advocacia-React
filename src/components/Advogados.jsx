@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/advogados.css";
-import larissaImg from "../img/FotoLarissa .jpg";
-import igorImg from "../img/igor.jpg";
+import larissaImg from "../img/Larissa_nova.jpg";
+import igorImg from "../img/igor_nova.jpeg";
 import plusSvg from "../img/plus.svg";
 import wppSvg from "../img/whatsapp.svg";
 import instagramSvg from "../img/instagram.svg";

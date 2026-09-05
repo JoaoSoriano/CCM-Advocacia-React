@@ -1,192 +1,225 @@
-/* Estilos Gerais */
-html {
-    scroll-behavior: smooth !important;
-    scroll-padding-top: 80px;
-    height: 100vh; /* Usa a altura dinâmica do viewport */
-    overflow-x: hidden; /* Previne rolagem lateral indesejada */
-}
-
-body {
-  scroll-behavior: smooth;
-}
+/* ==========================================================================
+   Header principal — nav fixa translúcida
+   ========================================================================== */
 
 nav {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
   justify-content: space-between;
   align-items: center;
-  height: 10vh;
+  height: var(--header-h);
   flex-wrap: nowrap;
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil abaixo da div */
-  z-index: 1000; /* Garante que o header fique acima de outros elementos */
-  padding: 15px 10px; /* Espaçamento interno */
+  padding: 0 var(--gutter);
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-xs);
+  z-index: 1000;
 }
 
-/* Logo */
-.header-logo {
-  display: flex; /* Garante alinhamento fácil com Flexbox */
-  align-items: center; /* Alinha verticalmente ao centro com os demais elementos */
-  max-width: 250px; /* Define um tamanho máximo adequado para a logo */
-  margin-left: 60px;
+/* --- Logo ----------------------------------------------------------------- */
+
+nav .header-logo {
+  display: flex;
+  align-items: center;
+  max-width: 240px;
   overflow: hidden;
 }
 
-.header-logo img {
-  max-width: 100%; /* Garante que a imagem não ultrapasse o container */
-  height: auto; /* Mantém a proporção da imagem */
-  max-height: 10vh;
+/* Escopado em `nav` de propósito: o CSS deste projeto é global, e sem o escopo
+   o multiply abaixo vazava para o header das páginas internas, onde a logo tem
+   fundo bege e não branco. */
+nav .header-logo img {
+  max-width: 100%;
+  height: auto;
+  max-height: calc(var(--header-h) - var(--space-6));
+  /* O arquivo é JPG com fundo branco chapado. multiply(branco, X) = X, então
+     o fundo desaparece contra a nav branca junto com os artefatos de JPEG. */
+  mix-blend-mode: multiply;
+  transition: opacity var(--duration) var(--ease-out);
 }
 
-/* Navegação */
+nav .header-logo img:hover {
+  opacity: 0.78;
+}
+
+/* --- Navegação ------------------------------------------------------------ */
+
 .header-navigation {
-	display: flex; /* Torna o container flexível */
+  display: flex;
   grid-column: span 4;
-  align-items: center; /* Garante alinhamento vertical ao centro com a logo */
-  justify-content: center; /* Posiciona a navegação no centro do header */
+  align-items: center;
+  justify-content: center;
 }
 
 .menu-list {
-	display: flex; /* Organiza os itens em linha */
-  gap: 40px; /* Espaçamento entre os itens da lista */
-  list-style: none; /* Remove os marcadores da lista */
-  margin: 0; /* Remove margens padrão */
-  padding: 0; /* Remove espaçamento padrão */
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .menu-list li a {
-    color: #6A6A6A;
-    font-size: 18px;
-    line-height: 24px;
-    font-weight: 400;
-    text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding: var(--space-2) 0;
+  color: var(--text-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: var(--tracking-wide);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--duration) var(--ease-out);
+}
+
+/* Sublinhado que cresce do centro no hover. */
+.menu-list li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: var(--gold-600);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--duration) var(--ease-out);
 }
 
 .menu-list li.active a,
-.menu-list li:hover a {
-    color: #bb8a28;
+.menu-list li:hover a,
+.menu-list li a:focus-visible {
+  color: var(--gold-600);
 }
 
-/* Botão de Contato */
+.menu-list li.active a::after,
+.menu-list li a:hover::after {
+  transform: scaleX(1);
+}
+
+/* --- Botão de contato ----------------------------------------------------- */
+
 .header-contact {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
+/* Botão ghost: sem preenchimento em repouso. Clean, elegante, minimalista.
+   A mesma receita é espelhada em header2.css e form.css. */
 .contact-button {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    overflow: hidden;
-    padding: 5px 20px;
-    margin-right: 30px;
-    margin-left: 30px;
-    background-color: transparent;
-    color: white;
-    font-size: 16px;
-    line-height: 45px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    text-transform: capitalize;
-    border-radius: 4px;
-    transition: all 0.3s linear;
-    z-index: 2;
-    text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  color: var(--warm-700);
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;     /* 11px: leitura fina, similar a etiqueta */
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid var(--warm-400);
+  border-radius: var(--radius-sm);
+  /* Na mesma duração e curva da tinta: a curva é bem front-loaded, então o
+     rótulo passa por tons médios enquanto a tinta avança e nunca fica branco
+     sobre o fundo claro. */
+  transition: color var(--duration-slow) var(--ease-out),
+    border-color var(--duration-slow) var(--ease-out);
 }
 
-.contact-button:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    opacity: 1;
-    transform: scaleX(1);
-    transition-duration: 800ms;
-    background-color: black;
-    z-index: -1;
+/* Tinta que varre o botão. Só `transform`, sem layout nem repaint.
+   A origem muda entre os estados (e não é animável, então troca na hora):
+   entra crescendo da esquerda, sai recolhendo para a direita. O movimento
+   acompanha o ponteiro em vez de parecer um retrocesso. */
+.contact-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--warm-900);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--duration-slow) var(--ease-out);
 }
 
-.contact-button:hover:after {
-    transform: scaleX(0);
-    transition-duration: 1500ms;
+.contact-button:hover,
+.contact-button:focus-visible {
+  color: #fff;
+  border-color: var(--warm-900);
 }
 
-.contact-button:before {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    right: -50px;
-    content: "";
-    background: #bb8a28;
-    transform: translateY(100%);
-    transition-duration: 800ms;
-    z-index: 1;
-    bottom: 0;
-}
-
-.contact-button:hover:before {
-    left: 0;
-    right: 0;
-    transform: translateX(0);
+.contact-button:hover::before,
+.contact-button:focus-visible::before {
+  transform: scaleX(1);
+  transform-origin: left center;
 }
 
 .contact-text {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    z-index: 1;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  z-index: 1;
 }
 
-.header-contact .contact-button:before {
-    background: #bb8a28;
-}
-
-.header-contact .contact-button:hover {
-    color: black;
-}
-
-.mobile-menu div {
-  width: 32px;
-  height: 2px;
-  background: black;
-  margin: 8px;
-}
+/* --- Menu hamburguer ----------------------------------------------------- */
 
 .mobile-menu {
   cursor: pointer;
   display: none;
-  margin-right: 40px;
   grid-column: 5;
+  justify-self: end;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  transition: background-color var(--duration) var(--ease-out);
+}
+
+.mobile-menu:hover {
+  background-color: var(--surface-muted);
+}
+
+.mobile-menu div {
+  width: 26px;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: var(--warm-900);
+  margin: 6px 0;
+  transition: transform var(--duration) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
 }
 
 .mobile-only {
-  display: none; /* Esconde no desktop */
+  display: none;
 }
 
 .mobile-menu-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
   grid-column: span 4;
   align-items: center;
-  gap: 4px;
+  gap: var(--space-1);
 }
 
+/* ==========================================================================
+   Drawer mobile
+   ========================================================================== */
+
 @media (max-width: 1180px) {
-  
   body {
     overflow-x: hidden;
-  }
-
-  nav {
-    min-height: 10vh;
   }
 
   .contact-button {
@@ -198,19 +231,20 @@ nav {
     position: absolute;
     top: 100%;
     right: 0;
-    width: 80vw;
-    height: 100vh;
-    background-color: #fff; 
+    width: min(84vw, 380px);
+    height: calc(100dvh - var(--header-h));
+    padding: var(--space-6) 0 var(--space-16);
+    background-color: var(--surface);
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    gap: 0;
     transform: translateX(100%);
-    transition: transform 0.5s ease-in-out;
-    z-index: 999; /* Garante que fique sobre os outros elementos */
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1); /* Adiciona sombra para destacar */
-    border-left: 1px solid #ddd; 
-    padding: 0; /* Adiciona espaçamento para evitar cortes */
+    transition: transform var(--duration-slow) var(--ease-out);
+    z-index: 999;
+    box-shadow: var(--shadow-xl);
+    border-left: 1px solid var(--border-subtle);
     overflow-y: auto;
-    padding-top: 60px;
+    overscroll-behavior: contain;
   }
 
   .mobile-menu-container {
@@ -219,30 +253,41 @@ nav {
 
   .header-logo {
     grid-column: span 3;
-    margin-left: 0;
   }
 
   .menu-list li {
     margin-left: 0;
     text-align: center;
     opacity: 0;
-    width: 100%; /* Faz com que os itens ocupem toda a largura */
+    width: 100%;
+    border-bottom: 1px solid var(--border-subtle);
   }
 
   .menu-list li a {
     display: flex;
-    justify-content: center; /* Centraliza o texto */
-    align-items: center; /* Centraliza verticalmente */
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    padding: 15px 0;
+    min-height: 56px;
+    padding: var(--space-4) var(--space-6);
+    font-size: var(--text-base);
+    font-weight: 500;
+    letter-spacing: var(--tracking-normal);
     text-decoration: none;
-    font-size: 18px;
-    font-weight: 400;
+  }
+
+  /* No drawer o sublinhado central não faz sentido: destaca-se o item inteiro. */
+  .menu-list li a::after {
+    display: none;
+  }
+
+  .menu-list li a:hover {
+    background-color: var(--gold-050);
   }
 
   .menu-list li:last-child {
-    border-bottom: none; /* Remove a linha do último item */
-}
+    border-bottom: none;
+  }
 
   .mobile-menu {
     display: block;
@@ -250,17 +295,9 @@ nav {
     z-index: 1000;
   }
 
-  .mobile-menu div {
-    width: 32px;
-    height: 2px;
-    background: black;
-    margin: 8px;
-    transition: 0.3s;
-  }
-
   .mobile-only {
-    display: block; /* Mostra apenas no mobile */
-}
+    display: block;
+  }
 
   .menu-list.active {
     transform: translateX(0);
@@ -270,7 +307,7 @@ nav {
 @keyframes navLinkFade {
   from {
     opacity: 0;
-    transform: translateX(50px);
+    transform: translateX(28px);
   }
   to {
     opacity: 1;
@@ -279,7 +316,7 @@ nav {
 }
 
 .mobile-menu.active .line1 {
-  transform: rotate(-45deg) translate(-8px, 8px);
+  transform: rotate(-45deg) translate(-6px, 6px);
 }
 
 .mobile-menu.active .line2 {
@@ -287,5 +324,5 @@ nav {
 }
 
 .mobile-menu.active .line3 {
-  transform: rotate(45deg) translate(-5px, -7px);
+  transform: rotate(45deg) translate(-6px, -6px);
 }

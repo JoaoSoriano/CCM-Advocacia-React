@@ -1,215 +1,312 @@
+/* ==========================================================================
+   Diferenciais — carrossel nativo (scroll-snap), sem dependência externa
+   ========================================================================== */
+
 .diferenciais {
-  background-color: rgb(226, 218, 198);
-  padding-top: 50px;
+  padding: var(--section-y) 0;
+  background-color: var(--warm-100);
 }
 
 .titulo-diferenciais {
   text-align: center;
-  margin-bottom: 20px;
-}
-
-.h2site {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 10px;
+  max-width: var(--container-narrow);
+  margin: 0 auto var(--space-16);
+  padding: 0 var(--gutter);
 }
 
 .diferenciais-p {
-  font-size: 1.2rem;
-  color: #555;
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-muted);
+  margin: var(--space-5) 0 0;
+  text-wrap: pretty;
 }
 
-.container {
+/* --- Estrutura ----------------------------------------------------------- */
+
+.dif-carousel {
+  --dif-nav-size: 44px;
+  --dif-nav-gap: var(--space-4);
+  /* Calha lateral que acomoda a seta inteira fora da área dos cards,
+     com uma sobra para ela não encostar na borda da tela. */
+  --dif-nav-lane: calc(
+    var(--dif-nav-size) + var(--dif-nav-gap) + var(--space-3)
+  );
+
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* A calha entra no mesmo breakpoint em que as setas aparecem (ver .dif-nav):
+   se um viesse sem o outro, a seta vazaria para fora da tela. */
+@media (min-width: 901px) {
+  .dif-carousel {
+    padding-inline: max(var(--gutter), var(--dif-nav-lane));
+  }
+}
+
+.dif-viewport {
+  position: relative;
+}
+
+/* O grid de coluna automática dá a todos os slides a mesma largura exata,
+   calculada a partir de uma única variável. Os breakpoints só trocam essa
+   variável — o JS deduz a paginação medindo o resultado. */
+.dif-track {
+  --dif-per-view: 1;
+  --dif-gap: var(--space-6);
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(
+    (100% - (var(--dif-per-view) - 1) * var(--dif-gap)) / var(--dif-per-view)
+  );
+  gap: var(--dif-gap);
+  align-items: stretch;
+
+  margin: 0;
+  /* Folga vertical para o card subir no hover sem ser cortado: um eixo com
+     overflow auto força o outro a recortar. Simétrica, para que o centro do
+     track coincida com o centro do card e as setas alinhem sozinhas. */
+  padding: var(--space-5) 0;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.dif-track::-webkit-scrollbar {
+  display: none;
+}
+
+.dif-slide {
   display: flex;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+  .dif-track {
+    --dif-per-view: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dif-track {
+    --dif-per-view: 3;
+  }
+}
+
+/* --- Card ---------------------------------------------------------------- */
+
+.dif-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out),
+    border-color var(--duration) var(--ease-out);
+}
+
+.dif-card__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background-color: var(--warm-200);
+}
+
+.dif-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.dif-card__body {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-6);
+}
+
+.dif-card__title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-strong);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.dif-card__cta {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-}
-
-.card-wrapper {
-  position: relative;
-  max-width: 1300px;
-  margin: 0 60px 35px;
-  overflow:visible;
-}
-
-.card-list {
-  display: flex;
-  align-items: stretch;
-  position: relative !important;
-}
-
-.card-item {
-  display: flex;
-  flex-direction: column;
-  height: 70%;
-}
-
-.card-link {
-  flex-grow: 1; /* Faz com que os cards ocupem o mesmo espaço */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Distribui os elementos dentro do card */
-}
-
-.card-link {
-  min-height: 300px; /* Ajuste conforme necessário */
-}
-
-.card-title {
-  min-height: 60px; /* Ajuste conforme necessário */
-}
-
-.card-list .card-item .card-link {
-  user-select: none;
-  display: block;
-  background: #fff;
-  padding: 18px;
-  border-radius: 12px;
-  text-decoration: none;
-  border: 2px solid transparent;
-  transition: 0.2s ease;
-}
-
-.card-list .card-item .card-link:active {
-  cursor: grabbing;
-}
-
-.card-list .card-item .card-link:hover {
-  border-color: #bb8a28;
-}
-
-.card-list .card-item {
-  list-style: none;
-}
-
-.card-list .card-item .card-image {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.card-list .card-link .card-title {
-  font-size: 1.19rem;
-  font-weight: 600;
-  color: #000;
-  margin: 16px 0 18px;
-}
-
-.card-list .card-link .card-button {
-  height: 50px;
-  width: 50px;
-  color: #bb8a28;
-  border-radius: 50%;
-  margin: 30px 0 5px;
-  border: 2px solid #bb8a28;
-  background: none;
-  cursor: pointer;
-  transition: 0.4s ease;
-}
-
-.card-button {
-  display: flex; /* Garante alinhamento interno */
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
-  padding: 8px; /* Ajusta espaço interno */
-  margin: 0 auto; /* Centraliza automaticamente */
-  width: fit-content; /* Ajusta largura ao conteúdo */
-}
-
-.card-arrow {
-  font-size: 1.5rem; /* Tamanho do ícone */
-  transition: transform 0.3s ease; /* Transição suave para o hover */
-}
-
-.card-list .card-link:hover .card-button {
-  color: #fff;
-  background: #bb8a28;
-}
-
-.swiper-button-next, .swiper-button-prev {
-  position: absolute !important;
-  top: 55%;
-  transform: translateY(-50%);
-  z-index: 1000;
-  color: #bb8a28;
-  padding: 10px;
-  border-radius: 50%;
+  flex-shrink: 0;
   width: 40px;
   height: 40px;
+  color: var(--gold-600);
+  border: 1px solid var(--gold-500);
+  border-radius: var(--radius-full);
+  transition: color var(--duration) var(--ease-out),
+    background-color var(--duration) var(--ease-out),
+    border-color var(--duration) var(--ease-out);
+}
+
+.dif-icon {
+  width: 18px;
+  height: 18px;
+}
+
+@media (hover: hover) {
+  .dif-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--hover-sand);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .dif-card:hover .dif-card__img {
+    transform: scale(1.05);
+  }
+
+  .dif-card:hover .dif-card__cta {
+    background-color: var(--hover-sand);
+    border-color: var(--hover-sand);
+    color: #fff;
+  }
+}
+
+.dif-card:focus-visible {
+  transform: translateY(-6px);
+  border-color: var(--hover-sand);
+  box-shadow: var(--shadow-lg);
+}
+
+/* --- Setas --------------------------------------------------------------- */
+
+.dif-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--dif-nav-size);
+  height: var(--dif-nav-size);
+  padding: 0;
+  color: var(--gold-600);
+  background-color: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: color var(--duration) var(--ease-out),
+    background-color var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.dif-nav:hover {
+  background-color: var(--hover-sand);
+  border-color: var(--hover-sand);
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+}
+
+.dif-nav:active {
+  box-shadow: var(--shadow-sm);
+}
+
+/* `right: 100%` encosta a borda direita do botão na borda esquerda do track,
+   deixando a seta inteiramente fora da área dos cards. */
+.dif-nav--prev {
+  right: calc(100% + var(--dif-nav-gap));
+}
+
+.dif-nav--next {
+  left: calc(100% + var(--dif-nav-gap));
+}
+
+.dif-nav--prev .dif-icon {
+  transform: rotate(180deg);
+}
+
+/* Precisa vir depois da regra base de .dif-nav para vencer o `display: none`.
+   Abaixo deste ponto de corte o swipe substitui as setas. */
+@media (min-width: 901px) {
+  .dif-nav {
+    display: flex;
+  }
+}
+
+/* --- Indicadores --------------------------------------------------------- */
+
+.dif-dots {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-8);
 }
 
-/* Posiciona os botões fora do carrossel */
-.swiper-button-next {
-  right: -55px;
-}
-
-.swiper-button-prev {
-  left: -55px;
-}
-
-.swiper-pagination {
-  justify-content: center;
-  position: relative; /* Remove a posição absoluta para não ficar sobre o carrossel */
-  display: flex;
-  gap: 8px;
-  z-index: 10; /* Garante que fique acima de outros elementos */
-  justify-content: center;
-  margin-top: 20px; /* Adiciona um espaçamento entre o carrossel e os bullets */
-  opacity: 0.5;
-  border-radius: 50%;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+.dif-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  background-color: var(--warm-400);
+  border: none;
+  border-radius: var(--radius-full);
+  opacity: 0.4;
   cursor: pointer;
+  transition: width var(--duration) var(--ease-out),
+    opacity var(--duration) var(--ease-out),
+    background-color var(--duration) var(--ease-out);
 }
 
-.swiper-pagination-bullet-active {
+/* Alvo de toque de 32px mantendo o ponto visual de 8px. */
+.dif-dot::after {
+  content: "";
+  position: absolute;
+  inset: -12px;
+}
+
+.dif-dot:hover {
+  opacity: 0.75;
+}
+
+.dif-dot.is-active {
+  width: 26px;
   opacity: 1;
-  transform: scale(1.3); /* Aumenta o tamanho do ativo */
-  background-color: #bb8a28;
+  /* gold-600 em vez de 500: sobe o indicador de 2.7:1 para 3.78:1 contra o
+     fundo da seção, acima do mínimo para elementos gráficos. */
+  background-color: var(--gold-600);
 }
 
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
 
 @media screen and (max-width: 900px) {
-  .diferenciais {
-      padding-top: 15px;
-  }
-
   .titulo-diferenciais {
-      padding-top: 30px;
+    margin-bottom: var(--space-10);
   }
-
-  .diferenciais-p {
-      font-size: 1rem;
-  }
-
-  .swiper-button-next, .swiper-button-prev {
-      display: none;
-  }
-  
 }
 
 @media screen and (max-width: 768px) {
-  .card-wrapper {
-    width: 90%;
-    margin: 0 20px 35px; /* Menos margem nas laterais */
-  }
-
-  .card-wrapper .swiper-slide-button {
-      display: none;
-  }
-
   .diferenciais-p {
-      font-size: 0.9rem;
-  }
-
-}
-
-@media screen and (max-width: 480px) {
-  .card-wrapper {
-      margin: 0 10px 35px; /* Ajuste para telas muito pequenas */
+    font-size: var(--text-base);
   }
 }
-

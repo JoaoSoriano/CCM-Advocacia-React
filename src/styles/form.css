@@ -1,47 +1,171 @@
-/* formulario.css */
+/* ==========================================================================
+   Formulário "Fale Conosco"
+   Único proprietário dos estilos de campo — antes duplicado em contato.css.
+   ========================================================================== */
 
 .form-container {
-    background-color: white;
-    padding: 40px;
     width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    margin-bottom: 50px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-    
-  .form-container h1 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: #333;
-  }
-  
-  .form-group {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 20px;
-  }
-  
-  label {
-      font-size: 1rem;
-      color: #555;
-      margin-bottom: 5px;
-  }
-  
-  input, textarea {
-      padding: 12px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      background-color: #f9f9f9;
-      transition: border-color 0.3s ease;
-  }
-  
-  input:focus, textarea:focus {
-      border-color:  #bb8a28;
-      outline: none;
-  }
-    
-    
+    max-width: 760px;
+    margin: 0 auto var(--section-y);
+    padding: clamp(var(--space-6), 4vw, var(--space-12));
+    /* Painel levemente tingido com campos brancos: o contraste vem de dentro
+       para fora, já que a página é branca. */
+    background-color: var(--surface-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.form-container h1 {
+    text-align: center;
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-display);
+    color: var(--text-strong);
+    margin: 0 0 var(--space-10);
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-container .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--space-6);
+}
+
+.form-container label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-body);
+    margin-bottom: var(--space-2);
+}
+
+/* --- Campos -------------------------------------------------------------- */
+
+.form-container input,
+.form-container textarea {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--text-strong);
+    background-color: var(--surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    transition: border-color var(--duration) var(--ease-out),
+        background-color var(--duration) var(--ease-out),
+        box-shadow var(--duration) var(--ease-out);
+}
+
+.form-container input::placeholder,
+.form-container textarea::placeholder {
+    color: var(--text-muted);
+}
+
+.form-container input:hover,
+.form-container textarea:hover {
+    border-color: var(--border-strong);
+}
+
+.form-container input:focus,
+.form-container textarea:focus {
+    border-color: var(--gold-500);
+    box-shadow: var(--focus-ring);
+    outline: none;
+}
+
+/* O anel de foco já sinaliza o estado; evita anel duplo do reset global. */
+.form-container input:focus-visible,
+.form-container textarea:focus-visible {
+    outline: none;
+}
+
+.form-container input:invalid:not(:placeholder-shown),
+.form-container textarea:invalid:not(:placeholder-shown) {
+    border-color: #B4462F;
+}
+
+.form-container textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+/* --- Botão de envio ------------------------------------------------------ */
+
+/* Mesma receita ghost do header principal, em contexto de fundo claro. */
+.form-button {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    max-width: 220px;
+    margin: var(--space-4) auto 0;
+    padding: var(--space-4) var(--space-8);
+    color: var(--warm-700);
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: 1px solid var(--warm-400);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    /* Acompanha a duração da tinta para o rótulo nunca ficar branco sobre claro. */
+    transition: color var(--duration-slow) var(--ease-out),
+        border-color var(--duration-slow) var(--ease-out);
+}
+
+.form-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-color: var(--warm-900);
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.form-button:hover,
+.form-button:focus-visible {
+    color: #fff;
+    border-color: var(--warm-900);
+}
+
+.form-button:hover::before,
+.form-button:focus-visible::before {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+/* Mantém o rótulo acima da tinta. */
+.button-text {
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
+
+@media only screen and (max-width: 970px) {
+    .form-container {
+        max-width: 100%;
+    }
+
+    .form-button {
+        max-width: 100%;
+    }
+}

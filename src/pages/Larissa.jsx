@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderSimples from '../components/HeaderSimples';
 import Footer from '../components/Footer';
-import larissaPhoto from '../img/FotoLarissa .jpg';
+import larissaPhoto from '../img/Larissa_nova.jpg';
 import '../styles/perfil.css';
 
 const Larissa = () => {

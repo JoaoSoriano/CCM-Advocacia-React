@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderSimples from '../components/HeaderSimples';
 import Footer from '../components/Footer';
-import igorPhoto from '../img/igor.jpg';
+import igorPhoto from '../img/igor_nova.jpeg';
 import '../styles/perfil.css';
 
 const Igor = () => {

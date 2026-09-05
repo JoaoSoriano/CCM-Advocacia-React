@@ -1,0 +1,204 @@
+/* ==========================================================================
+   Design tokens — Carrazzoni & Campêlo Advocacia
+   Paleta derivada da logo: taupe (#A3937F) + marrom escuro, dourado de acento.
+   ========================================================================== */
+
+:root {
+    /* --- Marca: dourado -------------------------------------------------- */
+    /* gold-500 é o dourado histórico da marca, mantido para preenchimentos e
+       elementos decorativos. gold-600 é a variante para TEXTO sobre fundo
+       claro: 4.5:1 de contraste, atende WCAG AA. */
+    --gold-300: #E3BE72;
+    --gold-400: #D7A542;
+    --gold-500: #BB8A28;
+    --gold-600: #986F20;
+    --gold-700: #785816;
+    --gold-050: #FBF4E5;
+
+    /* Preenchimento de hover: bege suave e dessaturado. Branco sobre ele fica
+       em 3.67:1, acima do mínimo de 3:1 que a WCAG pede para ícones e setas.
+       Não serve para texto branco, que exigiria 4.5:1 e um tom mais escuro. */
+    --hover-sand: #94836D;
+
+    /* --- Neutros quentes (hue ~34°, ancorados no taupe da logo) ---------- */
+    --warm-000: #FFFFFF;
+    --warm-025: #FDFCFA;
+    --warm-050: #F8F6F2;
+    --warm-100: #F1EDE6;
+    --warm-200: #E4DDD1;
+    --warm-300: #CFC5B4;
+    --warm-400: #A3937F;
+    --warm-500: #7E7263;
+    --warm-600: #5E5449;
+    --warm-700: #443C33;
+    --warm-800: #2B2419;
+    --warm-900: #1C1710;
+
+    /* --- Papéis semânticos ---------------------------------------------- */
+    --surface: var(--warm-000);
+    --surface-subtle: var(--warm-050);
+    --surface-muted: var(--warm-100);
+    --surface-sand: var(--warm-200);
+    --surface-inverse: var(--warm-900);
+
+    --text-strong: var(--warm-900);
+    --text-body: var(--warm-700);
+    --text-muted: var(--warm-500);
+    --text-on-dark: rgba(255, 255, 255, 0.92);
+    --text-on-dark-muted: rgba(255, 255, 255, 0.68);
+    --text-accent: var(--gold-600);
+
+    --border-subtle: rgba(36, 27, 16, 0.08);
+    --border-default: rgba(36, 27, 16, 0.14);
+    --border-strong: rgba(36, 27, 16, 0.24);
+
+    /* Definida no template original mas nunca declarada. */
+    --thm-black: var(--warm-900);
+
+    /* --- Tipografia ------------------------------------------------------ */
+    --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        sans-serif;
+
+    --text-xs: clamp(0.75rem, 0.73rem + 0.1vw, 0.8125rem);
+    --text-sm: clamp(0.875rem, 0.85rem + 0.12vw, 0.9375rem);
+    --text-base: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+    --text-lg: clamp(1.0625rem, 1.02rem + 0.25vw, 1.1875rem);
+    --text-xl: clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
+    --text-2xl: clamp(1.375rem, 1.22rem + 0.75vw, 1.875rem);
+    --text-3xl: clamp(1.75rem, 1.45rem + 1.5vw, 2.625rem);
+    --text-4xl: clamp(2.125rem, 1.6rem + 2.6vw, 3.5rem);
+    --text-5xl: clamp(2.375rem, 1.6rem + 3.9vw, 4.25rem);
+
+    /* Montserrat é geométrica: títulos grandes exigem tracking negativo para
+       não parecerem soltos. Eyebrows exigem tracking positivo generoso. */
+    --tracking-display: -0.03em;
+    --tracking-tight: -0.018em;
+    --tracking-normal: -0.008em;
+    --tracking-wide: 0.02em;
+    --tracking-eyebrow: 0.16em;
+
+    --leading-none: 1.05;
+    --leading-tight: 1.16;
+    --leading-snug: 1.32;
+    --leading-normal: 1.6;
+    --leading-relaxed: 1.75;
+
+    /* --- Espaçamento (base 4px) ----------------------------------------- */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+    --space-32: 8rem;
+
+    /* Respiro vertical das seções e recuo lateral, ambos fluidos. */
+    --section-y: clamp(4rem, 9vw, 7.5rem);
+    --gutter: clamp(1.25rem, 5vw, 4.5rem);
+    --container: 1240px;
+    --container-narrow: 820px;
+
+    --header-h: 76px;
+
+    /* --- Raios ----------------------------------------------------------- */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-2xl: 28px;
+    --radius-full: 999px;
+
+    /* --- Sombras (tingidas de marrom, não de preto puro) ----------------- */
+    --shadow-xs: 0 1px 2px rgba(36, 27, 16, 0.05);
+    --shadow-sm: 0 1px 3px rgba(36, 27, 16, 0.06),
+        0 1px 2px rgba(36, 27, 16, 0.04);
+    --shadow-md: 0 4px 14px -2px rgba(36, 27, 16, 0.08),
+        0 2px 5px -2px rgba(36, 27, 16, 0.05);
+    --shadow-lg: 0 14px 32px -8px rgba(36, 27, 16, 0.13),
+        0 5px 12px -4px rgba(36, 27, 16, 0.07);
+    --shadow-xl: 0 28px 56px -14px rgba(36, 27, 16, 0.2),
+        0 10px 20px -8px rgba(36, 27, 16, 0.09);
+
+    --focus-ring: 0 0 0 3px rgba(187, 138, 40, 0.38);
+
+    /* --- Movimento ------------------------------------------------------- */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --duration-fast: 160ms;
+    --duration: 240ms;
+    --duration-slow: 420ms;
+}
+
+/* ==========================================================================
+   Scroll reveal — progressive enhancement, sem JS e sem tocar no JSX.
+   Onde `animation-timeline` não existe, o conteúdo simplesmente aparece.
+   ========================================================================== */
+
+@keyframes ccm-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ccm-fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+        /* Sobe e aparece. Só para elementos que NÃO usam transform no hover:
+           uma animação com fill `both` venceria a transição de hover. */
+        .ccm-reveal,
+        .socios-fundadores,
+        .team-two__single,
+        .service,
+        .titulo-diferenciais,
+            .box-info-container,
+            .imagem-container img,
+        .imagem-container-dados img,
+        .entre-em-contato {
+            animation: ccm-reveal linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 70%;
+        }
+
+        /* Só opacidade: preserva o translateY do hover nos cards e evita que
+           um transform animado atrapalhe o `position: sticky` do perfil. */
+        .ccm-fade,
+        .card,
+        .contact-item,
+        .profile-section {
+            animation: ccm-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 60%;
+        }
+    }
+}
+
+/* Respeita quem pediu menos movimento: nada de transições nem animações. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

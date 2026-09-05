@@ -17,7 +17,7 @@ const SobreNos = () => {
                 <img src={sociedade} alt="Sociedade" />
             </div>
             <p className="info-text">
-            O escritório nasceu a partir da união de especialidades e propósitos em comum que objetivam auxiliar Pessoas Jurídicas e Físicas na solução dos conflitos de forma simples e célere, promovendo maior satisfação para as partes envolvidas. A nossa equipe adquiriu vida própria, com suas características advindas do que acreditamos, tornando-se uma marca moderna, acessível, criativa, profissional, digital e, principalmente, humana. Prezamos pela excelência, ética e profissionalismo desde a qualidade dos serviços prestados até o atendimento ao cliente. 
+            O escritório nasceu a partir da união de especialidades e propósitos em comum que objetivam auxiliar Pessoas Jurídicas e Físicas na solução dos conflitos de forma simples e célere, promovendo maior satisfação para as partes envolvidas. A nossa equipe adquiriu vida própria, com suas características advindas do que acreditamos, tornando-se uma marca moderna, acessível, criativa, profissional, digital e, principalmente, humana. Prezamos pela excelência, ética e profissionalismo desde a qualidade dos serviços prestados até o atendimento ao cliente.
             </p>
             <p className="info-text">Os profissionais estão sempre atualizados sobre as últimas mudanças na legislação e na jurisprudência, de modo a oferecer a melhor orientação possível aos clientes. Além disso, têm conhecimento aprofundado das leis e regulamentações específicas, fornecendo uma orientação adequada aos clientes.
             </p>

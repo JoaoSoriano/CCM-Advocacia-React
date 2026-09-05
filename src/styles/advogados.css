@@ -1,219 +1,10 @@
-.h2socios {
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 500;
-    font-size: 4em;
-    color: black;
-    margin-bottom: 40px;
-    margin-top: 2px;
-}
+/* ==========================================================================
+   Sócios Fundadores
+   ========================================================================== */
 
-.team-two__single {
-    position: relative;
-    display: block;
-    margin-bottom: 30px;
-    max-width: 400px;
-    width: 28%;
-    height: 28%;
-}
-
-.team-two__single::before {
-    content: "";
-    width: 323px;
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    bottom: 0px;
-    right: 0;
-    background-color:rgb(204, 193, 179);
-    z-index: -1;
-}
-
-.team-two__single::after {
-    content: "";
-    position: absolute;
-    width: 323px;
-    top: 40px;
-    left: 40px;
-    bottom: 0px;
-    right: 0;
-    background-color: #bb8a28;
-    transition: -webkit-transform 0.4s ease;
-    transition: transform 0.4s ease;
-    transition: transform 0.4s ease, -webkit-transform 0.4s ease;
-    transform-origin: top right;
-    -webkit-transform: scale(1, 0);
-    transform: scale(1, 0);
-    z-index: -1;
-}
-
-.team-two__single:hover::after {
-    opacity: 1;
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    transform-origin: bottom center;
-}
-
-.team-two__single-img {
-    position: relative;
-    display: block;
-    overflow: hidden;
-}
-
-.team-two__single-img::before {
-    background: #CFC9C0;
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 0;
-    opacity: 1;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.team-two__single-img img {
-    max-width: 300px;
-    max-height: 450px;
-    transform: scale(1.01);
-    transition: transform .5s cubic-bezier(.27, .48, .45, .94);
-    transform-origin: 70% 80%;
-}
-
-.team-two__single:hover .team-two__single-img img {
-    transform: scale(1.036);
-    transition-duration: .9s;
-    mix-blend-mode: normal;
-}
-
-.team-two__single-img .social-share-box {
-    position: absolute;
-    top: 30px;
-    right: 25px;
-    z-index: 3;
-}
-
-.team-two__single-img .social-share-box span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    background-color: black;
-    border-radius: 50%;
-    font-size: 19px;
-    line-height: 50px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.team-two__single-img .social-share-box:hover span {
-    color: white;
-    transform: rotate(44deg);
-}
-
-.team-two__single-img .social-share-box ul {
-    position: absolute;
-    top: 0;
-    left: 0%;
-    white-space: nowrap;
-    transform: translateX(80px);
-    opacity: 0;
-    padding-top: 60px;
-    transition: all 0.3s;
-    z-index: -1;
-}
-
-.team-two__single-img .social-share-box:hover ul {
-    opacity: 1;
-    transform: translateX(0px);
-}
-
-.team-two__single-img .social-share-box ul li {
-    position: relative;
-    display: block;
-}
-
-.team-two__single-img .social-share-box ul li+li {
-    margin-top: 10px;
-}
-
-.team-two__single-img .social-share-box ul li a {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50px;
-    width: 50px;
-    background: #ffffff;
-    border-radius: 50%;
-    color: var(--thm-black);
-    font-size: 17px;
-    transition: all 200ms linear;
-    transition-delay: 0.1s;
-    z-index: 1;
-}
-
-.team-two__single-img .social-share-box ul li a:hover {
-    color: black;
-}
-
-.team-two__single-img .social-share-box ul li a:before {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    bottom: 0px;
-    right: 0px;
-    background: #e0d5a3;
-    content: "";
-    opacity: 0;
-    transform: scale(0.5);
-    transform-style: preserve-3d;
-    transition: all 0.4s cubic-bezier(0.62, 0.21, 0.45, 1.52);
-    z-index: -1;
-}
-
-.team-two__single-img .social-share-box ul li:hover a:before {
-    opacity: 1;
-    transform: scale(1);
-    border-radius: 50%;
-}
-
-.team-two__single-content {
-    position: relative;
-    display: block;
-    padding: 2px 30px 1px 60px;
-}
-
-.team-two__single-content h3 {
-    margin-top: 0%;
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 700;
-    line-height: 34px;
-}
-
-.team-two__single-content h3 a {
-    color: black;
-    transition: all 200ms linear;
-    transition-delay: 0.1s;
-}
-
-.team-two__single-content h3 a:hover {
-    color: white;
-}
-
-.team-two__single-content p {
-    margin-top: 5%;
-    font-size: 18px;
-    line-height: 28px;
-    color: rgb(128, 128, 128);
-    font-weight: 600;
-    transition: all 200ms linear;
-    transition-delay: 0.1s;
-}
-
-.team-two__single:hover .team-two__single-content p {
-    color: black;
+.team-two {
+    padding: var(--section-y) var(--gutter);
+    background-color: var(--warm-100);
 }
 
 .socios-fundadores {
@@ -222,154 +13,258 @@
     align-items: center;
     flex-direction: column;
     text-align: center;
-    margin-bottom: 40px;
+    max-width: var(--container-narrow);
+    margin: 0 auto var(--space-16);
 }
 
-.team-two {
-    padding-top: 55px;
-    padding-bottom: 80px;
-    background-color: rgb(226, 218, 198);
+.socios {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: clamp(var(--space-10), 6vw, var(--space-24));
+    max-width: var(--container);
+    margin: 0 auto;
+}
+
+/* --- Card ---------------------------------------------------------------- */
+
+.team-two__single {
+    position: relative;
+    display: block;
+    flex: 0 1 340px;
+    max-width: 340px;
+    width: 100%;
+}
+
+.team-two__single-img {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    aspect-ratio: 3 / 4;
+    background-color: var(--warm-200);
+}
+
+.team-two__single-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    transform: scale(1.01);
+    transition: transform var(--duration-slow) var(--ease-out);
+}
+
+@media (hover: hover) {
+    .team-two__single:hover .team-two__single-img img {
+        transform: scale(1.06);
+    }
+}
+
+/* --- Painel de nome/OAB, encavalado no canto inferior da foto ------------ */
+
+.team-two__single-content {
+    position: relative;
+    display: block;
+    margin: calc(-1 * var(--space-10)) 0 0 var(--space-10);
+    padding: var(--space-6) var(--space-6) var(--space-6) var(--space-6);
+    background-color: var(--warm-200);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Preenchimento que sobe no hover, substituindo o scale(1,0) antigo. */
+.team-two__single-content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--warm-050);
+    transform: scaleY(0);
+    transform-origin: bottom center;
+    transition: transform var(--duration-slow) var(--ease-out);
+    z-index: -1;
+}
+
+@media (hover: hover) {
+    .team-two__single:hover .team-two__single-content::before {
+        transform: scaleY(1);
+    }
+}
+
+.team-two__single-content h3 {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+}
+
+.team-two__single-content h3 a {
+    color: var(--text-strong);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: transparent;
+    text-underline-offset: 4px;
+    transition: color var(--duration) var(--ease-out),
+        text-decoration-color var(--duration) var(--ease-out);
+}
+
+.team-two__single-content h3 a:hover {
+    text-decoration-color: currentColor;
+}
+
+.team-two__single-content p {
+    margin: var(--space-2) 0 0;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-wide);
+    /* --text-muted sobre o bege do painel dava só 3.48:1, abaixo do AA. */
+    color: var(--text-body);
+    transition: color var(--duration) var(--ease-out);
+}
+
+@media (hover: hover) {
+    .team-two__single:hover .team-two__single-content p,
+    .team-two__single:hover .team-two__single-content h3 a {
+        color: var(--warm-900);
+    }
+}
+
+.link-underline {
+    text-decoration: none;
+}
+
+/* --- Caixa de redes sociais --------------------------------------------- */
+
+.team-two__single-img .social-share-box {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    z-index: 3;
+}
+
+.team-two__single-img .social-share-box span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background-color: rgba(28, 23, 16, 0.62);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-full);
+    font-size: var(--text-lg);
+    cursor: pointer;
+    transition: transform var(--duration) var(--ease-out),
+        background-color var(--duration) var(--ease-out);
+}
+
+.team-two__single-img .social-share-box:hover span {
+    background-color: var(--hover-sand);
+    transform: rotate(45deg);
+}
+
+.team-two__single-img .social-share-box ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    padding-top: 56px;
+    transition: opacity var(--duration) var(--ease-out),
+        transform var(--duration) var(--ease-out);
+    z-index: -1;
+}
+
+.team-two__single-img .social-share-box:hover ul,
+.team-two__single-img .social-share-box:focus-within ul {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.team-two__single-img .social-share-box ul li {
+    position: relative;
+    display: block;
+}
+
+.team-two__single-img .social-share-box ul li + li {
+    margin-top: var(--space-2);
+}
+
+/* Mesmo vidro escuro do botão "+": os três formam um conjunto só sobre a foto. */
+.team-two__single-img .social-share-box ul li a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    width: 44px;
+    background-color: rgba(28, 23, 16, 0.62);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-full);
+    transition: transform var(--duration) var(--ease-out),
+        background-color var(--duration) var(--ease-out);
+    z-index: 1;
+}
+
+.team-two__single-img .social-share-box ul li a:hover,
+.team-two__single-img .social-share-box ul li a:focus-visible {
+    background-color: var(--hover-sand);
+    transform: scale(1.08);
+}
+
+/* brightness(0) achata o SVG em preto preservando o alfa; invert(1) devolve
+   branco. Independe da cor original de cada arquivo. */
+.team-two__single-img .social-share-box ul li a .social-icon,
+.team-two__single-img .social-share-box .plus {
+    filter: brightness(0) invert(1);
 }
 
 .team-two__single-img .social-share-box ul li a .social-icon {
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
 }
 
 .team-two__single-img .social-share-box .plus {
-    width: 18px;
-    height: 18px;
-    filter: brightness(0) invert(1);
-    transition: transform 0.3s ease;
+    width: 16px;
+    height: 16px;
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1300px) {
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
 
-    .team-two__single-content p {
-        font-size: 17px;
+@media only screen and (max-width: 767px) {
+    .socios-fundadores {
+        margin-bottom: var(--space-12);
     }
-  
-    .team-two__single-img {
-      max-width: 400px;
-  }
-  
-  }
-  
-  @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  
-      .socios {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 20px; /* Espaçamento entre os elementos */
-          flex-wrap: wrap; /* Permite quebra caso a tela fique muito pequena */
-      }
-  
-    .team-two__single-content {
-          padding: 16px 45px 17px;
-      }
-  
-      .team-two__single::before {
-          left: 20px;
-      }
-  
-      .team-two__single-content p {
-          font-size: 16px;
-      }
-  
-      .team-two__single::after {
-          left: 20px;
-      }
-  
-  }
-  
-  @media only screen and (min-width: 768px) {
-    .socios {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap; /* Permite quebra caso a tela fique muito pequena */
-    }
-  
+
     .team-two__single {
-        width: 30%; /* Define um tamanho fixo para cada card */
-        margin: 0; /* Remove espaçamentos extras */
+        flex-basis: 100%;
+        max-width: 380px;
     }
-  
-    .team-two__single-img {
-      max-width: 400px;
-  }
-  }
-  
-  @media only screen and (min-width: 768px) and (max-width: 991px) {
-  
-        .team-two__single {
-          max-width: 500px;
-          width: 100%;
-          margin: 0 auto 30px;
-      }
-  
-      .team-two__single-img {
-          max-width: 400px;
-      }
-  }
-  
-  @media only screen and (max-width: 767px) {
-  
-    .team-two__single-content {
-          padding: 16px 45px 17px;
-      }
-  
-      .team-two__single::before {
-          left: 20px;
-      }
-  
-      .team-two__single-content p {
-          font-size: 16px;
-      }
-  
-      .team-two__single::after {
-          left: 20px;
-      }
-  
-      .team-two__single {
-          width: 90%;
-          margin: 0 auto 30px;
-      }
-  
-      .team-two__single-img .social-share-box {
-          position: absolute;
-          top: 30px;
-          right: 30px;
-          z-index: 3;
-      }
-  
-      .team-two__single::after {
-          -webkit-transform: scale(1,1);
-          transform: scale(1,1);
-          transition: none; /* Remove a transição no mobile */
-          background-color:rgb(204, 193, 179);
-      }
-  
-      .foto-link {
-          pointer-events: none;
-      }
 
-      .link-underline {
-        text-decoration: underline;
-        text-decoration-thickness: 1px;
-        text-underline-offset: 3px;
-        color: inherit;
+    /* Sem hover no toque, o painel já nasce destacado. */
+    .team-two__single-content {
+        margin-left: var(--space-8);
     }
-  }
-  
-  @media screen and (max-width: 350px) {
-  
-      .team-two__single-img .social-share-box {
-          position: absolute;
-          top: 30px;
-          right: 10px;
-          z-index: 3;
-      }
-      
-  }
+
+    .foto-link {
+        pointer-events: none;
+    }
+
+    .team-two__single-content h3 a {
+        text-decoration-color: currentColor;
+    }
+}
