@@ -99,7 +99,7 @@ const Igor = () => (
 
     <PerfilContato
       title="Falar com Igor Campêlo"
-      text="Para tratar de demandas em Direito Médico e da Saúde, saúde suplementar ou Direito Público."
+      text="Consulte nosso especialista para uma análise dedicada"
       whatsapp={WHATSAPP}
       tone="plain"
     />

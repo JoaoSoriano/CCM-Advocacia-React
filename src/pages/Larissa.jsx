@@ -129,7 +129,7 @@ const Larissa = () => (
 
     <PerfilContato
       title="Falar com Larissa Carrazzoni"
-      text="Para tratar de assessoria preventiva, saúde suplementar, adequação à LGPD ou mediação extrajudicial."
+      text="Consulte nossa especialista para uma análise dedicada"
       whatsapp={WHATSAPP}
     />
   </PerfilLayout>
