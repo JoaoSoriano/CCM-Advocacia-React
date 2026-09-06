@@ -6,7 +6,11 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  height: 100dvh; /* evita o salto da barra de endereço no mobile */
+  /* `svh`, não `dvh`. `dvh` acompanha a barra do navegador: a cada vez que ela
+     aparece ou some o hero redimensiona, o vídeo — que é `object-fit: cover` —
+     recorta de novo e parece alargar, e a rolagem trava. `svh` é a altura com a
+     barra visível e não muda durante o scroll. */
+  height: 100svh;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -97,6 +101,7 @@
   .hero {
     height: auto;
     min-height: 100vh;
+    min-height: 100svh;
     padding-top: calc(var(--header-h) + var(--space-10));
     padding-bottom: var(--space-10);
   }

@@ -7,7 +7,7 @@ const HeaderSimples = () => {
   return (
     <header className="header-perfil">
       <div className="header-logo">
-        <img src={logo} alt="Logo do Escritório" />
+        <img src={logo} alt="Logo do Escritório" decoding="async" />
       </div>
       <div className="header-contact">
         <Link to="/" className="contact-button-2">

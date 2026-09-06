@@ -22,7 +22,7 @@ const PerfilHero = ({
   <section className={`perfil-hero perfil-hero--${variant}`}>
     <div className="perfil-hero__inner">
       <figure className="perfil-hero__portrait">
-        <img src={image} alt={imageAlt} decoding="async" />
+        <img src={image} alt={imageAlt} decoding="async" fetchPriority="high" />
       </figure>
 
       <div className="perfil-hero__copy">

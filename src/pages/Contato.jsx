@@ -45,7 +45,7 @@ const Contato = () => {
           <div className="contact-info">
             <div className="contact-item">
               <div className="icon-container">
-                <img src={email} alt="Ícone Email" />
+                <img src={email} alt="Ícone Email" loading="lazy" decoding="async" />
               </div>
               <div>
                 <strong>Email:</strong>
@@ -55,7 +55,7 @@ const Contato = () => {
 
             <div className="contact-item">
               <div className="icon-container">
-                <img src={phone} alt="Ícone Telefone" />
+                <img src={phone} alt="Ícone Telefone" loading="lazy" decoding="async" />
               </div>
               <div>
                 <strong>Telefone:</strong>
@@ -65,7 +65,7 @@ const Contato = () => {
 
             <div className="contact-item">
               <div className="icon-container">
-                <img src={address} alt="Ícone Endereço" />
+                <img src={address} alt="Ícone Endereço" loading="lazy" decoding="async" />
               </div>
               <div>
                 <strong>Endereço:</strong>

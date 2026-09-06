@@ -64,7 +64,7 @@ const Header = () => {
       <nav>
         {/* Logo */}
         <div className="header-logo">
-          <img src={logo} alt="Logo do Escritório" />
+          <img src={logo} alt="Logo do Escritório" decoding="async" />
         </div>
 
         <div className="mobile-menu-container">

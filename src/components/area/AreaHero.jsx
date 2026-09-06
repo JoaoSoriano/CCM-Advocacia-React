@@ -22,7 +22,7 @@ const AreaHero = ({
   <section className={`area-hero area-hero--${variant}`}>
     {variant === "overlay" && image && (
       <div className="area-hero__bg" aria-hidden="true">
-        <img src={image} alt="" decoding="async" />
+        <img src={image} alt="" decoding="async" fetchPriority="high" />
       </div>
     )}
 
@@ -51,7 +51,7 @@ const AreaHero = ({
         <figure
           className={`area-hero__media${tint ? " area-hero__media--warm" : ""}`}
         >
-          <img src={image} alt={imageAlt} decoding="async" />
+          <img src={image} alt={imageAlt} decoding="async" fetchPriority="high" />
         </figure>
       )}
     </div>

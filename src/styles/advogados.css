@@ -135,12 +135,13 @@
     z-index: 3;
 }
 
-.team-two__single-img .social-share-box span {
+.team-two__single-img .social-share-box .icon-plus {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 44px;
     height: 44px;
+    padding: 0;
     background-color: rgba(28, 23, 16, 0.62);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
@@ -152,9 +153,25 @@
         background-color var(--duration) var(--ease-out);
 }
 
-.team-two__single-img .social-share-box:hover span {
+/* Isolado em `hover: hover` de propósito. No toque o navegador emula `:hover`
+   no primeiro tap e mantém a emulação num segundo tap sobre o mesmo elemento —
+   era isso que deixava o "x" aberto até o próximo scroll. */
+@media (hover: hover) {
+    .team-two__single-img .social-share-box:hover .icon-plus {
+        background-color: var(--hover-sand);
+        transform: rotate(45deg);
+    }
+}
+
+/* Estado explícito, vale em qualquer dispositivo. */
+.team-two__single-img .social-share-box.is-open .icon-plus {
     background-color: var(--hover-sand);
     transform: rotate(45deg);
+}
+
+.team-two__single-img .social-share-box .icon-plus:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
 }
 
 .team-two__single-img .social-share-box ul {
@@ -171,8 +188,21 @@
     z-index: -1;
 }
 
-.team-two__single-img .social-share-box:hover ul,
-.team-two__single-img .social-share-box:focus-within ul {
+@media (hover: hover) {
+    .team-two__single-img .social-share-box:hover ul {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+}
+
+/* `ul:focus-within` e não `.social-share-box:focus-within`: o gatilho agora é
+   um botão, e um botão focado deixaria a caixa em foco permanente — o clique
+   que fecha pelo estado reabriria pelo foco, refazendo o mesmo bug no desktop.
+   Assim a lista só reage a foco dentro dela, que é o caso do teclado: o Tab sai
+   do botão e entra no primeiro link, revelando o conjunto. */
+.team-two__single-img .social-share-box.is-open ul,
+.team-two__single-img .social-share-box ul:focus-within {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;

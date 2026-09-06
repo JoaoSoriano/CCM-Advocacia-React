@@ -239,7 +239,11 @@ nav .header-logo img:hover {
     top: 100%;
     right: 0;
     width: min(84vw, 380px);
-    height: calc(100dvh - var(--header-h));
+    /* Também em `svh`: o drawer fica no DOM o tempo todo (só sai de cena por
+       translate), então em `dvh` ele recalcularia a altura a cada mudança da
+       barra, mesmo fechado. */
+    height: calc(100vh - var(--header-h));
+    height: calc(100svh - var(--header-h));
     padding: var(--space-6) 0 var(--space-16);
     background-color: var(--surface);
     flex-direction: column;

@@ -14,6 +14,8 @@ const Footer = () => {
                             src={logoEscura}
                             alt="Logo Escura"
                             className="logo-escura"
+                            loading="lazy"
+                            decoding="async"
                         />
                     </div>
                     <div className="footer-info">
@@ -25,14 +27,14 @@ const Footer = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <img src={instagramIcon} alt="Instagram" className="instagram-icon" />
+                                <img src={instagramIcon} alt="Instagram" className="instagram-icon" loading="lazy" decoding="async" />
                             </a>
                             <a
                                 href="https://wa.me/5581991158530"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <img src={whatsappIcon} alt="Whatsapp" className="instagram-icon" />
+                                <img src={whatsappIcon} alt="Whatsapp" className="instagram-icon" loading="lazy" decoding="async" />
                             </a>
                         </div>
                     </div>
