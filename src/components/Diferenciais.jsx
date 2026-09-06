@@ -19,6 +19,11 @@ const diferenciais = [
 
 const AUTOPLAY_MS = 3000;
 
+/* Deslocamento mínimo, em px, para o toque contar como swipe. */
+const SWIPE_MIN = 40;
+/* Folga para considerar o track encostado numa das pontas. */
+const EDGE_TOL = 4;
+
 /* Seta em SVG: ícone desenhado com glifo de fonte vira quadrado sempre que a
    fonte carregada não traz aquele caractere. */
 const Arrow = () => (
@@ -165,8 +170,17 @@ const Diferenciais = () => {
   }, [paused, visible, pageCount, goTo]);
 
   /* No mobile o scroll nativo para na borda. Se o gesto ainda puxa para além
-     do limite e o track não se moveu, empacota para o outro extremo — o mesmo
-     ciclo que as setas e o autoplay já fazem no desktop. */
+     do limite, empacota para o outro extremo — o mesmo ciclo que as setas e o
+     autoplay já fazem no desktop.
+
+     A decisão sai só de onde o gesto COMEÇOU e da direção dele. A versão
+     anterior também exigia `scrolled < 10`, isto é, que o track não tivesse
+     andado nada durante o toque — e essa condição quase nunca se cumpria: com
+     `scroll-snap-type: x mandatory` o navegador reajusta o scroll ao soltar o
+     dedo, e no iOS o rubber-band move `scrollLeft` bem mais que 10px. O wrap
+     ficava, na prática, morto. A condição também era desnecessária: se o gesto
+     começou encostado no fim e puxou para a esquerda, o track não tinha para
+     onde ir — quanto ele oscilou não muda a intenção. */
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -188,17 +202,17 @@ const Diferenciais = () => {
       if (!metrics || metrics.total <= 1) return;
 
       const dx = event.changedTouches[0].clientX - startX;
-      const scrolled = Math.abs(track.scrollLeft - startScroll);
+      if (Math.abs(dx) < SWIPE_MIN) return;
+
+      /* Tolerância de borda generosa: com snap o repouso raramente é o zero
+         exato nem o máximo exato. */
       const maxScroll = track.scrollWidth - track.clientWidth;
-      const atStart = startScroll <= 2;
-      const atEnd = startScroll >= maxScroll - 2;
+      const comecouNoFim = startScroll >= maxScroll - EDGE_TOL;
+      const comecouNoInicio = startScroll <= EDGE_TOL;
 
-      if (atEnd && dx < -48 && scrolled < 10) {
+      if (comecouNoFim && dx < 0) {
         goTo(0);
-        return;
-      }
-
-      if (atStart && dx > 48 && scrolled < 10) {
+      } else if (comecouNoInicio && dx > 0) {
         goTo(metrics.total - 1);
       }
     };

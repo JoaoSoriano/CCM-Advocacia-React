@@ -85,6 +85,23 @@
     color: var(--warm-900);
 }
 
+/* Invertido no hero overlay: parte do claro e escurece no hover, ao contrário
+   do resto do site. Sobre a foto escura da variante é o botão claro que puxa o
+   olho primeiro, e o gesto de tinta continua o mesmo — só troca de sentido. */
+.area-hero--overlay .area-btn--solid {
+    color: var(--warm-900);
+    background-color: var(--area-band, var(--surface-subtle));
+}
+
+.area-hero--overlay .area-btn--solid::before {
+    background-color: var(--warm-900);
+}
+
+.area-hero--overlay .area-btn--solid:hover,
+.area-hero--overlay .area-btn--solid:focus-visible {
+    color: #fff;
+}
+
 /* Ghost sobre fundo claro → tinta escura. */
 .area-btn--ghost {
     color: var(--warm-500);
@@ -1177,6 +1194,14 @@
     .area-btn--solid:focus-visible,
     .area-btn--solid:active {
         color: #fff;
+    }
+
+    /* No overlay o descanso é o claro, então o texto preso após o toque tem de
+       ser o escuro — o inverso da regra acima. */
+    .area-hero--overlay .area-btn--solid:hover,
+    .area-hero--overlay .area-btn--solid:focus-visible,
+    .area-hero--overlay .area-btn--solid:active {
+        color: var(--warm-900);
     }
 
     .area-btn--ghost:hover,

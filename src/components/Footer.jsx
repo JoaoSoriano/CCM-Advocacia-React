@@ -23,7 +23,7 @@ const Footer = () => {
                         <p>Telefone: (81) 99115-8530</p>
                         <div className="icons-footer">
                             <a
-                                href="https://www.instagram.com/ccm_adv?igsh=MWJhcHU4eHB3emlweQ%3D%3D&utm_source=qr"
+                                href="https://www.instagram.com/carrazzoniecampeloadv?stkn=YTUwdWNjbWhlMXlx"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >

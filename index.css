@@ -17,6 +17,18 @@ html {
     -webkit-text-size-adjust: 100%;
 }
 
+/* Âncoras do menu principal. O `scroll-padding-top` acima já libera a nav fixa,
+   mas cada seção-alvo abre com `--section-y` (64–120px) de respiro próprio, e a
+   soma parava a rolagem com o título a mais de 200px do topo: clicava-se em
+   "Advogados" e caía-se num vão vazio. A margem negativa consome esse respiro e
+   deixa o título sempre a ~28px abaixo da nav, em qualquer largura — as três
+   seções usam exatamente `--section-y`, então uma regra serve para todas. */
+#advogados,
+#areas-atuacao,
+#diferenciais {
+    scroll-margin-top: calc(var(--space-3) - var(--section-y));
+}
+
 html,
 body {
     margin: 0;
