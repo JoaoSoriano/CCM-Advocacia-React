@@ -1,41 +1,138 @@
-import React from 'react';
-import HeaderSimples from '../components/HeaderSimples';
-import Footer from '../components/Footer';
-import larissaPhoto from '../img/Larissa_nova.jpg';
-import '../styles/perfil.css';
+import PerfilLayout from "../components/perfil/PerfilLayout";
+import PerfilHero from "../components/perfil/PerfilHero";
+import PerfilSection from "../components/perfil/PerfilSection";
+import PerfilCreds from "../components/perfil/PerfilCreds";
+import PerfilAreas from "../components/perfil/PerfilAreas";
+import { AREAS } from "../components/perfil/areas";
+import PerfilContato from "../components/perfil/PerfilContato";
+import larissaPhoto from "../img/Larissa_nova.jpg";
 
-const Larissa = () => {
-  return (
-    <>
-        <HeaderSimples />
+/* A bio original era um parágrafo único com cerca de vinte credenciais
+   separadas por ponto e vírgula. Aqui ela é decomposta em formação, atuação
+   institucional atual, trajetória anterior e produção — nenhum item do texto
+   original foi descartado; o que a bio traz de especialidade está no lede do
+   hero, e não numa lista de áreas, porque os dois sócios atendem todas. */
 
-        <section className="perfil-page">
+const WHATSAPP = "https://wa.me/5581991517293";
 
-            {/* Nome da Advogada */}
-            <div className="nome-perfil">
-            <div className="sec-title-three">
-                <h2>Larissa Carrazzoni</h2>
-            </div>
-            </div>
+/* Do mais recente para o mais antigo, como se lê um currículo. */
+const formacao = [
+  {
+    title: "Mestranda em Direito Médico-Odontológico",
+    detail: "São Leopoldo Mandic, São Paulo"
+  },
+  {
+    title: "Especialista em Direito Médico e da Saúde",
+    detail: "Instituto Paulista de Direito Médico e da Saúde (IPDMS)"
+  },
+  {
+    title: "Pós-graduada em Direito Médico e da Saúde — LLM",
+    detail: "Católica Business School, UNICAP"
+  },
+  {
+    title: "Bacharela em Direito",
+    detail: "Universidade Católica de Pernambuco (UNICAP)"
+  }
+];
 
-            {/* Foto e Currículo */}
-            <section className="profile-section">
-            <div className="profile-photo">
-                <img src={larissaPhoto} alt="Larissa Carrazzoni" />
-            </div>
-            <div className="profile-curriculum">
-                <h3>Experiência:</h3>
-                <p>
-                Larissa Carrazzoni. Advogada, atua com assessoria preventiva e defesa estratégica para profissionais e empresas de saúde e na saúde suplementar; expertise e atuação em Integridade e LGPD, com auxílio a pessoas físicas, jurídicas públicas e privadas na adequação às normativas que regem a coleta, uso e proteção de dados; Mediadora Extrajudicial; Assessora Jurídica Parlamentar; Bacharela em Direito pela Universidade Católica de Pernambuco - UNICAP; Pós-graduada em Direito Médico e da Saúde – LLM - Católica Business School - UNICAP; Especialista em Direito Médico e da Saúde pelo Instituto Paulista de Direito Médico e da Saúde - IPDMS; Mestranda em Direito Médico-Odontológico pela São Leopoldo Mandic - SP; Presidente da Comissão de Direito Médico e da Saúde da OAB JAB; Vice-Presidente e representante de PE da Comissão Nacional de Direito Odontológico da ABA; membro da Unidade de Bioética do Real Hospital Português que faz parte da International Chair in Bioethics – World Medical Association Cooperating Centre; ex-membro da Sociedade Brasileira de Bioética/PE; ex-membro da Comissão de Perícias Forenses da OAB/PE; ex-membro representante de PE da Comissão Nacional de Bioética da ABA; ex-membro consultor na Comissão Especial de Bioética e Biodireito da OAB do ES; palestrante; professora em cursos, graduações e pós-graduações para profissionais da área de saúde; aulas ministradas de prática em ações de direito da saúde - CERS; autora de obras jurídicas.
-                </p>
-            </div>
-            </section>
-        </section>
+const institucional = [
+  {
+    title: "Presidente da Comissão de Direito Médico e da Saúde",
+    detail: "OAB Jaboatão"
+  },
+  {
+    title:
+      "Vice-Presidente e representante de PE da Comissão Nacional de Direito Odontológico",
+    detail: "Associação Brasileira de Advogados (ABA)"
+  },
+  {
+    title: "Membro da Unidade de Bioética do Real Hospital Português",
+    detail:
+      "Integrante da International Chair in Bioethics — World Medical Association Cooperating Centre"
+  }
+];
 
-        <Footer />
-    </>
+const trajetoria = [
+  { title: "Sociedade Brasileira de Bioética/PE", detail: "Ex-membro" },
+  { title: "Comissão de Perícias Forenses da OAB/PE", detail: "Ex-membro" },
+  {
+    title: "Comissão Nacional de Bioética da ABA",
+    detail: "Ex-membro representante de PE"
+  },
+  {
+    title: "Comissão Especial de Bioética e Biodireito da OAB/ES",
+    detail: "Ex-membro consultor"
+  }
+];
 
-  );
-};
+const producao = [
+  {
+    title: "Professora em cursos, graduações e pós-graduações",
+    detail: "Para profissionais da área de saúde"
+  },
+  {
+    title: "Aulas de prática em ações de direito da saúde",
+    detail: "CERS"
+  },
+  { title: "Autora de obras jurídicas" },
+  { title: "Palestrante" }
+];
+
+const Larissa = () => (
+  <PerfilLayout>
+    <PerfilHero
+      variant="person"
+      eyebrow="Sócia fundadora"
+      name="Larissa Carrazzoni"
+      meta="OAB/PE nº 60.623"
+      lede="Advogada. Atua com assessoria preventiva e defesa estratégica para profissionais e empresas de saúde e na saúde suplementar, com expertise em Integridade e LGPD. Mediadora extrajudicial e assessora jurídica parlamentar."
+      image={larissaPhoto}
+      imageAlt="Larissa Carrazzoni"
+      social={{
+        instagram:
+          "https://www.instagram.com/larissacarrazzoni.adv?igsh=ZmFoaHR0ZHZ4NTM3",
+        whatsapp: WHATSAPP,
+        linkedin:
+          "https://www.linkedin.com/in/larissa-carrazzoni-larissacarrazzoni-adv-912505206/?originalSubdomain=br"
+      }}
+    />
+
+    <PerfilSection
+      eyebrow="Atuação"
+      title="Onde atuo"
+      intro="Larissa atende todas as frentes do escritório. Cada uma tem uma página com o escopo do trabalho."
+      tone="plain"
+    >
+      <PerfilAreas items={AREAS} />
+    </PerfilSection>
+
+    <PerfilSection eyebrow="Formação" title="Formação acadêmica" tone="subtle">
+      <PerfilCreds items={formacao} />
+    </PerfilSection>
+
+    <PerfilSection
+      eyebrow="Representação"
+      title="Atuação institucional"
+      intro="Cargos e vínculos atuais em comissões e entidades da área médica, odontológica e de bioética."
+      tone="plain"
+    >
+      <PerfilCreds items={institucional} />
+    </PerfilSection>
+
+    <PerfilSection eyebrow="Trajetória" title="Vínculos anteriores" tone="subtle">
+      <PerfilCreds items={trajetoria} />
+    </PerfilSection>
+
+    <PerfilSection eyebrow="Produção" title="Docência e publicações" tone="plain">
+      <PerfilCreds items={producao} />
+    </PerfilSection>
+
+    <PerfilContato
+      title="Falar com Larissa Carrazzoni"
+      text="Para tratar de assessoria preventiva, saúde suplementar, adequação à LGPD ou mediação extrajudicial."
+      whatsapp={WHATSAPP}
+    />
+  </PerfilLayout>
+);
 
 export default Larissa;

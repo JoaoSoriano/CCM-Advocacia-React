@@ -1,104 +1,824 @@
 /* ==========================================================================
-   Páginas de perfil dos sócios
+   Páginas de perfil e institucional
+   Registro editorial: retrato, credenciais em linhas e declarações
+   tipográficas. Sem cards de serviço e sem bloco de conversão, que são a
+   linguagem das páginas de área (area.css).
    ========================================================================== */
 
-.perfil-page {
-    padding: var(--section-y) var(--gutter);
+.perfil {
+    background-color: var(--surface);
+}
+
+.perfil-eyebrow {
+    margin: 0 0 var(--space-4);
+    color: var(--gold-600);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Botões
+   ========================================================================== */
+
+/* Mesma varredura de tinta dos botões do header. A receita está repetida em
+   header.css, form.css e area.css — vale extrair para um primitivo único. */
+.perfil-btn {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4) var(--space-8);
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: color var(--duration-slow) var(--ease-out),
+        border-color var(--duration-slow) var(--ease-out);
+}
+
+.perfil-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.perfil-btn:hover::before,
+.perfil-btn:focus-visible::before {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+.perfil-btn--solid {
+    color: #fff;
+    background-color: var(--warm-900);
+}
+
+.perfil-btn--solid::before {
     background-color: var(--surface-subtle);
 }
 
-.nome-perfil {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    max-width: var(--container-narrow);
-    margin: 0 auto var(--space-12);
+.perfil-btn--solid:hover,
+.perfil-btn--solid:focus-visible {
+    color: var(--warm-900);
 }
 
-.sec-title-three h2 {
-    font-size: var(--text-3xl);
+.perfil-btn--ghost {
+    color: var(--warm-500);
+    background-color: transparent;
+    border-color: var(--hover-sand);
+}
+
+.perfil-btn--ghost::before {
+    background-color: var(--warm-900);
+}
+
+.perfil-btn--ghost:hover,
+.perfil-btn--ghost:focus-visible {
+    color: #fff;
+    border-color: var(--warm-900);
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.perfil-hero {
+    padding: clamp(var(--space-16), 8vw, var(--space-32)) var(--gutter)
+        clamp(var(--space-12), 6vw, var(--space-24));
+    background-color: var(--surface-subtle);
+}
+
+.perfil-hero__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+}
+
+.perfil-hero__portrait {
+    margin: 0;
+}
+
+.perfil-hero__portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* O enquadramento das fotos deixa o rosto acima do centro geométrico. */
+    object-position: center 18%;
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xl);
+}
+
+.perfil-hero__name {
+    margin: 0;
+    color: var(--text-strong);
+    font-size: var(--text-4xl);
     font-weight: 600;
     line-height: var(--leading-tight);
     letter-spacing: var(--tracking-display);
-    color: var(--text-strong);
-    margin: 0;
     text-wrap: balance;
 }
 
-/* --- Foto + currículo ---------------------------------------------------- */
+/* Número de OAB: informação de registro, tratada como dado e não como texto. */
+.perfil-hero__meta {
+    margin: var(--space-4) 0 0;
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: var(--tracking-wide);
+    font-variant-numeric: tabular-nums;
+}
 
-.profile-section {
-    display: grid;
-    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
-    align-items: start;
-    gap: clamp(var(--space-8), 4vw, var(--space-16));
+.perfil-hero__lede {
+    margin: var(--space-8) 0 0;
+    max-width: 52ch;
+    color: var(--text-body);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    text-wrap: pretty;
+}
+
+/* --- Variante person ---------------------------------------------------- */
+
+@media (min-width: 880px) {
+    .perfil-hero--person .perfil-hero__inner {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        align-items: center;
+        gap: clamp(var(--space-10), 5vw, var(--space-20));
+    }
+
+    .perfil-hero--person .perfil-hero__portrait {
+        aspect-ratio: 3 / 4;
+        max-height: 600px;
+    }
+}
+
+@media (max-width: 879px) {
+    .perfil-hero__portrait {
+        max-width: 340px;
+        margin-bottom: var(--space-10);
+    }
+
+    .perfil-hero__portrait img {
+        aspect-ratio: 3 / 4;
+    }
+}
+
+/* --- Variante institution ----------------------------------------------- */
+
+/* Sem retrato: a imagem vira faixa larga abaixo do texto, porque o assunto é
+   o escritório e não uma pessoa. */
+.perfil-hero--institution .perfil-hero__inner {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.perfil-hero--institution .perfil-hero__portrait {
+    max-width: 100%;
+    margin: clamp(var(--space-10), 5vw, var(--space-16)) 0 0;
+}
+
+.perfil-hero--institution .perfil-hero__portrait img {
+    /* Mais alta que 21/9: a foto é um retrato de meio-corpo e a faixa
+       cinema cortava as cabeças. object-position no topo garante o rosto. */
+    aspect-ratio: 16 / 9;
+    object-position: center top;
+}
+
+.perfil-hero--institution .perfil-hero__lede {
+    max-width: 60ch;
+}
+
+/* ==========================================================================
+   Canais de contato
+   ========================================================================== */
+
+.perfil-social {
+    display: flex;
+    gap: var(--space-3);
+    list-style: none;
+    margin: var(--space-10) 0 0;
+    padding: 0;
+}
+
+.perfil-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    color: var(--warm-600);
+    font-size: 1.125rem;
+    background-color: var(--surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-full);
+    transition: color var(--duration) var(--ease-out),
+        background-color var(--duration) var(--ease-out),
+        border-color var(--duration) var(--ease-out);
+}
+
+@media (hover: hover) {
+    .perfil-social a:hover {
+        color: #fff;
+        background-color: var(--hover-sand);
+        border-color: var(--hover-sand);
+    }
+}
+
+/* ==========================================================================
+   Seção
+   ========================================================================== */
+
+.perfil-section {
+    padding: var(--section-y) var(--gutter);
+}
+
+.perfil-section--plain {
+    background-color: var(--surface);
+}
+
+.perfil-section--subtle {
+    background-color: var(--surface-subtle);
+}
+
+.perfil-section--sand {
+    background-color: var(--surface-muted);
+}
+
+.perfil-section__inner {
     max-width: var(--container);
     margin: 0 auto;
-    padding: clamp(var(--space-6), 4vw, var(--space-12));
+}
+
+.perfil-section__title {
+    margin: 0;
+    color: var(--text-strong);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    text-wrap: balance;
+}
+
+.perfil-section__intro {
+    margin: var(--space-5) 0 0;
+    max-width: 46ch;
+    color: var(--text-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    text-wrap: pretty;
+}
+
+.perfil-section__head {
+    margin-bottom: var(--space-10);
+}
+
+/* Título à esquerda e conteúdo à direita: o cabeçalho fica como rótulo de
+   margem, que é a convenção de leitura de um dossiê. */
+@media (min-width: 900px) {
+    .perfil-section__inner {
+        display: grid;
+        grid-template-columns: minmax(0, 0.32fr) minmax(0, 0.68fr);
+        gap: clamp(var(--space-10), 5vw, var(--space-20));
+        align-items: start;
+    }
+
+    .perfil-section__head {
+        margin-bottom: 0;
+    }
+}
+
+/* ==========================================================================
+   Credenciais
+   ========================================================================== */
+
+.perfil-creds {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.perfil-cred {
+    display: grid;
+    gap: var(--space-2) var(--space-8);
+    padding: var(--space-6) 0;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.perfil-cred:last-child {
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.perfil-cred__period {
+    color: var(--gold-700);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    padding-top: 0.2em;
+}
+
+.perfil-cred__title {
+    margin: 0;
+    color: var(--text-strong);
+    font-size: var(--text-base);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-normal);
+    text-wrap: pretty;
+}
+
+.perfil-cred__detail {
+    margin: var(--space-2) 0 0;
+    color: var(--text-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    text-wrap: pretty;
+}
+
+/* A coluna de período é decidida pela lista, não pela linha: basta um item
+   datado para todos ganharem a calha, senão uma credencial sem ano no meio de
+   uma lista datada começaria colada na margem, fora do eixo das outras. Listas
+   inteiramente sem data seguem em coluna única. */
+@media (min-width: 560px) {
+    .perfil-creds:has(.perfil-cred__period) .perfil-cred {
+        grid-template-columns: 7.5rem minmax(0, 1fr);
+    }
+
+    .perfil-creds:has(.perfil-cred__period) .perfil-cred__body {
+        grid-column: 2;
+    }
+}
+
+/* ==========================================================================
+   Áreas de atuação
+   ========================================================================== */
+
+.perfil-areas {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Mesmo fio das credenciais: a lista é irmã delas na página e uma borda de
+   card aqui quebraria o ritmo de dossiê. */
+.perfil-area {
+    position: relative;
+    display: block;
+    padding: var(--space-5) var(--space-10) var(--space-5) 0;
+    text-decoration: none;
+    border-top: 1px solid var(--border-subtle);
+    transition: padding-left var(--duration) var(--ease-out);
+}
+
+.perfil-areas li:last-child .perfil-area {
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.perfil-area__title {
+    display: block;
+    color: var(--text-strong);
+    font-size: var(--text-base);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-normal);
+    text-wrap: pretty;
+    transition: color var(--duration) var(--ease-out);
+}
+
+.perfil-area__text {
+    display: block;
+    margin-top: var(--space-2);
+    color: var(--text-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    text-wrap: pretty;
+}
+
+/* Seta desenhada em CSS, como a dos cards de sócio: é a única marca de que a
+   linha inteira é um link, já que a lista não usa sublinhado nem cor de link. */
+.perfil-area::after {
+    content: "";
+    position: absolute;
+    top: calc(var(--space-5) + 0.35em);
+    right: var(--space-4);
+    width: 0.5em;
+    height: 0.5em;
+    border-top: 1.5px solid var(--gold-600);
+    border-right: 1.5px solid var(--gold-600);
+    transform: rotate(45deg);
+    transition: transform var(--duration) var(--ease-out);
+}
+
+@media (hover: hover) {
+    .perfil-area:hover .perfil-area__title {
+        color: var(--gold-700);
+    }
+
+    /* Recuo no hover em vez de fundo: mantém o fio contínuo e dá o mesmo
+       deslocamento lateral que a seta faz do outro lado. */
+    .perfil-area:hover {
+        padding-left: var(--space-4);
+    }
+
+    .perfil-area:hover::after {
+        transform: rotate(45deg) translate(3px, -3px);
+    }
+}
+
+.perfil-area:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   Tags
+   ========================================================================== */
+
+.perfil-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.perfil-tag {
+    padding: var(--space-3) var(--space-5);
+    color: var(--text-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    background-color: var(--surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-full);
+    transition: color var(--duration) var(--ease-out),
+        border-color var(--duration) var(--ease-out);
+}
+
+@media (hover: hover) {
+    .perfil-tag:hover {
+        color: var(--text-strong);
+        border-color: var(--hover-sand);
+    }
+}
+
+/* ==========================================================================
+   Traços de identidade
+   ========================================================================== */
+
+/* Grade de fio fino: o filete nasce do gap sobre o fundo do contêiner, então a
+   matriz não ganha moldura externa e continua lendo como página de dossiê, e
+   não como conjunto de caixas. */
+.perfil-traits {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: var(--border-subtle);
+}
+
+/* Duas colunas fixas, não `auto-fit`: a peça vive dentro da coluna de 0.68fr da
+   seção, onde a largura disponível oscila entre ~520px e ~800px e o auto-fit
+   saltaria de uma para três colunas conforme a viewport. */
+@media (min-width: 560px) {
+    .perfil-traits {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.perfil-trait {
+    position: relative;
+    padding: var(--space-6) var(--space-6) var(--space-8);
+    background-color: var(--surface);
+    transition: background-color var(--duration) var(--ease-out);
+}
+
+/* Filete dourado que sobe na borda esquerda no hover. Mesma ideia da varredura
+   de tinta dos botões, reduzida ao traço. */
+.perfil-trait::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--gold-500);
+    transform: scaleY(0);
+    transform-origin: bottom center;
+    transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.perfil-trait__index {
+    display: block;
+    margin-bottom: var(--space-5);
+    color: var(--gold-600);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-eyebrow);
+    font-variant-numeric: tabular-nums;
+    transition: color var(--duration) var(--ease-out);
+}
+
+.perfil-trait__title {
+    margin: 0;
+    color: var(--text-strong);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+}
+
+.perfil-trait__text {
+    margin: var(--space-3) 0 0;
+    max-width: 34ch;
+    color: var(--text-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    text-wrap: pretty;
+}
+
+@media (hover: hover) {
+    .perfil-trait:hover {
+        background-color: var(--surface-subtle);
+    }
+
+    .perfil-trait:hover::before {
+        transform: scaleY(1);
+        transform-origin: top center;
+    }
+
+    .perfil-trait:hover .perfil-trait__index {
+        color: var(--gold-700);
+    }
+}
+
+/* ==========================================================================
+   Declaração
+   ========================================================================== */
+
+.perfil-statement {
+    padding: var(--section-y) var(--gutter);
+}
+
+.perfil-statement--plain {
+    background-color: var(--surface);
+}
+
+.perfil-statement--subtle {
+    background-color: var(--surface-subtle);
+}
+
+.perfil-statement--dark {
+    background-color: var(--warm-900);
+}
+
+.perfil-statement__inner {
+    max-width: var(--container-narrow);
+    margin: 0 auto;
+}
+
+.perfil-statement__text {
+    margin: 0;
+    color: var(--text-strong);
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    text-wrap: pretty;
+}
+
+.perfil-statement--dark .perfil-statement__text {
+    color: #fff;
+}
+
+/* ==========================================================================
+   Sócios (Sobre Nós)
+   ========================================================================== */
+
+.perfil-socios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: clamp(var(--space-4), 2vw, var(--space-6));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.perfil-socio {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
     background-color: var(--surface);
     border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-2xl);
-    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform var(--duration) var(--ease-out),
+        box-shadow var(--duration) var(--ease-out),
+        border-color var(--duration) var(--ease-out);
 }
 
-.profile-photo {
-    /* O currículo é longo; a foto acompanha a leitura no desktop. */
-    position: sticky;
-    top: var(--space-8);
-    margin: 0;
-    max-width: 100%;
+@media (hover: hover) {
+    .perfil-socio:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--border-default);
+    }
+
+    .perfil-socio:hover .perfil-socio__cta {
+        color: var(--warm-900);
+    }
+
+    .perfil-socio:hover .perfil-socio__cta::after {
+        transform: translateX(4px);
+    }
 }
 
-.profile-photo img {
+.perfil-socio__media {
+    display: block;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+}
+
+.perfil-socio__media img {
     width: 100%;
-    aspect-ratio: 3 / 4;
+    height: 100%;
     object-fit: cover;
-    object-position: center 20%;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+    object-position: center 18%;
 }
 
-.profile-curriculum {
-    font-size: var(--text-base);
-    line-height: var(--leading-relaxed);
-    letter-spacing: var(--tracking-normal);
-    color: var(--text-body);
+.perfil-socio__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-6);
 }
 
-.profile-curriculum h3 {
+.perfil-socio__nome {
+    color: var(--text-strong);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+}
+
+.perfil-socio__oab {
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+}
+
+.perfil-socio__cta {
+    margin-top: var(--space-4);
+    color: var(--gold-600);
     font-size: var(--text-xs);
     font-weight: 600;
-    line-height: 1;
     letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
-    color: var(--text-accent);
-    margin: 0 0 var(--space-5);
+    transition: color var(--duration) var(--ease-out);
 }
 
-.profile-curriculum p {
+/* Seta desenhada em CSS, para não depender de glifo de fonte. */
+.perfil-socio__cta::after {
+    content: "";
+    display: inline-block;
+    width: 0.5em;
+    height: 0.5em;
+    margin-left: 0.6em;
+    border-top: 1.5px solid currentColor;
+    border-right: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    vertical-align: middle;
+    transition: transform var(--duration) var(--ease-out);
+}
+
+/* ==========================================================================
+   Contato
+   ========================================================================== */
+
+.perfil-contato {
+    padding: var(--section-y) var(--gutter);
+    background-color: var(--surface-subtle);
+    border-top: 1px solid var(--border-subtle);
+}
+
+.perfil-contato--plain {
+    background-color: var(--surface);
+}
+
+/* No fundo branco o hover do sólido acompanha o fundo; o ghost fica preto. */
+.perfil-contato--plain .perfil-btn--solid::before {
+    background-color: #fff;
+}
+
+.perfil-contato--plain .perfil-btn--ghost {
+    color: var(--warm-900);
+    border-color: var(--warm-900);
+}
+
+.perfil-contato--plain .perfil-btn--ghost:hover,
+.perfil-contato--plain .perfil-btn--ghost:focus-visible {
+    color: #fff;
+}
+
+.perfil-contato__inner {
+    max-width: var(--container-narrow);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.perfil-contato__title {
     margin: 0;
-    max-width: 72ch;
-    text-align: left;
+    color: var(--text-strong);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    text-wrap: balance;
+}
+
+.perfil-contato__text {
+    margin: var(--space-5) auto 0;
+    max-width: 56ch;
+    color: var(--text-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
     text-wrap: pretty;
+}
+
+.perfil-contato__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+}
+
+/* ==========================================================================
+   Scroll reveal
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+        .perfil-statement__inner,
+        .perfil-contato__inner {
+            animation: ccm-reveal linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 60%;
+        }
+
+        /* Só opacidade nas credenciais e nos cards de sócio: os cards animam
+           transform no hover — um transform com fill `both` atropelaria isso. */
+        .perfil-cred,
+        .perfil-tag,
+        .perfil-trait,
+        .perfil-areas li,
+        .perfil-socios li {
+            animation: ccm-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 55%;
+        }
+    }
 }
 
 /* ==========================================================================
    Responsividade
    ========================================================================== */
 
-@media (max-width: 860px) {
-    .profile-section {
-        grid-template-columns: 1fr;
+@media (max-width: 600px) {
+    .perfil-contato__actions .perfil-btn {
+        flex: 1 1 100%;
     }
 
-    .profile-photo {
-        position: static;
-        max-width: 320px;
-        margin: 0 auto;
+    .perfil-statement__text {
+        font-size: var(--text-xl);
     }
 
-    .nome-perfil {
-        margin-bottom: var(--space-8);
+    .perfil-social a {
+        width: 42px;
+        height: 42px;
+        font-size: 1rem;
     }
 }

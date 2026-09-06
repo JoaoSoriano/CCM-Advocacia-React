@@ -1,40 +1,143 @@
-import React from 'react';
-import HeaderSimples from '../components/HeaderSimples';
-import Footer from '../components/Footer';
-import dentista from '../img/dentista.jpg';
-import '../styles/info.css';
-import '../styles/perfil.css';
+import AreaLayout from "../components/area/AreaLayout";
+import AreaHero from "../components/area/AreaHero";
+import AreaSection from "../components/area/AreaSection";
+import AreaGrid from "../components/area/AreaGrid";
+import AreaChips from "../components/area/AreaChips";
+import AreaQuote from "../components/area/AreaQuote";
+import AreaFAQ from "../components/area/AreaFAQ";
+import AreaCTA from "../components/area/AreaCTA";
+import dentista from "../img/dentista.jpg";
 
-const DirOdonto = () => {
-  return (
-    <>
-        <HeaderSimples />
+/* Assinatura da página: hero com imagem sangrando e as frentes de atuação
+   em grade uniforme. Oito itens fecham em 4×2 no desktop, sem vão. */
 
-        <section className="box-info">
-        <div className="box-info-container">
-            <h1>Direito Odontológico</h1>
-            <div className="imagem-container">
-                <img src={dentista} alt="Direito Odontológico" />
-            </div>
-            <p className="info-text">
-            O direito odontológico, é o ramo dedicado a navegar pelas complexidades jurídicas inerentes à prática odontológica. A assessoria jurídica especializada se torna não apenas recomendável, mas essencial para a sustentabilidade e o sucesso de clínicas e consultórios odontológicos. O escritório, especializado em direito odontológico, desempenha um papel crucial. Na esfera administrativa, a atuação é fundamental para garantir a conformidade da clínica com as exigências de órgãos reguladores e para lidar com questões burocráticas que podem impactar o funcionamento do negócio. Isso inclui o acompanhamento e a obtenção de licenças e alvarás necessários para o funcionamento da clínica, o cumprimento de normas sanitárias e a defesa em processos administrativos instaurados por órgãos como a ANVISA, o PROCON ou outros órgãos de fiscalização.   
-            </p>
-            <p className="info-text"> Na esfera preventiva, a atuação visa mitigar riscos éticos e legais e garantir a conformidade com as normas vigentes. Isso se traduz, entre outras coisas, na elaboração e revisão minuciosa de contratos de prestação de serviços, termos de consentimento informado, contratos de parceria e outros documentos essenciais, assegurando que os direitos e deveres de ambas as partes estejam claramente definidos, minimizando assim o risco de futuras disputas.
-            Além disso, a assessoria preventiva abrange a consultoria detalhada sobre as complexas normas e regulamentações estabelecidas pela Agência Nacional de Vigilância Sanitária (ANVISA), pelo Conselho Federal de Odontologia (CFO) e por outras legislações pertinentes. Essa orientação é fundamental para garantir que a clínica opere em total conformidade com os padrões de segurança e qualidade exigidos, evitando sanções e garantindo a confiança dos pacientes.
-            </p>
-            <p className="info-text">A atuação preventiva também se estende à área trabalhista, com o escritório oferecendo suporte na contratação e gestão de funcionários, auxiliando na elaboração de contratos de trabalho adequados e na implementação de políticas internas que previnam passivos trabalhistas. Em um mundo cada vez mais digital, a proteção de dados dos pacientes, em conformidade com a Lei Geral de Proteção de Dados (LGPD), é outra área crucial onde a assessoria jurídica especializada se mostra indispensável, garantindo a segurança das informações e a reputação da clínica.</p>
-            <p className='info-text'>Na esfera contenciosa, o escritório atua na defesa dos interesses dos cirurgiões-dentistas quando conflitos inevitavelmente surgem. Isso inclui a representação em processos judiciais, seja em ações de responsabilidade civil decorrentes de alegações de danos na prestação de serviço ou negligência, seja em ações consumeristas movidas por pacientes insatisfeitos. A expertise é fundamental para construir uma defesa sólida e eficaz, protegendo a reputação e os ativos do profissional.
-            A recuperação de crédito é uma área vital para a saúde financeira de qualquer clínica, e o suporte jurídico especializado pode otimizar esse processo, buscando a cobrança de valores devidos por pacientes de forma legal e eficaz, seja através de negociações extrajudiciais ou por meio de ações judiciais cabíveis.</p>
-            <p className='info-text'>Além dos processos judiciais, a atuação abrange a defesa em processos ético-profissionais perante os Conselhos Regionais de Odontologia (CROs) e o Conselho Federal de Odontologia (CFO). Nesses casos, a representação é crucial para garantir um processo justo e a defesa adequada do profissional acusado.
-            A busca por soluções amigáveis através da mediação e negociação também faz parte da atuação. O escritório pode auxiliar na resolução de conflitos de forma mais rápida e eficiente, evitando longos e custosos processos judiciais e preservando o relacionamento entre o cirurgião-dentista e o paciente.</p>
-            <p className='info-text'>Investir em assessoria jurídica especializada em direito odontológico representa um passo estratégico para qualquer profissional ou clínica que busca não apenas o sucesso, mas também a segurança e a tranquilidade no exercício da profissão. É um investimento que se traduz em segurança, tranquilidade e, em última análise, no sucesso sustentável da prática odontológica.</p>
-        </div>
-        </section>
+const esferas = [
+  {
+    icon: "fa-solid fa-building-columns",
+    title: "Esfera administrativa",
+    text: "Conformidade da clínica com as exigências de órgãos reguladores, incluindo acompanhamento e obtenção de licenças e alvarás, cumprimento de normas sanitárias e defesa em processos administrativos."
+  },
+  {
+    icon: "fa-solid fa-file-contract",
+    title: "Contratos e termos",
+    text: "Elaboração e revisão minuciosa de contratos de prestação de serviços, termos de consentimento informado e contratos de parceria, com direitos e deveres claramente definidos."
+  },
+  {
+    icon: "fa-solid fa-clipboard-check",
+    title: "Normas e regulamentações",
+    text: "Consultoria detalhada sobre as normas da ANVISA, do Conselho Federal de Odontologia e demais legislações pertinentes, para que a clínica opere em total conformidade."
+  },
+  {
+    icon: "fa-solid fa-briefcase",
+    title: "Esfera trabalhista",
+    text: "Suporte na contratação e gestão de funcionários, com elaboração de contratos de trabalho adequados e implementação de políticas internas que previnam passivos trabalhistas."
+  },
+  {
+    icon: "fa-solid fa-lock",
+    title: "Proteção de dados",
+    text: "Adequação à Lei Geral de Proteção de Dados no tratamento de dados dos pacientes, garantindo a segurança das informações e a reputação da clínica."
+  },
+  {
+    icon: "fa-solid fa-gavel",
+    title: "Esfera contenciosa",
+    text: "Representação em processos judiciais, em ações de responsabilidade civil por alegações de danos na prestação de serviço ou negligência e em ações consumeristas."
+  },
+  {
+    icon: "fa-solid fa-money-bill-wave",
+    title: "Recuperação de crédito",
+    text: "Cobrança de valores devidos por pacientes de forma legal e eficaz, por meio de negociações extrajudiciais ou das ações judiciais cabíveis."
+  },
+  {
+    icon: "fa-solid fa-scale-balanced",
+    title: "Processos ético-profissionais",
+    text: "Defesa perante os Conselhos Regionais de Odontologia e o Conselho Federal de Odontologia, garantindo um processo justo ao profissional."
+  }
+];
 
-        <Footer />
-    </>
+const orgaos = [
+  "ANVISA",
+  "PROCON",
+  "Conselho Federal de Odontologia",
+  "Conselhos Regionais de Odontologia",
+  "Órgãos de fiscalização sanitária"
+];
 
-  );
-};
+const faq = [
+  {
+    q: "A assessoria cobre licenças e alvarás da clínica?",
+    a: "Sim. A atuação administrativa inclui o acompanhamento e a obtenção de licenças e alvarás necessários para o funcionamento da clínica, além do cumprimento de normas sanitárias."
+  },
+  {
+    q: "Quais órgãos reguladores estão envolvidos na conformidade?",
+    a: "A consultoria abrange as normas e regulamentações estabelecidas pela ANVISA e pelo Conselho Federal de Odontologia, além da defesa em processos instaurados por órgãos como o PROCON e outros órgãos de fiscalização."
+  },
+  {
+    q: "O escritório atua na recuperação de crédito da clínica?",
+    a: "Sim. A recuperação de crédito é uma área vital para a saúde financeira da clínica, e o suporte busca a cobrança de valores devidos por pacientes de forma legal e eficaz, seja por negociação extrajudicial, seja por ação judicial."
+  },
+  {
+    q: "É possível resolver conflitos sem processo judicial?",
+    a: "Sim. A busca por soluções amigáveis através da mediação e negociação faz parte da atuação, resolvendo conflitos de forma mais rápida e eficiente e preservando o relacionamento entre o cirurgião-dentista e o paciente."
+  },
+  {
+    q: "A proteção de dados dos pacientes está incluída?",
+    a: "Sim. Em um mundo cada vez mais digital, a proteção de dados dos pacientes em conformidade com a LGPD é área na qual a assessoria especializada se mostra indispensável, garantindo a segurança das informações e a reputação da clínica."
+  }
+];
+
+const DirOdonto = () => (
+  <AreaLayout tone="sand">
+    <AreaHero
+      variant="overlay"
+      badge="Áreas de Atuação"
+      title="Direito Odontológico"
+      lede="O ramo dedicado a navegar pelas complexidades jurídicas inerentes à prática odontológica, essencial para a sustentabilidade e o sucesso de clínicas e consultórios."
+      image={dentista}
+      imageAlt="Consultório odontológico"
+    />
+
+    <AreaSection
+      eyebrow="Como atuamos"
+      title="Frentes de atuação"
+      intro="A assessoria jurídica especializada se torna não apenas recomendável, mas essencial. A atuação cobre da prevenção de riscos éticos e legais até a defesa em conflitos já instaurados."
+      tone="plain"
+    >
+      <AreaGrid items={esferas} variant="even" />
+    </AreaSection>
+
+    <AreaSection
+      eyebrow="Conformidade"
+      title="Órgãos e normas envolvidos"
+      intro="A orientação é fundamental para garantir que a clínica opere em total conformidade com os padrões de segurança e qualidade exigidos, evitando sanções e garantindo a confiança dos pacientes."
+      tone="sand"
+      width="narrow"
+    >
+      <AreaChips items={orgaos} />
+    </AreaSection>
+
+    <AreaSection tone="plain" width="narrow">
+      <AreaQuote tone="rule">
+        Investir em assessoria jurídica especializada em direito odontológico
+        representa um passo estratégico para qualquer profissional ou clínica
+        que busca não apenas o sucesso, mas também a segurança e a
+        tranquilidade no exercício da profissão.
+      </AreaQuote>
+    </AreaSection>
+
+    <AreaSection
+      eyebrow="Dúvidas frequentes"
+      title="Perguntas sobre a atuação"
+      tone="subtle"
+      width="narrow"
+    >
+      <AreaFAQ items={faq} name="faq-direito-odontologico" />
+    </AreaSection>
+
+    <AreaCTA
+      title="Segurança para a sua prática odontológica"
+      text="Um investimento que se traduz em segurança, tranquilidade e, em última análise, no sucesso sustentável da prática odontológica."
+    />
+  </AreaLayout>
+);
 
 export default DirOdonto;

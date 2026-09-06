@@ -74,6 +74,9 @@
     box-shadow: var(--shadow-md);
     overflow: hidden;
     z-index: 1;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 }
 
 /* Preenchimento que sobe no hover, substituindo o scale(1,0) antigo. */
@@ -101,20 +104,8 @@
     font-weight: 600;
     line-height: var(--leading-snug);
     letter-spacing: var(--tracking-tight);
-}
-
-.team-two__single-content h3 a {
     color: var(--text-strong);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-decoration-color: transparent;
-    text-underline-offset: 4px;
-    transition: color var(--duration) var(--ease-out),
-        text-decoration-color var(--duration) var(--ease-out);
-}
-
-.team-two__single-content h3 a:hover {
-    text-decoration-color: currentColor;
+    transition: color var(--duration) var(--ease-out);
 }
 
 .team-two__single-content p {
@@ -130,13 +121,9 @@
 
 @media (hover: hover) {
     .team-two__single:hover .team-two__single-content p,
-    .team-two__single:hover .team-two__single-content h3 a {
+    .team-two__single:hover .team-two__single-content h3 {
         color: var(--warm-900);
     }
-}
-
-.link-underline {
-    text-decoration: none;
 }
 
 /* --- Caixa de redes sociais --------------------------------------------- */
@@ -262,9 +249,5 @@
 
     .foto-link {
         pointer-events: none;
-    }
-
-    .team-two__single-content h3 a {
-        text-decoration-color: currentColor;
     }
 }

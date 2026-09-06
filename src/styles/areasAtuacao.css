@@ -37,11 +37,32 @@
 
 .cards {
     display: grid;
-    /* auto-fit substitui os três breakpoints de coluna do CSS antigo. */
-    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    grid-template-columns: minmax(0, 1fr);
     gap: clamp(var(--space-5), 2.5vw, var(--space-8));
     margin-top: var(--space-16);
     align-items: stretch;
+}
+
+/* Colunas em potências de dois, não `auto-fit`. São oito áreas: com auto-fit
+   o container de 1240px resolve em três colunas — 300px de mínimo não cabem
+   quatro vezes — e a última fileira ficaria com dois cards e um vão. Travando
+   em 1, 2 e 4, toda quebra mantém as fileiras cheias. */
+@media (min-width: 640px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        /* `align-items: stretch` só iguala os cards DENTRO de uma fileira —
+           cada fileira ainda se dimensiona pelo próprio conteúdo, e a de textos
+           mais longos ficava visivelmente mais alta. `1fr` nas linhas
+           implícitas dá a todas a altura da mais alta. Fora do multicoluna não
+           vale: em coluna única igualaria os oito cards ao maior deles. */
+        grid-auto-rows: 1fr;
+    }
+}
+
+@media (min-width: 1160px) {
+    .cards {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
 }
 
 /* --- Card ---------------------------------------------------------------- */
@@ -175,6 +196,15 @@
 /* ==========================================================================
    Responsividade
    ========================================================================== */
+
+/* Quatro colunas apertam o card: o respiro sai do padding para o texto não
+   ficar numa calha estreita demais. Precisa vir depois da regra base de
+   `.card`, que tem a mesma especificidade e venceria pela ordem. */
+@media (min-width: 1160px) {
+    .card {
+        padding: var(--space-6);
+    }
+}
 
 @media (max-width: 500px) {
     .card {

@@ -178,8 +178,7 @@
             animation-range: entry 0% entry 70%;
         }
 
-        /* Só opacidade: preserva o translateY do hover nos cards e evita que
-           um transform animado atrapalhe o `position: sticky` do perfil. */
+        /* Só opacidade: preserva o translateY do hover nos cards. */
         .ccm-fade,
         .card,
         .contact-item,

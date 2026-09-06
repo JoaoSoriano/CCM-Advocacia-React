@@ -54,11 +54,13 @@
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    padding: var(--space-3) var(--space-5);
+    padding: var(--space-3) var(--space-6);
+    /* Sem o bege do botão de contato: aqui o fundo do header já é taupe, e
+       bege sobre bege desapareceria. Segue no branco. */
     color: rgba(255, 255, 255, 0.92);
     font-family: var(--font-sans);
     font-size: 0.6875rem;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -66,7 +68,7 @@
     white-space: nowrap;
     background-color: transparent;
     border: 1px solid rgba(255, 255, 255, 0.45);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-full);
     /* Acompanha a duração da tinta para o rótulo nunca ficar claro sobre claro. */
     transition: color var(--duration-slow) var(--ease-out),
         border-color var(--duration-slow) var(--ease-out);

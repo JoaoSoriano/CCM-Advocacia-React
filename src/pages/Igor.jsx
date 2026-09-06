@@ -1,41 +1,124 @@
-import React from 'react';
-import HeaderSimples from '../components/HeaderSimples';
-import Footer from '../components/Footer';
-import igorPhoto from '../img/igor_nova.jpeg';
-import '../styles/perfil.css';
+import PerfilLayout from "../components/perfil/PerfilLayout";
+import PerfilHero from "../components/perfil/PerfilHero";
+import PerfilSection from "../components/perfil/PerfilSection";
+import PerfilCreds from "../components/perfil/PerfilCreds";
+import PerfilAreas from "../components/perfil/PerfilAreas";
+import { AREAS } from "../components/perfil/areas";
+import PerfilContato from "../components/perfil/PerfilContato";
+import igorPhoto from "../img/igor_nova.jpeg";
 
-const Igor = () => {
-  return (
-    <>
-        <HeaderSimples />
+/* A bio dele traz os anos de cada cargo, então esta página usa a calha de
+   período das credenciais — é a assinatura que a distingue da da Larissa,
+   cuja bio separa os vínculos entre atuais e anteriores, sem datas. */
 
-        <section className="perfil-page">
+const WHATSAPP = "https://wa.me/5581996085372";
 
-            {/* Nome da Advogada */}
-            <div className="nome-perfil">
-            <div className="sec-title-three">
-                <h2>Igor Campêlo</h2>
-            </div>
-            </div>
+const formacao = [
+  {
+    title: "Pós-graduado em Direito da Saúde",
+    detail: "Verbo Jurídico"
+  },
+  {
+    title: "Bacharel em Direito",
+    detail: "Universidade Católica de Pernambuco"
+  }
+];
 
-            {/* Foto e Currículo */}
-            <section className="profile-section">
-            <div className="profile-photo">
-                <img src={igorPhoto} alt="Igor Campêlo" />
-            </div>
-            <div className="profile-curriculum">
-                <h3>Experiência:</h3>
-                <p>
-                Advogado. Bacharel em Direito pela Universidade Católica de Pernambuco. Vice-Presidente da Comissão de Direito Médico e da Saúde da OAB/Jaboatão (2025 - atualmente). Secretário-Geral da Comissão de Direito Médico e da Saúde da OAB/Jaboatão (2024). Pós-graduado em Direito da Saúde pela Verbo Jurídico. Possui experiência em Direito Médico e da Saúde, com ampla atuação em escritórios especializados na área. Membro do GT de Saúde Suplementar da Comissão de Direito do Consumidor da OAB-PE (2022), da Comissão de Direito de Família da OAB-PE (2022) e da Comissão de Direito Médico e da Saúde da OAB/Jaboatão. Assessor jurídico parlamentar em Direito Público (2024). Tutor em Direito Tributário para preparatórios do exame da Ordem (2022 - atualmente). Professor, Autor de obras jurídicas e palestrante em cursos de prática jurídica em saúde.
-                </p>
-            </div>
-            </section>
-        </section>
+const institucional = [
+  {
+    period: "2025 — atual",
+    title: "Vice-Presidente da Comissão de Direito Médico e da Saúde",
+    detail: "OAB/Jaboatão"
+  },
+  {
+    period: "2024",
+    title: "Secretário-Geral da Comissão de Direito Médico e da Saúde",
+    detail: "OAB/Jaboatão"
+  },
+  {
+    period: "2024",
+    title: "Assessor jurídico parlamentar em Direito Público"
+  },
+  {
+    period: "2022",
+    title:
+      "Membro do GT de Saúde Suplementar da Comissão de Direito do Consumidor",
+    detail: "OAB/PE"
+  },
+  {
+    period: "2022",
+    title: "Membro da Comissão de Direito de Família",
+    detail: "OAB/PE"
+  },
+  {
+    title: "Membro da Comissão de Direito Médico e da Saúde",
+    detail: "OAB/Jaboatão"
+  }
+];
 
-        <Footer />
-    </>
+const producao = [
+  {
+    period: "2022 — atual",
+    title: "Tutor em Direito Tributário",
+    detail: "Preparatórios para o exame da Ordem"
+  },
+  {
+    title: "Professor e palestrante",
+    detail: "Cursos de prática jurídica em saúde"
+  },
+  { title: "Autor de obras jurídicas" }
+];
 
-  );
-};
+const Igor = () => (
+  <PerfilLayout>
+    <PerfilHero
+      variant="person"
+      eyebrow="Sócio fundador"
+      name="Igor Campêlo"
+      meta="OAB/PE nº 60.547"
+      lede="Advogado. Possui experiência em Direito Médico e da Saúde, com ampla atuação em escritórios especializados na área, e atuou como assessor jurídico parlamentar em Direito Público."
+      image={igorPhoto}
+      imageAlt="Igor Campêlo"
+      social={{
+        instagram:
+          "https://www.instagram.com/igorcampelo_adv?igsh=MWMwZ2tqMGlsbnVwcA==",
+        whatsapp: WHATSAPP
+      }}
+    />
+
+    <PerfilSection
+      eyebrow="Atuação"
+      title="Onde atuo"
+      intro="Igor atende todas as frentes do escritório. Cada uma tem uma página com o escopo do trabalho."
+      tone="plain"
+    >
+      <PerfilAreas items={AREAS} />
+    </PerfilSection>
+
+    <PerfilSection eyebrow="Formação" title="Formação acadêmica" tone="subtle">
+      <PerfilCreds items={formacao} />
+    </PerfilSection>
+
+    <PerfilSection
+      eyebrow="Representação"
+      title="Atuação institucional"
+      intro="Cargos e vínculos em comissões da OAB e na assessoria parlamentar."
+      tone="plain"
+    >
+      <PerfilCreds items={institucional} />
+    </PerfilSection>
+
+    <PerfilSection eyebrow="Produção" title="Docência e publicações" tone="subtle">
+      <PerfilCreds items={producao} />
+    </PerfilSection>
+
+    <PerfilContato
+      title="Falar com Igor Campêlo"
+      text="Para tratar de demandas em Direito Médico e da Saúde, saúde suplementar ou Direito Público."
+      whatsapp={WHATSAPP}
+      tone="plain"
+    />
+  </PerfilLayout>
+);
 
 export default Igor;

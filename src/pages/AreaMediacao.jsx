@@ -1,37 +1,160 @@
-import React from 'react';
-import HeaderSimples from '../components/HeaderSimples';
-import Footer from '../components/Footer';
-import shakehand from '../img/shakehand.jpg';
-import '../styles/info.css';
-import '../styles/perfil.css';
+import AreaLayout from "../components/area/AreaLayout";
+import AreaHero from "../components/area/AreaHero";
+import AreaSection from "../components/area/AreaSection";
+import AreaGrid from "../components/area/AreaGrid";
+import AreaChips from "../components/area/AreaChips";
+import AreaQuote from "../components/area/AreaQuote";
+import AreaFAQ from "../components/area/AreaFAQ";
+import AreaCTA from "../components/area/AreaCTA";
+import shakehand from "../img/shakehand.jpg";
 
-const AreaMediacao = () => {
-  return (
-    <>
-        <HeaderSimples />
+/* Assinatura da página: o texto se organiza em torno de três públicos —
+   empresas, profissionais e pacientes — e fecha com o parágrafo mais forte do
+   conjunto, que aqui recebe citação em bloco escuro em vez de filete. */
 
-        <section className="box-info">
-        <div className="box-info-container">
-            <h1>Mediação Extrajudicial</h1>
-            <div className="imagem-container">
-                <img src={shakehand} alt="Imagem - Acordo" />
-            </div>
-            <p className="info-text">Em um cenário onde as relações no setor da saúde envolvem múltiplos atores – empresas, profissionais e pacientes – a mediação extrajudicial emerge como um diferencial estratégico para o tratamento de situações complexas e conflituosas. Ao invés de recorrer imediatamente ao litígio judicial, a mediação oferece um caminho colaborativo e eficiente para a resolução de disputas, trazendo benefícios significativos para todos os envolvidos e promovendo uma cultura de diálogo e entendimento mútuo.
-            Para as empresas de saúde, a mediação extrajudicial se apresenta como uma ferramenta poderosa para otimizar a gestão de conflitos. Seja em negociações com fornecedores, em disputas contratuais, em questões regulatórias ou em situações envolvendo pacientes, a mediação permite a construção de acordos mutuamente satisfatórios, preservando relacionamentos comerciais e evitando os custos financeiros, de tempo e emocionais inerentes aos processos judiciais. A confidencialidade inerente ao processo de mediação também protege a reputação da empresa, um ativo valioso no setor da saúde, evitando a exposição pública de desavenças e mantendo a imagem de uma instituição preocupada com a resolução pacífica de problemas. 
-            </p>
-            <p className="info-text">Nas relações profissionais, a mediação extrajudicial pode ser utilizada para resolver desentendimentos entre colegas, questões trabalhistas, conflitos éticos ou até mesmo para facilitar a comunicação em processos de reestruturação ou mudanças organizacionais. Ao criar um espaço seguro e neutro para o diálogo, a mediação facilita a comunicação aberta e honesta, a identificação de interesses comuns e a busca por soluções que atendam aos anseios de ambas as partes, promovendo um ambiente de trabalho mais harmonioso, colaborativo e produtivo.
-            A mediação organizacional refina a cultura interna, promovendo diálogo e escuta ativa entre colaboradores, o que fortalece o ambiente de trabalho e a qualidade dos serviços.
-            A escuta ativa permite ao profissional entender as preocupações do paciente, e a comunicação não violenta facilita a expressão de orientações de forma clara e respeitosa. Essa abordagem centrada no paciente fortalece a confiança e melhora a experiência e os resultados clínicos.
-            A adoção da mediação demonstra o compromisso da instituição com a excelência relacional. Investir em treinamentos com técnicas, incluindo comunicação efetiva, escuta ativa e comunicação não violenta valoriza colaboradores e pacientes. Essa postura constrói reputação sólida, atrai talentos e fideliza pacientes, consolidando a instituição como referência em cuidado humanizado e de qualidade. A mediação se firma como pilar para relações mais fortes e duradouras na saúde. Se revela como uma abordagem humanizada e eficaz para lidar com queixas, insatisfações, reclamações sobre atendimento ou até mesmo alegações de dano na prestação de serviço. Ao invés de polarizar a relação, a mediação permite que o paciente e a empresa de saúde dialoguem abertamente, expressando suas perspectivas e buscando um entendimento e uma solução que restaure a confiança, a satisfação e o bem-estar do paciente. Essa abordagem não apenas resolve o problema específico de forma mais ágil e menos traumática, mas também fortalece o vínculo entre o paciente e a instituição, um fator crucial para a fidelização, a reputação e a sustentabilidade da empresa.
-            </p>
-            <p className='info-text'>Ao adotar a mediação extrajudicial, as empresas de saúde demonstram um compromisso com a resolução pacífica de conflitos, com a transparência, com a ética e com a valorização das relações humanas. Essa postura não apenas otimiza a gestão de riscos e custos, mas também contribui para a construção de uma imagem positiva e para o fortalecimento da confiança de todos os stakeholders – pacientes, profissionais, fornecedores e a comunidade em geral. Em um setor tão sensível como o da saúde, onde a confiança e o bem-estar são primordiais, a mediação extrajudicial se consolida como uma ferramenta essencial para construir relações mais sólidas, justas, humanizadas e duradouras.</p>
-        </div>
-        </section>
+const frentes = [
+  {
+    icon: "fa-solid fa-hospital",
+    title: "Empresas de saúde",
+    text: "Ferramenta poderosa para otimizar a gestão de conflitos, seja em negociações com fornecedores, disputas contratuais, questões regulatórias ou situações envolvendo pacientes.",
+    items: [
+      "Acordos mutuamente satisfatórios",
+      "Preservação de relacionamentos comerciais",
+      "Confidencialidade que protege a reputação"
+    ]
+  },
+  {
+    icon: "fa-solid fa-user-group",
+    title: "Relações profissionais",
+    text: "Espaço seguro e neutro para o diálogo, aplicável a desentendimentos entre colegas, questões trabalhistas, conflitos éticos e mudanças organizacionais.",
+    items: [
+      "Comunicação aberta e honesta",
+      "Identificação de interesses comuns",
+      "Ambiente de trabalho mais harmonioso e produtivo"
+    ]
+  },
+  {
+    icon: "fa-solid fa-heart",
+    title: "Relação com o paciente",
+    text: "Abordagem humanizada para lidar com queixas, insatisfações, reclamações sobre atendimento ou alegações de dano na prestação de serviço.",
+    items: [
+      "Diálogo aberto entre paciente e instituição",
+      "Solução que restaura a confiança",
+      "Fortalecimento do vínculo e da fidelização"
+    ]
+  }
+];
 
-        <Footer />
-    </>
+const beneficios = [
+  {
+    icon: "fa-solid fa-coins",
+    title: "Menos custo",
+    text: "Evita os custos financeiros inerentes aos processos judiciais, que costumam ser longos e onerosos."
+  },
+  {
+    icon: "fa-solid fa-clock",
+    title: "Menos tempo",
+    text: "Resolve o problema específico de forma mais ágil do que a via judicial permitiria."
+  },
+  {
+    icon: "fa-solid fa-face-smile",
+    title: "Menos desgaste",
+    text: "Reduz o desgaste emocional envolvido na disputa, para todas as partes."
+  },
+  {
+    icon: "fa-solid fa-lock",
+    title: "Confidencialidade",
+    text: "A confidencialidade inerente à mediação evita a exposição pública de desavenças e protege a reputação da instituição."
+  }
+];
 
-  );
-};
+const tecnicas = [
+  "Comunicação efetiva",
+  "Escuta ativa",
+  "Comunicação não violenta",
+  "Mediação organizacional"
+];
+
+const faq = [
+  {
+    q: "A mediação substitui o processo judicial?",
+    a: "Ela oferece um caminho alternativo. Ao invés de recorrer imediatamente ao litígio judicial, a mediação oferece um caminho colaborativo e eficiente para a resolução de disputas, evitando processos longos e custosos."
+  },
+  {
+    q: "O que é discutido na mediação fica preservado?",
+    a: "Sim. A confidencialidade inerente ao processo de mediação protege a reputação da empresa, evitando a exposição pública de desavenças."
+  },
+  {
+    q: "A mediação serve para conflitos internos da equipe?",
+    a: "Sim. Pode ser utilizada para resolver desentendimentos entre colegas, questões trabalhistas, conflitos éticos ou para facilitar a comunicação em processos de reestruturação ou mudanças organizacionais."
+  },
+  {
+    q: "Como a mediação afeta a relação com o paciente?",
+    a: "Ao invés de polarizar a relação, a mediação permite que o paciente e a empresa de saúde dialoguem abertamente e busquem uma solução que restaure a confiança, a satisfação e o bem-estar do paciente, fortalecendo o vínculo com a instituição."
+  }
+];
+
+const AreaMediacao = () => (
+  <AreaLayout tone="sand">
+    <AreaHero
+      variant="overlay"
+      badge="Diferenciais"
+      title="Mediação Extrajudicial"
+      lede="Um caminho colaborativo e eficiente para a resolução de disputas no setor da saúde, promovendo uma cultura de diálogo e entendimento mútuo."
+      image={shakehand}
+      imageAlt="Aperto de mãos selando um acordo"
+    />
+
+    <AreaSection
+      eyebrow="Três frentes"
+      title="Onde a mediação atua"
+      intro="Em um cenário onde as relações no setor da saúde envolvem múltiplos atores — empresas, profissionais e pacientes — a mediação emerge como um diferencial estratégico para situações complexas e conflituosas."
+      tone="plain"
+    >
+      <AreaGrid items={frentes} variant="even" />
+    </AreaSection>
+
+    <AreaSection
+      eyebrow="Vantagens"
+      title="O que se evita e o que se preserva"
+      tone="sand"
+    >
+      <AreaGrid items={beneficios} variant="compact" />
+    </AreaSection>
+
+    <AreaSection
+      eyebrow="Técnicas"
+      title="Como conduzimos o diálogo"
+      intro="Investir em treinamentos com essas técnicas valoriza colaboradores e pacientes, e refina a cultura interna da instituição."
+      tone="plain"
+      width="narrow"
+    >
+      <AreaChips items={tecnicas} />
+    </AreaSection>
+
+    <AreaSection tone="subtle" width="narrow" align="center">
+      <AreaQuote tone="dark">
+        Em um setor tão sensível como o da saúde, onde a confiança e o bem-estar
+        são primordiais, a mediação extrajudicial se consolida como uma
+        ferramenta essencial para construir relações mais sólidas, justas,
+        humanizadas e duradouras.
+      </AreaQuote>
+    </AreaSection>
+
+    <AreaSection
+      eyebrow="Dúvidas frequentes"
+      title="Perguntas sobre a mediação"
+      tone="plain"
+      width="narrow"
+    >
+      <AreaFAQ items={faq} name="faq-mediacao-extrajudicial" />
+    </AreaSection>
+
+    <AreaCTA
+      title="Existe um conflito que ainda pode ser resolvido pelo diálogo?"
+      text="Fale com o escritório para avaliar se a mediação extrajudicial é o caminho mais adequado para o seu caso."
+    />
+  </AreaLayout>
+);
 
 export default AreaMediacao;

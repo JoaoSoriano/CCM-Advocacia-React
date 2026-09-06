@@ -61,10 +61,10 @@ const AdvogadoCard = ({ advogado }) => (
         </ul>
       </div>
     </div>
-    <div className="team-two__single-content">
-      <h3 className="link-underline"><Link to={advogado.link}>{advogado.nome}</Link></h3>
+    <Link className="team-two__single-content" to={advogado.link}>
+      <h3>{advogado.nome}</h3>
       <p>{advogado.oab}</p>
-    </div>
+    </Link>
   </div>
 );
 

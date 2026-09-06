@@ -78,7 +78,9 @@ nav .header-logo img:hover {
   transition: color var(--duration) var(--ease-out);
 }
 
-/* Sublinhado que cresce do centro no hover. */
+/* Sublinhado que cresce do centro no hover. Carrega o bege padrão da marca,
+   igual ao resto dos estados de hover do site — como filete de 1px é objeto
+   gráfico, e o mínimo de 3:1 da WCAG é atendido com folga. */
 .menu-list li a::after {
   content: "";
   position: absolute;
@@ -86,16 +88,19 @@ nav .header-logo img:hover {
   right: 0;
   bottom: 0;
   height: 1px;
-  background-color: var(--gold-600);
+  background-color: var(--hover-sand);
   transform: scaleX(0);
   transform-origin: center;
   transition: transform var(--duration) var(--ease-out);
 }
 
+/* O texto escurece em vez de assumir o bege: o --hover-sand é mais claro que
+   o --text-body de repouso, então como cor de texto ele faria o link clarear
+   no hover e parecer desabilitado. O acento bege fica no sublinhado. */
 .menu-list li.active a,
 .menu-list li:hover a,
 .menu-list li a:focus-visible {
-  color: var(--gold-600);
+  color: var(--text-strong);
 }
 
 .menu-list li.active a::after,
@@ -119,18 +124,20 @@ nav .header-logo img:hover {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-5);
-  color: var(--warm-700);
+  /* Padding lateral maior que o vertical: numa cápsula as pontas arredondadas
+     comem espaço óptico e o rótulo pareceria colado na borda. */
+  padding: var(--space-3) var(--space-6);
+  color: var(--warm-900);
   font-family: var(--font-sans);
   font-size: 0.6875rem;     /* 11px: leitura fina, similar a etiqueta */
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
   background-color: transparent;
-  border: 1px solid var(--warm-400);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--warm-900);
+  border-radius: var(--radius-full);
   /* Na mesma duração e curva da tinta: a curva é bem front-loaded, então o
      rótulo passa por tons médios enquanto a tinta avança e nunca fica branco
      sobre o fundo claro. */
@@ -282,7 +289,7 @@ nav .header-logo img:hover {
   }
 
   .menu-list li a:hover {
-    background-color: var(--gold-050);
+    background-color: var(--surface-muted);
   }
 
   .menu-list li:last-child {

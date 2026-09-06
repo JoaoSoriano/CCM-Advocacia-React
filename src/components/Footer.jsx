@@ -18,7 +18,7 @@ const Footer = () => {
                     </div>
                     <div className="footer-info">
                         <p>Empresarial Selecta Center, sala 404 - Rua Estado de Israel, nº 262, Ilha do Leite - Recife/PE, 50070-420</p>
-                        <p>Telefone: (81) 99865-6909</p>
+                        <p>Telefone: (81) 99115-8530</p>
                         <div className="icons-footer">
                             <a
                                 href="https://www.instagram.com/ccm_adv?igsh=MWJhcHU4eHB3emlweQ%3D%3D&utm_source=qr"
@@ -28,7 +28,7 @@ const Footer = () => {
                                 <img src={instagramIcon} alt="Instagram" className="instagram-icon" />
                             </a>
                             <a
-                                href="https://wa.me/5581998656909"
+                                href="https://wa.me/5581991158530"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >

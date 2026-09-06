@@ -1,0 +1,1148 @@
+/* ==========================================================================
+   Páginas de área — kit de seções
+   Estilos das peças reutilizáveis que compõem as páginas de áreas de atuação
+   e diferenciais. Toda a paleta, escala e movimento vêm de tokens.css.
+   ========================================================================== */
+
+.area {
+    background-color: var(--surface);
+}
+
+/* Cada página escolhe um tom de base. É o ajuste mais barato para dar
+   identidade própria a áreas de conteúdo parecido sem inventar cor nova. */
+.area--light {
+    --area-band: var(--surface-subtle);
+}
+
+.area--sand {
+    --area-band: var(--surface-muted);
+}
+
+.area--warm {
+    --area-band: var(--gold-050);
+}
+
+/* ==========================================================================
+   Botões
+   ========================================================================== */
+
+/* Mesma linguagem dos botões do header: cápsula, rótulo em etiqueta e tinta
+   que varre no hover. `overflow` recorta a tinta no raio. */
+.area-btn {
+    position: relative;
+    overflow: hidden;
+    /* O rótulo é nó de texto solto, sem span onde pendurar z-index. Isolar o
+       botão e jogar a tinta para -1 mantém o texto acima dela sem markup
+       extra: filho negativo pinta acima do fundo do botão e abaixo do texto. */
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4) var(--space-8);
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: color var(--duration-slow) var(--ease-out),
+        border-color var(--duration-slow) var(--ease-out);
+}
+
+.area-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.area-btn:hover::before,
+.area-btn:focus-visible::before {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+/* Sólido escuro → tinta no tom do fundo do hero (--area-band). */
+.area-btn--solid {
+    color: #fff;
+    background-color: var(--warm-900);
+}
+
+.area-btn--solid::before {
+    background-color: var(--area-band, var(--surface-subtle));
+}
+
+.area-btn--solid:hover,
+.area-btn--solid:focus-visible {
+    color: var(--warm-900);
+}
+
+/* Ghost sobre fundo claro → tinta escura. */
+.area-btn--ghost {
+    color: var(--warm-500);
+    background-color: transparent;
+    border-color: var(--hover-sand);
+}
+
+.area-btn--ghost::before {
+    background-color: var(--warm-900);
+}
+
+.area-btn--ghost:hover,
+.area-btn--ghost:focus-visible {
+    color: #fff;
+    border-color: var(--warm-900);
+}
+
+/* Claro sobre o CTA escuro → tinta no marrom do fundo. */
+.area-btn--light {
+    color: var(--warm-900);
+    background-color: #fff;
+}
+
+.area-btn--light::before {
+    background-color: var(--warm-900);
+}
+
+.area-btn--light:hover,
+.area-btn--light:focus-visible {
+    color: #fff;
+}
+
+/* Ghost sobre fundo escuro → tinta branca e rótulo escurece. */
+.area-btn--ghost-light {
+    color: rgba(255, 255, 255, 0.92);
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+.area-btn--ghost-light::before {
+    background-color: #fff;
+}
+
+.area-btn--ghost-light:hover,
+.area-btn--ghost-light:focus-visible {
+    color: var(--warm-900);
+    border-color: #fff;
+}
+
+/* ==========================================================================
+   Etiquetas
+   ========================================================================== */
+
+.area-badge {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 0 var(--space-6);
+    padding: var(--space-2) var(--space-4);
+    color: var(--gold-700);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    background-color: var(--gold-050);
+    border: 1px solid rgba(187, 138, 40, 0.28);
+    border-radius: var(--radius-full);
+}
+
+.area-eyebrow {
+    margin: 0 0 var(--space-4);
+    color: var(--gold-600);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.area-hero {
+    position: relative;
+    padding: clamp(var(--space-16), 8vw, var(--space-32)) var(--gutter)
+        clamp(var(--space-12), 6vw, var(--space-24));
+    background-color: var(--area-band, var(--surface-subtle));
+    overflow: hidden;
+}
+
+.area-hero__inner {
+    position: relative;
+    max-width: var(--container);
+    margin: 0 auto;
+}
+
+.area-hero__title {
+    margin: 0;
+    color: var(--text-strong);
+    font-size: var(--text-4xl);
+    font-weight: 600;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+}
+
+.area-hero__lede {
+    margin: var(--space-6) 0 0;
+    max-width: 60ch;
+    color: var(--text-body);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    text-wrap: pretty;
+}
+
+.area-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-10);
+}
+
+.area-hero__media {
+    margin: 0;
+}
+
+.area-hero__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xl);
+}
+
+/* --- Foto puxada para a paleta -------------------------------------------- */
+
+/* Fotos de estoque com dominante fria brigam com o taupe da marca. A cadeia
+   abaixo resolve isso sem tocar no arquivo: `grayscale` zera a cor original —
+   nenhum azul sobrevive para reaparecer nas bordas — e `sepia` a repõe já na
+   temperatura certa, porque a matriz de sépia devolve tons na razão
+   1.351 : 1.203 : 0.937 (R:G:B), matiz de ~38°, vizinha dos ~33° do taupe da
+   logo. `saturate` afasta do cinza e `contrast` devolve o corpo que a
+   dessaturação tira. Com estes valores um cinza médio pousa em #978B76, a um
+   passo do --warm-400 (#A3937F). Para mais ou menos cor, mexa só no sepia. */
+.area-hero__media--warm img {
+    filter: grayscale(1) sepia(0.45) saturate(1.35) contrast(1.04);
+}
+
+/* --- Variante split ------------------------------------------------------ */
+
+@media (min-width: 900px) {
+    .area-hero--split .area-hero__inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        align-items: center;
+        gap: clamp(var(--space-10), 5vw, var(--space-20));
+    }
+
+    .area-hero--split .area-hero__media {
+        aspect-ratio: 4 / 5;
+        max-height: 560px;
+    }
+}
+
+/* --- Variante panel ----------------------------------------------------- */
+
+.area-hero--panel {
+    text-align: center;
+}
+
+.area-hero--panel .area-hero__lede {
+    margin-inline: auto;
+}
+
+.area-hero--panel .area-hero__actions {
+    justify-content: center;
+}
+
+.area-hero--panel .area-hero__media {
+    margin-top: clamp(var(--space-10), 5vw, var(--space-16));
+}
+
+.area-hero--panel .area-hero__media img {
+    aspect-ratio: 21 / 9;
+}
+
+/* --- Variante frame ----------------------------------------------------- */
+
+/* Masthead que fecha numa tela: texto de um lado, foto do outro, e o conjunto
+   travado na altura da viewport menos o header — que é estático, então o
+   desconto de --header-h basta para o hero terminar exatamente na dobra. */
+@media (min-width: 900px) {
+    .area-hero--frame {
+        display: flex;
+        align-items: center;
+        padding-block: clamp(var(--space-10), 5vw, var(--space-16));
+        min-height: calc(100vh - var(--header-h));
+        min-height: calc(100svh - var(--header-h));
+    }
+
+    .area-hero--frame .area-hero__inner {
+        width: 100%;
+        display: grid;
+        /* Mais peso ao texto do que no split: a foto aqui ambienta o assunto,
+           não é retrato de ninguém. */
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        align-items: center;
+        gap: clamp(var(--space-10), 5vw, var(--space-20));
+    }
+
+    .area-hero--frame .area-hero__media {
+        aspect-ratio: 4 / 5;
+        margin-left: auto;
+        /* Altura orçada pela viewport, não fixa: descontados header, respiros e
+           o próprio padding do hero, é o que sobra para a foto sem empurrar o
+           bloco para fora da tela. O teto de 540px evita que telas muito altas
+           inflem a imagem. */
+        max-height: min(540px, calc(100vh - var(--header-h) - var(--space-32)));
+        max-height: min(540px, calc(100svh - var(--header-h) - var(--space-32)));
+    }
+}
+
+/* Filete curto sob o título: o mesmo gold-500 do filete das citações, aqui como
+   assinatura da abertura e como respiro entre título e lede. */
+.area-hero--frame .area-hero__title::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 2px;
+    margin: var(--space-6) 0 0;
+    background-color: var(--gold-500);
+}
+
+.area-hero--frame .area-hero__lede {
+    margin-top: var(--space-6);
+    max-width: 46ch;
+}
+
+/* --- Variante wide ------------------------------------------------------- */
+
+/* Para fotos em paisagem: a imagem entra na proporção nativa 3:2 e fica contida
+   na coluna. O split recorta em 4/5 retrato, que num 3:2 descarta metade da
+   largura e ainda estica o assunto na vertical. */
+.area-hero--wide .area-hero__media img {
+    aspect-ratio: 3 / 2;
+}
+
+/* Filete curto sob o título, o mesmo da variante frame: dá assinatura ao hero
+   por tipografia, sem depender de geometria. */
+.area-hero--wide .area-hero__title::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 2px;
+    margin: var(--space-6) 0 0;
+    background-color: var(--gold-500);
+}
+
+.area-hero--wide .area-hero__lede {
+    margin-top: var(--space-6);
+    max-width: 46ch;
+}
+
+@media (min-width: 900px) {
+    .area-hero--wide .area-hero__inner {
+        display: grid;
+        /* Peso maior ao texto: em paisagem a foto já ganha presença pela
+           largura, e equilibrar as colunas a faria dominar o hero. */
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        align-items: center;
+        gap: clamp(var(--space-10), 5vw, var(--space-20));
+    }
+}
+
+/* --- Variante overlay --------------------------------------------------- */
+
+.area-hero--overlay {
+    background-color: var(--warm-900);
+    padding-block: clamp(var(--space-20), 12vw, var(--space-32));
+}
+
+.area-hero__bg {
+    position: absolute;
+    inset: 0;
+}
+
+.area-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Gradiente em vez de véu plano: mantém a imagem legível à direita e garante
+   contraste onde o texto realmente cai, à esquerda. */
+.area-hero__bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            100deg,
+            rgba(20, 16, 10, 0.93) 0%,
+            rgba(20, 16, 10, 0.82) 42%,
+            rgba(20, 16, 10, 0.48) 100%
+        ),
+        linear-gradient(rgba(20, 16, 10, 0.28), rgba(20, 16, 10, 0.28));
+}
+
+.area-hero--overlay .area-hero__copy {
+    max-width: 46rem;
+}
+
+.area-hero--overlay .area-hero__title {
+    color: #fff;
+}
+
+.area-hero--overlay .area-hero__lede {
+    color: rgba(255, 255, 255, 0.86);
+}
+
+.area-hero--overlay .area-badge {
+    color: var(--gold-300);
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(227, 190, 114, 0.42);
+}
+
+.area-hero--overlay .area-btn--ghost {
+    color: rgba(255, 255, 255, 0.92);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+.area-hero--overlay .area-btn--ghost::before {
+    background-color: #fff;
+}
+
+.area-hero--overlay .area-btn--ghost:hover,
+.area-hero--overlay .area-btn--ghost:focus-visible {
+    color: var(--warm-900);
+    border-color: #fff;
+}
+
+/* ==========================================================================
+   Seção
+   ========================================================================== */
+
+.area-section {
+    padding: var(--section-y) var(--gutter);
+}
+
+.area-section--plain {
+    background-color: var(--surface);
+}
+
+.area-section--subtle {
+    background-color: var(--surface-subtle);
+}
+
+.area-section--sand {
+    background-color: var(--surface-muted);
+}
+
+.area-section--warm {
+    background-color: var(--gold-050);
+}
+
+.area-section--dark {
+    background-color: var(--warm-900);
+}
+
+.area-section__inner {
+    margin: 0 auto;
+}
+
+.area-section__inner--wide {
+    max-width: var(--container);
+}
+
+.area-section__inner--narrow {
+    max-width: var(--container-narrow);
+}
+
+.area-section__head {
+    margin-bottom: clamp(var(--space-10), 4vw, var(--space-16));
+}
+
+.area-section--center .area-section__head {
+    text-align: center;
+}
+
+.area-section__title {
+    margin: 0;
+    color: var(--text-strong);
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+}
+
+.area-section__intro {
+    margin: var(--space-5) 0 0;
+    max-width: 68ch;
+    color: var(--text-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    text-wrap: pretty;
+}
+
+.area-section--center .area-section__intro {
+    margin-inline: auto;
+}
+
+.area-section--dark .area-section__title {
+    color: #fff;
+}
+
+.area-section--dark .area-section__intro {
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.area-section--dark .area-eyebrow {
+    color: var(--gold-300);
+}
+
+/* ==========================================================================
+   Grade de cards
+   ========================================================================== */
+
+.area-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(var(--area-grid-min, 280px), 100%), 1fr)
+    );
+    gap: clamp(var(--space-4), 2vw, var(--space-6));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.area-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    height: 100%;
+    padding: clamp(var(--space-6), 2.5vw, var(--space-8));
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform var(--duration) var(--ease-out),
+        box-shadow var(--duration) var(--ease-out),
+        border-color var(--duration) var(--ease-out);
+}
+
+/* Mesmo filete revelado no hover dos cards da home. */
+.area-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--hover-sand), var(--warm-300));
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--duration-slow) var(--ease-out);
+}
+
+@media (hover: hover) {
+    .area-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--border-default);
+    }
+
+    .area-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .area-card:hover .area-card__icon {
+        background-color: var(--hover-sand);
+        color: #fff;
+    }
+}
+
+.area-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: var(--space-6);
+    background-color: var(--gold-050);
+    border-radius: var(--radius-full);
+    color: var(--gold-600);
+    font-size: 1.375rem;
+    transition: background-color var(--duration) var(--ease-out),
+        color var(--duration) var(--ease-out);
+}
+
+.area-card__title {
+    margin: 0 0 var(--space-3);
+    color: var(--text-strong);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    text-wrap: balance;
+}
+
+.area-card__text {
+    margin: 0;
+    color: var(--text-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    text-wrap: pretty;
+}
+
+.area-card__list {
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: var(--space-2);
+    width: 100%;
+}
+
+.area-card__list li {
+    position: relative;
+    padding-left: var(--space-5);
+    color: var(--text-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+}
+
+/* Marcador desenhado em CSS: dispensa glifo de fonte e escala com o texto. */
+.area-card__list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    background-color: var(--gold-500);
+    border-radius: var(--radius-full);
+}
+
+/* --- Variante bento ----------------------------------------------------- */
+
+/* Assimetria só a partir do desktop: em telas estreitas uma coluna única já é
+   o melhor layout possível e a grade de 6 colunas viraria ruído. */
+@media (min-width: 900px) {
+    .area-grid--bento {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .area-grid--bento > * {
+        grid-column: span 2;
+    }
+
+    .area-grid--bento > :nth-child(1),
+    .area-grid--bento > :nth-child(2) {
+        grid-column: span 3;
+    }
+
+    .area-grid--bento > :nth-child(1) .area-card__title,
+    .area-grid--bento > :nth-child(2) .area-card__title {
+        font-size: var(--text-xl);
+    }
+
+    /* Com exatamente 4 itens a regra acima deixaria a segunda fileira com dois
+       terços preenchidos e um vão de 2 colunas. A quantity query detecta esse
+       caso e transforma a grade em 2x2 de metades. */
+    .area-grid--bento > :first-child:nth-last-child(4),
+    .area-grid--bento > :first-child:nth-last-child(4) ~ * {
+        grid-column: span 3;
+    }
+}
+
+/* --- Variante trio ------------------------------------------------------ */
+
+/* Seis itens em duas fileiras cheias de três. O auto-fit da base resolve em
+   quatro colunas no container de 1240px e deixaria dois vãos na segunda
+   fileira; travar em três mantém as fileiras fechadas. Abaixo de 900px o
+   auto-fit já cai para duas colunas e depois uma. */
+@media (min-width: 900px) {
+    .area-grid--trio {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* --- Variante duo ------------------------------------------------------- */
+
+@media (min-width: 760px) {
+    .area-grid--duo {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.area-grid--duo .area-card {
+    padding: clamp(var(--space-8), 3vw, var(--space-12));
+}
+
+.area-grid--duo .area-card__title {
+    font-size: var(--text-xl);
+}
+
+/* --- Variante compact --------------------------------------------------- */
+
+.area-grid--compact {
+    --area-grid-min: 240px;
+}
+
+.area-grid--compact .area-card {
+    padding: var(--space-6);
+}
+
+.area-grid--compact .area-card__icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: var(--space-4);
+    font-size: 1.0625rem;
+}
+
+.area-grid--compact .area-card__title {
+    font-size: var(--text-base);
+}
+
+/* --- Variante feature-pair ---------------------------------------------- */
+
+/* Quatro cards no topo e os dois últimos alargados para fechar a fileira. Só a
+   partir de 1280px, largura em que o auto-fit da base já resolve em quatro
+   colunas — abaixo disso ele cai para três (2×3, sem vão) e a regra não vale. */
+@media (min-width: 1280px) {
+    .area-grid--feature-pair {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .area-grid--feature-pair > :nth-last-child(1),
+    .area-grid--feature-pair > :nth-last-child(2) {
+        grid-column: span 2;
+        padding: clamp(var(--space-8), 3vw, var(--space-12));
+    }
+
+    .area-grid--feature-pair > :nth-last-child(1) .area-card__title,
+    .area-grid--feature-pair > :nth-last-child(2) .area-card__title {
+        font-size: var(--text-xl);
+    }
+}
+
+/* ==========================================================================
+   Linha do tempo
+   ========================================================================== */
+
+.area-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-8);
+    counter-reset: area-step;
+}
+
+.area-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-6);
+    align-items: start;
+}
+
+.area-step__marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    color: var(--gold-700);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: var(--tracking-wide);
+    background-color: var(--gold-050);
+    border: 1px solid rgba(187, 138, 40, 0.3);
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+}
+
+/* Fio que liga as etapas. Sai do último item para a linha não sobrar solta. */
+.area-step:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: 52px;
+    left: 26px;
+    bottom: calc(var(--space-8) * -1);
+    width: 1px;
+    background: linear-gradient(
+        var(--border-strong),
+        var(--border-subtle)
+    );
+}
+
+.area-step__body {
+    padding-top: var(--space-2);
+}
+
+.area-step__title {
+    margin: 0 0 var(--space-2);
+    color: var(--text-strong);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+}
+
+.area-step__text {
+    margin: 0;
+    max-width: 68ch;
+    color: var(--text-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    text-wrap: pretty;
+}
+
+.area-section--dark .area-step__title {
+    color: #fff;
+}
+
+.area-section--dark .area-step__text {
+    color: rgba(255, 255, 255, 0.76);
+}
+
+.area-section--dark .area-step__marker {
+    color: var(--gold-300);
+    background-color: rgba(255, 255, 255, 0.06);
+    border-color: rgba(227, 190, 114, 0.36);
+}
+
+.area-section--dark .area-step:not(:last-child)::before {
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.28),
+        rgba(255, 255, 255, 0.06)
+    );
+}
+
+/* Horizontal a partir do desktop: vira uma faixa de etapas com o fio no topo. */
+@media (min-width: 900px) {
+    .area-timeline--horizontal {
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(0, 1fr);
+        gap: var(--space-6);
+    }
+
+    .area-timeline--horizontal .area-step {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-5);
+    }
+
+    .area-timeline--horizontal .area-step:not(:last-child)::before {
+        top: 26px;
+        left: 52px;
+        right: calc(var(--space-6) * -1);
+        bottom: auto;
+        width: auto;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            var(--border-strong),
+            var(--border-subtle)
+        );
+    }
+
+    .area-timeline--horizontal .area-step__body {
+        padding-top: 0;
+    }
+}
+
+/* ==========================================================================
+   Chips
+   ========================================================================== */
+
+.area-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.area-chip {
+    padding: var(--space-3) var(--space-5);
+    color: var(--text-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    background-color: var(--surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-full);
+    transition: border-color var(--duration) var(--ease-out),
+        color var(--duration) var(--ease-out);
+}
+
+@media (hover: hover) {
+    .area-chip:hover {
+        color: var(--text-strong);
+        border-color: var(--hover-sand);
+    }
+}
+
+.area-section--dark .area-chip {
+    color: rgba(255, 255, 255, 0.84);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* ==========================================================================
+   Citação
+   ========================================================================== */
+
+.area-quote {
+    margin: 0;
+    padding: clamp(var(--space-8), 4vw, var(--space-16));
+    border-radius: var(--radius-2xl);
+}
+
+.area-quote__text {
+    margin: 0;
+    max-width: 44ch;
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    text-wrap: pretty;
+}
+
+/* Nas variantes em bloco o texto é centrado dentro do preenchimento; sem isso
+   a medida de 44ch deixaria um vão assimétrico à direita. */
+.area-quote--dark .area-quote__text,
+.area-quote--light .area-quote__text {
+    margin-inline: auto;
+}
+
+.area-quote--dark {
+    background-color: var(--warm-900);
+}
+
+.area-quote--dark .area-quote__text {
+    color: #fff;
+}
+
+.area-quote--light {
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-md);
+}
+
+.area-quote--light .area-quote__text {
+    color: var(--text-strong);
+}
+
+/* Filete dourado como marca de citação, no lugar de aspas decorativas. */
+.area-quote--rule {
+    padding: 0 0 0 clamp(var(--space-6), 3vw, var(--space-10));
+    border-left: 3px solid var(--gold-500);
+    border-radius: 0;
+}
+
+.area-quote--rule .area-quote__text {
+    max-width: 52ch;
+    color: var(--text-strong);
+}
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+
+.area-faq {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.area-faq__item {
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xs);
+    transition: border-color var(--duration) var(--ease-out),
+        box-shadow var(--duration) var(--ease-out);
+}
+
+.area-faq__item[open] {
+    border-color: var(--border-default);
+    box-shadow: var(--shadow-md);
+}
+
+.area-faq__q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    padding: var(--space-5) var(--space-6);
+    color: var(--text-strong);
+    font-size: var(--text-base);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    cursor: pointer;
+    /* Remove o triângulo nativo nos dois motores. */
+    list-style: none;
+}
+
+.area-faq__q::-webkit-details-marker {
+    display: none;
+}
+
+.area-faq__q:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-lg);
+}
+
+.area-faq__chevron {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--gold-600);
+    transition: transform var(--duration) var(--ease-out);
+}
+
+.area-faq__item[open] .area-faq__chevron {
+    transform: rotate(180deg);
+}
+
+.area-faq__a {
+    padding: 0 var(--space-6) var(--space-6);
+}
+
+.area-faq__a p {
+    margin: 0;
+    max-width: 72ch;
+    color: var(--text-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    text-wrap: pretty;
+}
+
+/* ==========================================================================
+   CTA final
+   ========================================================================== */
+
+.area-cta {
+    padding: var(--section-y) var(--gutter);
+    background-color: var(--warm-900);
+    /* Textura da marca bem apagada, só para o bloco não ficar chapado. */
+    background-image: radial-gradient(
+        120% 140% at 15% 0%,
+        rgba(187, 138, 40, 0.16) 0%,
+        transparent 62%
+    );
+}
+
+.area-cta__inner {
+    max-width: var(--container-narrow);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.area-cta__title {
+    margin: 0;
+    color: #fff;
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+}
+
+.area-cta__text {
+    margin: var(--space-6) auto 0;
+    max-width: 60ch;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    text-wrap: pretty;
+}
+
+.area-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: var(--space-10);
+}
+
+/* ==========================================================================
+   Scroll reveal
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+        .area-section__head,
+        .area-timeline .area-step,
+        .area-quote,
+        .area-cta__inner {
+            animation: ccm-reveal linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 60%;
+        }
+
+        /* Só opacidade nos cards: o translateY já é usado no hover deles e uma
+           animação com fill `both` venceria a transição. */
+        .area-card,
+        .area-chip,
+        .area-faq__item {
+            animation: ccm-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 55%;
+        }
+    }
+}
+
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
+
+@media (max-width: 899px) {
+    .area-hero__media {
+        margin-top: clamp(var(--space-10), 6vw, var(--space-16));
+    }
+
+    .area-hero--split .area-hero__media img {
+        aspect-ratio: 16 / 10;
+    }
+}
+
+@media (max-width: 600px) {
+    .area-hero__actions .area-btn,
+    .area-cta__actions .area-btn {
+        flex: 1 1 100%;
+    }
+
+    .area-step {
+        gap: var(--space-4);
+    }
+
+    .area-step__marker {
+        width: 44px;
+        height: 44px;
+        font-size: var(--text-xs);
+    }
+
+    .area-step:not(:last-child)::before {
+        top: 44px;
+        left: 22px;
+    }
+
+    .area-quote__text {
+        font-size: var(--text-xl);
+    }
+}

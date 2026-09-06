@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../styles/diferenciais.css";
 import medico from "../img/medico.jpg";
 import escritorio from "../img/ASSE_NOVO.jpeg";
-import privacidade from "../img/dados.jpg";
+import privacidade from "../img/LGPD_NOVO.jpeg";
 import tecnologia from "../img/tec.jpg";
 import shakehand from "../img/shakehand.jpg";
 import plano from "../img/plano.jpg";

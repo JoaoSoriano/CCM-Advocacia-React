@@ -59,7 +59,7 @@ const Contato = () => {
               </div>
               <div>
                 <strong>Telefone:</strong>
-                <p className="dados-contato">+55 (81) 99865-6909</p>
+                <p className="dados-contato">+55 (81) 99115-8530</p>
               </div>
             </div>
 

@@ -20,6 +20,8 @@ import AreaTecnologia from "./pages/AreaTecnologia";
 import DirOdonto from "./pages/DirOdonto";
 import DirSaude from "./pages/DirSaude";
 import DirLGPD from "./pages/DirLGPD";
+import DirCivil from "./pages/DirCivil";
+import DirEmp from "./pages/DirEmp";
 import AreaMediacao from "./pages/AreaMediacao";
 import SaudeSuplementar from "./pages/SaudeSuplementar";
 import ScrollToTop from "./components/ScrollToTop";
@@ -58,6 +60,8 @@ function App() {
         <Route path="/direitoOdontologico" element={<DirOdonto />} />
         <Route path="/direitoSaude" element={<DirSaude />} />
         <Route path="/direitoLGPD" element={<DirLGPD />} />
+        <Route path="/direitoCivil" element={<DirCivil />} />
+        <Route path="/direitoEmpresarial" element={<DirEmp />} />
         <Route path="/areaMediacao" element={<AreaMediacao />} />
         <Route path="/saudeSuplementar" element={<SaudeSuplementar />} />
       </Routes>
