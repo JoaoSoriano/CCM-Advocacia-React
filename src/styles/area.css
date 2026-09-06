@@ -409,28 +409,47 @@
         linear-gradient(rgba(20, 16, 10, 0.28), rgba(20, 16, 10, 0.28));
 }
 
-/* Em tela retrato a foto sangrada não tem como aparecer inteira: `cover`
-   preenche a caixa e descarta o resto, e num hero de 390×660 uma foto 4:3 mostra
-   só 44% da largura — numa foto de equipe, isso corta gente dos dois lados.
-   Abaixo de 700px ela deixa de sangrar: passa a render na proporção natural,
-   ancorada no topo, e a base se dissolve no fundo escuro do hero. */
+/* --- Overlay no mobile --------------------------------------------------- */
+
+/* Em tela retrato a foto sangrada mostrava só a faixa central — `cover` numa
+   caixa alta e estreita descarta as laterais. Aqui ela vira uma faixa no topo
+   com altura conhecida, em 3:2: é a proporção exata de quatro das cinco fotos
+   desta variante, que passam a não sofrer recorte nenhum. A quinta é 4:3 e
+   perde 11% pela base — corte vertical, que numa foto de equipe preserva todo
+   mundo na largura, que era o problema original. */
 @media (max-width: 700px) {
-    .area-hero__bg {
-        /* Sem `bottom`, a altura passa a ser a da própria imagem. */
-        bottom: auto;
-        height: auto;
-        /* O respiro extra dá pista para o degradê morrer fora da foto, em vez
-           de comer os últimos 30% dela. Percentual de padding resolve contra a
-           largura, então acompanha a tela. */
-        padding-bottom: 14%;
-        -webkit-mask-image: linear-gradient(to bottom, #000 76%, transparent);
-        mask-image: linear-gradient(to bottom, #000 76%, transparent);
+    .area-hero--overlay {
+        --hero-band: 66.6vw;
+        padding-top: 0;
     }
 
-    /* `height: auto` devolve a proporção nativa seja ela qual for — as cinco
-       páginas com hero overlay usam fotos de formatos diferentes. */
+    .area-hero__bg {
+        bottom: auto;
+        height: var(--hero-band);
+        -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent);
+        mask-image: linear-gradient(to bottom, #000 82%, transparent);
+    }
+
     .area-hero__bg img {
-        height: auto;
+        object-position: center top;
+    }
+
+    /* A grade é o que garante a divisão sem depender de adivinhar quantas
+       linhas o título ocupa ou qual a proporção da foto: a primeira faixa tem
+       exatamente a altura da imagem e recebe tarja e título encostados na base
+       dela; lede e botões começam onde a foto acaba, já sobre o marrom. */
+    .area-hero--overlay .area-hero__copy {
+        display: grid;
+        grid-template-rows: var(--hero-band) auto auto;
+    }
+
+    .area-hero--overlay .area-hero__head {
+        align-self: end;
+        padding-bottom: var(--space-5);
+    }
+
+    .area-hero--overlay .area-hero__lede {
+        margin-top: var(--space-8);
     }
 }
 

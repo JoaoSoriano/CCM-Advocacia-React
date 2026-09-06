@@ -28,8 +28,13 @@ const AreaHero = ({
 
     <div className="area-hero__inner">
       <div className="area-hero__copy">
-        {badge && <p className="area-badge">{badge}</p>}
-        <h1 className="area-hero__title">{title}</h1>
+        {/* Tarja e título juntos: no mobile da variante overlay a grade precisa
+            ancorar os dois na base da faixa da foto como um bloco só. Em fluxo
+            normal o wrapper é inerte. */}
+        <div className="area-hero__head">
+          {badge && <p className="area-badge">{badge}</p>}
+          <h1 className="area-hero__title">{title}</h1>
+        </div>
         {lede && <p className="area-hero__lede">{lede}</p>}
 
         <div className="area-hero__actions">
