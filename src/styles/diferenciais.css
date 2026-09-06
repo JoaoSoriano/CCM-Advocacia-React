@@ -79,11 +79,14 @@
   -ms-overflow-style: none;
 }
 
-/* `contain` também no mobile. Com `auto`, o excesso de rolagem na borda
-   escapava para o navegador — e na borda esquerda isso é o gesto de "voltar
-   página", que sequestra o toque antes do `touchend` chegar ao carrossel, então
-   o wrap para a última página nunca disparava. Contendo o gesto aqui, o
-   carrossel recebe o evento e faz a volta. */
+/* No mobile o contain matava o bounce e deixava o gesto “preso” na borda. Sem
+   wrap por toque, o auto devolve o comportamento nativo: a rolagem para nas
+   pontas com o bounce do sistema. */
+@media (max-width: 900px) {
+  .dif-track {
+    overscroll-behavior-x: auto;
+  }
+}
 
 .dif-track::-webkit-scrollbar {
   display: none;

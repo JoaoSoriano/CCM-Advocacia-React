@@ -19,11 +19,6 @@ const diferenciais = [
 
 const AUTOPLAY_MS = 3000;
 
-/* Deslocamento mínimo, em px, para o toque contar como swipe. */
-const SWIPE_MIN = 40;
-/* Folga para considerar o track encostado numa das pontas. */
-const EDGE_TOL = 4;
-
 /* Seta em SVG: ícone desenhado com glifo de fonte vira quadrado sempre que a
    fonte carregada não traz aquele caractere. */
 const Arrow = () => (
@@ -168,63 +163,6 @@ const Diferenciais = () => {
 
     return () => clearInterval(id);
   }, [paused, visible, pageCount, goTo]);
-
-  /* No mobile o scroll nativo para na borda. Se o gesto ainda puxa para além
-     do limite, empacota para o outro extremo — o mesmo ciclo que as setas e o
-     autoplay já fazem no desktop.
-
-     A decisão sai só de onde o gesto COMEÇOU e da direção dele. A versão
-     anterior também exigia `scrolled < 10`, isto é, que o track não tivesse
-     andado nada durante o toque — e essa condição quase nunca se cumpria: com
-     `scroll-snap-type: x mandatory` o navegador reajusta o scroll ao soltar o
-     dedo, e no iOS o rubber-band move `scrollLeft` bem mais que 10px. O wrap
-     ficava, na prática, morto. A condição também era desnecessária: se o gesto
-     começou encostado no fim e puxou para a esquerda, o track não tinha para
-     onde ir — quanto ele oscilou não muda a intenção. */
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    let startX = 0;
-    let startScroll = 0;
-
-    const onStart = (event) => {
-      if (!event.touches?.length) return;
-      startX = event.touches[0].clientX;
-      startScroll = track.scrollLeft;
-    };
-
-    const onEnd = (event) => {
-      if (window.matchMedia("(min-width: 901px)").matches) return;
-      if (!event.changedTouches?.length) return;
-
-      const metrics = measure();
-      if (!metrics || metrics.total <= 1) return;
-
-      const dx = event.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) < SWIPE_MIN) return;
-
-      /* Tolerância de borda generosa: com snap o repouso raramente é o zero
-         exato nem o máximo exato. */
-      const maxScroll = track.scrollWidth - track.clientWidth;
-      const comecouNoFim = startScroll >= maxScroll - EDGE_TOL;
-      const comecouNoInicio = startScroll <= EDGE_TOL;
-
-      if (comecouNoFim && dx < 0) {
-        goTo(0);
-      } else if (comecouNoInicio && dx > 0) {
-        goTo(metrics.total - 1);
-      }
-    };
-
-    track.addEventListener("touchstart", onStart, { passive: true });
-    track.addEventListener("touchend", onEnd, { passive: true });
-
-    return () => {
-      track.removeEventListener("touchstart", onStart);
-      track.removeEventListener("touchend", onEnd);
-    };
-  }, [measure, goTo]);
 
   const hasControls = pageCount > 1;
 
