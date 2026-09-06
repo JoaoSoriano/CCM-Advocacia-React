@@ -87,7 +87,7 @@ const DirSaude = () => (
 
     <AreaSection
       eyebrow="Demandas"
-      title="O que costumamos resolver"
+      title="Principais demandas que atendemos"
       intro="A atuação se desdobra em um espectro abrangente de demandas, frequentemente determinantes para a sobrevida e a qualidade de vida dos pacientes."
       tone="subtle"
     >

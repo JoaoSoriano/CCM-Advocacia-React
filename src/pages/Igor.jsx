@@ -7,9 +7,8 @@ import { AREAS } from "../components/perfil/areas";
 import PerfilContato from "../components/perfil/PerfilContato";
 import igorPhoto from "../img/igor_nova.jpeg";
 
-/* A bio dele traz os anos de cada cargo, então esta página usa a calha de
-   período das credenciais — é a assinatura que a distingue da da Larissa,
-   cuja bio separa os vínculos entre atuais e anteriores, sem datas. */
+/* Mesma estrutura editorial da página da Larissa: formação, atuação
+   institucional e produção sem coluna de anos. */
 
 const WHATSAPP = "https://wa.me/5581996085372";
 
@@ -26,39 +25,25 @@ const formacao = [
 
 const institucional = [
   {
-    period: "2025 — atual",
     title: "Vice-Presidente da Comissão de Direito Médico e da Saúde",
     detail: "OAB/Jaboatão"
   },
   {
-    period: "2024",
-    title: "Secretário-Geral da Comissão de Direito Médico e da Saúde",
-    detail: "OAB/Jaboatão"
-  },
-  {
-    period: "2024",
     title: "Assessor jurídico parlamentar em Direito Público"
   },
   {
-    period: "2022",
     title:
       "Membro do GT de Saúde Suplementar da Comissão de Direito do Consumidor",
     detail: "OAB/PE"
   },
   {
-    period: "2022",
     title: "Membro da Comissão de Direito de Família",
     detail: "OAB/PE"
-  },
-  {
-    title: "Membro da Comissão de Direito Médico e da Saúde",
-    detail: "OAB/Jaboatão"
   }
 ];
 
 const producao = [
   {
-    period: "2022 — atual",
     title: "Tutor em Direito Tributário",
     detail: "Preparatórios para o exame da Ordem"
   },

@@ -7,9 +7,10 @@ import AreaFAQ from "../components/area/AreaFAQ";
 import AreaCTA from "../components/area/AreaCTA";
 import time from "../img/ASSE_NOVO.jpeg";
 
-/* Assinatura da página: o texto original traz uma lista literal de dez
-   benefícios, que aqui é a protagonista — grade compacta, sem ícone grande,
-   para a enumeração ser lida como conjunto e não como dez blocos soltos. */
+/* Assinatura da página: a lista de benefícios é a protagonista — grade
+   compacta, sem ícone grande, para a enumeração ser lida como conjunto e não
+   como blocos soltos. São oito, então a grade fecha em duas fileiras de
+   quatro. */
 
 const motivos = [
   {
@@ -30,15 +31,13 @@ const motivos = [
 ];
 
 const beneficios = [
-  { icon: "fa-solid fa-user-tie", title: "Contratação jurídica de profissionais" },
-  { icon: "fa-solid fa-folder-open", title: "Documentação" },
+  { icon: "fa-solid fa-folder-open", title: "Contratos e prontuários protegidos" },
   { icon: "fa-solid fa-handshake", title: "Melhores relações com clientes e órgãos públicos" },
   { icon: "fa-solid fa-coins", title: "Controle e redução de custos" },
   { icon: "fa-solid fa-shield-halved", title: "Prevenção de problemas éticos e legais" },
   { icon: "fa-solid fa-piggy-bank", title: "Economia ao evitar custos com litígios" },
   { icon: "fa-solid fa-sitemap", title: "Melhor organização e gestão empresarial" },
   { icon: "fa-solid fa-face-smile", title: "Menor desgaste emocional" },
-  { icon: "fa-solid fa-check-double", title: "Operações dentro da Lei" },
   { icon: "fa-solid fa-compass", title: "Suporte estratégico para decisões informadas" }
 ];
 
@@ -68,7 +67,7 @@ const AssPrev = () => (
       imageAlt="Equipe de advogados do escritório"
     />
 
-    <AreaSection tone="plain" width="narrow">
+    <AreaSection tone="subtle" width="narrow">
       <AreaQuote tone="rule">
         Por trás da maioria dos CPFs, sempre há um CNPJ e, inevitavelmente, um e
         o outro repercutem entre si.
@@ -85,7 +84,7 @@ const AssPrev = () => (
 
     <AreaSection
       eyebrow="Benefícios"
-      title="Dez ganhos concretos"
+      title="Ganhos concretos"
       intro="A assessoria preventiva se traduz em vantagens que aparecem tanto no dia a dia da operação quanto no resultado do negócio."
       tone="sand"
     >

@@ -392,6 +392,31 @@
         linear-gradient(rgba(20, 16, 10, 0.28), rgba(20, 16, 10, 0.28));
 }
 
+/* Em tela retrato a foto sangrada não tem como aparecer inteira: `cover`
+   preenche a caixa e descarta o resto, e num hero de 390×660 uma foto 4:3 mostra
+   só 44% da largura — numa foto de equipe, isso corta gente dos dois lados.
+   Abaixo de 700px ela deixa de sangrar: passa a render na proporção natural,
+   ancorada no topo, e a base se dissolve no fundo escuro do hero. */
+@media (max-width: 700px) {
+    .area-hero__bg {
+        /* Sem `bottom`, a altura passa a ser a da própria imagem. */
+        bottom: auto;
+        height: auto;
+        /* O respiro extra dá pista para o degradê morrer fora da foto, em vez
+           de comer os últimos 30% dela. Percentual de padding resolve contra a
+           largura, então acompanha a tela. */
+        padding-bottom: 14%;
+        -webkit-mask-image: linear-gradient(to bottom, #000 76%, transparent);
+        mask-image: linear-gradient(to bottom, #000 76%, transparent);
+    }
+
+    /* `height: auto` devolve a proporção nativa seja ela qual for — as cinco
+       páginas com hero overlay usam fotos de formatos diferentes. */
+    .area-hero__bg img {
+        height: auto;
+    }
+}
+
 .area-hero--overlay .area-hero__copy {
     max-width: 46rem;
 }
@@ -451,6 +476,21 @@
 
 .area-section--dark {
     background-color: var(--warm-900);
+}
+
+/* Rede de segurança: duas seções de mesmo tom encostadas não teriam transição
+   nenhuma — o leitor vê um vão claro e não sabe onde um assunto termina e o
+   outro começa. As páginas alternam tons justamente para evitar isso, mas a
+   composição é livre e a falha é invisível no código; o fio só aparece quando a
+   alternância escapa. */
+.area-section--plain + .area-section--plain,
+.area-section--subtle + .area-section--subtle,
+.area-section--sand + .area-section--sand {
+    border-top: 1px solid var(--border-subtle);
+}
+
+.area-section--dark + .area-section--dark {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .area-section__inner {
@@ -1118,6 +1158,52 @@
 
     .area-hero--split .area-hero__media img {
         aspect-ratio: 16 / 10;
+    }
+
+    /* No mobile o :hover fica “preso” após o toque. Desliga a tinta e mantém
+       o visual de descanso em WhatsApp / Enviar mensagem. */
+    .area-btn,
+    .area-btn::before {
+        transition: none;
+    }
+
+    .area-btn:hover::before,
+    .area-btn:focus-visible::before,
+    .area-btn:active::before {
+        transform: scaleX(0);
+    }
+
+    .area-btn--solid:hover,
+    .area-btn--solid:focus-visible,
+    .area-btn--solid:active {
+        color: #fff;
+    }
+
+    .area-btn--ghost:hover,
+    .area-btn--ghost:focus-visible,
+    .area-btn--ghost:active {
+        color: var(--warm-500);
+        border-color: var(--hover-sand);
+    }
+
+    .area-btn--light:hover,
+    .area-btn--light:focus-visible,
+    .area-btn--light:active {
+        color: var(--warm-900);
+    }
+
+    .area-btn--ghost-light:hover,
+    .area-btn--ghost-light:focus-visible,
+    .area-btn--ghost-light:active {
+        color: rgba(255, 255, 255, 0.92);
+        border-color: rgba(255, 255, 255, 0.45);
+    }
+
+    .area-hero--overlay .area-btn--ghost:hover,
+    .area-hero--overlay .area-btn--ghost:focus-visible,
+    .area-hero--overlay .area-btn--ghost:active {
+        color: rgba(255, 255, 255, 0.92);
+        border-color: rgba(255, 255, 255, 0.45);
     }
 }
 

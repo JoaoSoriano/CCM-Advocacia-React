@@ -164,6 +164,54 @@ const Diferenciais = () => {
     return () => clearInterval(id);
   }, [paused, visible, pageCount, goTo]);
 
+  /* No mobile o scroll nativo para na borda. Se o gesto ainda puxa para além
+     do limite e o track não se moveu, empacota para o outro extremo — o mesmo
+     ciclo que as setas e o autoplay já fazem no desktop. */
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    let startX = 0;
+    let startScroll = 0;
+
+    const onStart = (event) => {
+      if (!event.touches?.length) return;
+      startX = event.touches[0].clientX;
+      startScroll = track.scrollLeft;
+    };
+
+    const onEnd = (event) => {
+      if (window.matchMedia("(min-width: 901px)").matches) return;
+      if (!event.changedTouches?.length) return;
+
+      const metrics = measure();
+      if (!metrics || metrics.total <= 1) return;
+
+      const dx = event.changedTouches[0].clientX - startX;
+      const scrolled = Math.abs(track.scrollLeft - startScroll);
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const atStart = startScroll <= 2;
+      const atEnd = startScroll >= maxScroll - 2;
+
+      if (atEnd && dx < -48 && scrolled < 10) {
+        goTo(0);
+        return;
+      }
+
+      if (atStart && dx > 48 && scrolled < 10) {
+        goTo(metrics.total - 1);
+      }
+    };
+
+    track.addEventListener("touchstart", onStart, { passive: true });
+    track.addEventListener("touchend", onEnd, { passive: true });
+
+    return () => {
+      track.removeEventListener("touchstart", onStart);
+      track.removeEventListener("touchend", onEnd);
+    };
+  }, [measure, goTo]);
+
   const hasControls = pageCount > 1;
 
   return (

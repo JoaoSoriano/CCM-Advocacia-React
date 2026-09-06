@@ -79,6 +79,14 @@
   -ms-overflow-style: none;
 }
 
+/* No mobile o contain matava o bounce e o gesto “preso” na borda. Com o wrap
+   por toque, o auto basta e o gesto volta a fluir. */
+@media (max-width: 900px) {
+  .dif-track {
+    overscroll-behavior-x: auto;
+  }
+}
+
 .dif-track::-webkit-scrollbar {
   display: none;
 }

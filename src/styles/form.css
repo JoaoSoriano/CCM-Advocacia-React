@@ -48,6 +48,9 @@
 
 /* --- Campos -------------------------------------------------------------- */
 
+/* Fundo branco, contorno no #A49580 do header-perfil desta página — que por
+   sua vez casa com o fundo embutido no JPG da logo bege. O token vem de
+   tokens.css para os dois lerem a mesma fonte. */
 .form-container input,
 .form-container textarea {
     width: 100%;
@@ -57,7 +60,7 @@
     line-height: var(--leading-normal);
     color: var(--text-strong);
     background-color: var(--surface);
-    border: 1px solid var(--border-default);
+    border: 1px solid var(--header-band);
     border-radius: var(--radius-md);
     transition: border-color var(--duration) var(--ease-out),
         background-color var(--duration) var(--ease-out),
@@ -71,13 +74,15 @@
 
 .form-container input:hover,
 .form-container textarea:hover {
-    border-color: var(--border-strong);
+    border-color: var(--hover-sand);
 }
 
 .form-container input:focus,
 .form-container textarea:focus {
-    border-color: var(--gold-500);
-    box-shadow: var(--focus-ring);
+    border-color: var(--header-band);
+    /* Mesmo taupe da borda, rebaixado — o anel engrossa o contorno sem
+       introduzir outra cor. */
+    box-shadow: 0 0 0 3px rgba(164, 149, 128, 0.35);
     outline: none;
 }
 
@@ -87,8 +92,14 @@
     outline: none;
 }
 
-.form-container input:invalid:not(:placeholder-shown),
-.form-container textarea:invalid:not(:placeholder-shown) {
+/* `:user-invalid`, não `:invalid`. A regra anterior era
+   `:invalid:not(:placeholder-shown)` e partia do princípio de que os campos
+   teriam placeholder — não têm. Sem o atributo, `:placeholder-shown` nunca casa,
+   `:not()` é sempre verdadeiro, e um required vazio é inválido: todo campo
+   nascia com a borda vermelha de erro. `:user-invalid` só acusa depois que a
+   pessoa mexeu no campo. */
+.form-container input:user-invalid,
+.form-container textarea:user-invalid {
     border-color: #B4462F;
 }
 
@@ -154,6 +165,82 @@
 .button-text {
     position: relative;
     z-index: 1;
+}
+
+.form-button[disabled] {
+    cursor: progress;
+    opacity: 0.6;
+}
+
+/* A tinta do hover não deve varrer enquanto o envio está em curso: daria a
+   impressão de que o botão continua clicável. */
+.form-button[disabled]:hover::before {
+    transform: scaleX(0);
+}
+
+.form-button[disabled]:hover {
+    color: var(--warm-700);
+    border-color: var(--warm-400);
+}
+
+/* --- Retorno do envio ---------------------------------------------------- */
+
+.form-status {
+    margin: var(--space-6) 0 0;
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    text-align: center;
+    border-radius: var(--radius-md);
+    text-wrap: pretty;
+}
+
+.form-status--enviando {
+    color: var(--text-body);
+    background-color: var(--surface-muted);
+}
+
+.form-status--ok {
+    color: #1F5134;
+    background-color: #E7F2EA;
+}
+
+.form-status--erro {
+    color: #8A2E1C;
+    background-color: #FBEAE6;
+}
+
+.form-status p {
+    margin: 0;
+}
+
+.form-status__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+}
+
+.form-status__link {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-2) var(--space-5);
+    color: inherit;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    text-decoration: none;
+    border: 1px solid currentColor;
+    border-radius: var(--radius-full);
+    transition: background-color var(--duration) var(--ease-out),
+        color var(--duration) var(--ease-out);
+}
+
+.form-status__link:hover,
+.form-status__link:focus-visible {
+    color: #fff;
+    background-color: #8A2E1C;
 }
 
 /* ==========================================================================

@@ -15,6 +15,12 @@
     --gold-700: #785816;
     --gold-050: #FBF4E5;
 
+    /* Faixa do header das páginas internas — e, por tabela, o preenchimento dos
+       campos do formulário de contato. Casa exatamente com o fundo embutido no
+       JPG da logo bege, por isso não reaproveita --warm-400 (#A3937F): é um
+       passo vizinho, mas diferente, e a diferença apareceria contra a logo. */
+    --header-band: #A49580;
+
     /* Preenchimento de hover: bege suave e dessaturado. Branco sobre ele fica
        em 3.67:1, acima do mínimo de 3:1 que a WCAG pede para ícones e setas.
        Não serve para texto branco, que exigiria 4.5:1 e um tom mais escuro. */

@@ -3,8 +3,8 @@
    ========================================================================== */
 
 .header-perfil {
-    /* Deve casar exatamente com o fundo embutido no JPG da logo bege. */
-    --header-perfil-bg: #A49580;
+    /* Definido em tokens.css: o formulário de contato usa a mesma cor. */
+    --header-perfil-bg: var(--header-band);
 
     display: flex;
     justify-content: space-between;

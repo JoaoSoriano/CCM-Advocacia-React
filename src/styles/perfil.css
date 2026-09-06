@@ -807,6 +807,41 @@
    Responsividade
    ========================================================================== */
 
+@media (max-width: 899px) {
+    /* No mobile o :hover fica “preso” após o toque. Desliga a tinta e mantém
+       o visual de descanso em WhatsApp / Enviar mensagem. */
+    .perfil-btn,
+    .perfil-btn::before {
+        transition: none;
+    }
+
+    .perfil-btn:hover::before,
+    .perfil-btn:focus-visible::before,
+    .perfil-btn:active::before {
+        transform: scaleX(0);
+    }
+
+    .perfil-btn--solid:hover,
+    .perfil-btn--solid:focus-visible,
+    .perfil-btn--solid:active {
+        color: #fff;
+    }
+
+    .perfil-btn--ghost:hover,
+    .perfil-btn--ghost:focus-visible,
+    .perfil-btn--ghost:active {
+        color: var(--warm-500);
+        border-color: var(--hover-sand);
+    }
+
+    .perfil-contato--plain .perfil-btn--ghost:hover,
+    .perfil-contato--plain .perfil-btn--ghost:focus-visible,
+    .perfil-contato--plain .perfil-btn--ghost:active {
+        color: var(--warm-900);
+        border-color: var(--warm-900);
+    }
+}
+
 @media (max-width: 600px) {
     .perfil-contato__actions .perfil-btn {
         flex: 1 1 100%;
