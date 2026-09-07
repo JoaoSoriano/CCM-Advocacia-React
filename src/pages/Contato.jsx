@@ -12,8 +12,8 @@ import address from "../img/maps-and-flags (1).png";
 
 /* Credenciais do EmailJS. A chave pública é feita para ficar exposta no
    cliente — é ela que identifica a conta no navegador. */
-const SERVICE_ID = "service_jdh4tlx";
-const TEMPLATE_ID = "template_n8vitb5";
+const SERVICE_ID = "service_th1wjjp";
+const TEMPLATE_ID = "template_mp62gib";
 const PUBLIC_KEY = "VfZHrEohvKZLPH_7V";
 
 const EMAIL_ESCRITORIO = "carrazzonicampelo@gmail.com";
