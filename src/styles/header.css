@@ -266,9 +266,14 @@ nav .header-logo img:hover {
     grid-column: span 3;
   }
 
+  /* Mesma linguagem da lista de áreas dos perfis: rótulo à esquerda, seta
+     dourada à direita e fio fino entre as linhas. Centralizado e sem nenhuma
+     indicação de destino, o drawer antigo não se distinguia de uma lista
+     qualquer — e o registro do resto do site é o de dossiê, alinhado à
+     esquerda. */
   .menu-list li {
     margin-left: 0;
-    text-align: center;
+    text-align: left;
     opacity: 0;
     width: 100%;
     border-bottom: 1px solid var(--border-subtle);
@@ -276,28 +281,94 @@ nav .header-logo img:hover {
 
   .menu-list li a {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
     width: 100%;
-    min-height: 56px;
+    min-height: 60px;
     padding: var(--space-4) var(--space-6);
+    color: var(--text-body);
     font-size: var(--text-base);
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: var(--tracking-normal);
     text-decoration: none;
+    transition: color var(--duration) var(--ease-out),
+      background-color var(--duration) var(--ease-out),
+      padding-left var(--duration) var(--ease-out);
   }
 
-  /* No drawer o sublinhado central não faz sentido: destaca-se o item inteiro. */
+  /* Seta desenhada em CSS, como a dos cards de sócio e da lista de áreas: não
+     depende de glifo de fonte e escala com o texto. Vai no ::before com
+     `order: 1` porque o ::after já é o sublinhado da nav do desktop. */
+  .menu-list li a::before {
+    content: "";
+    order: 1;
+    flex-shrink: 0;
+    width: 0.42em;
+    height: 0.42em;
+    border-top: 1.5px solid var(--gold-600);
+    border-right: 1.5px solid var(--gold-600);
+    transform: rotate(45deg);
+    transition: transform var(--duration) var(--ease-out);
+  }
+
+  /* No drawer o sublinhado central não faz sentido: destaca-se a linha inteira. */
   .menu-list li a::after {
     display: none;
   }
 
-  .menu-list li a:hover {
-    background-color: var(--surface-muted);
+  /* `li:hover a` entra junto porque a regra base da nav pinta o link de
+     --text-strong nesse seletor, com a mesma especificidade desta. */
+  .menu-list li a:hover,
+  .menu-list li:hover a,
+  .menu-list li a:focus-visible {
+    color: var(--gold-700);
+    background-color: var(--surface-subtle);
+    padding-left: var(--space-8);
+  }
+
+  .menu-list li a:hover::before,
+  .menu-list li:hover a::before,
+  .menu-list li a:focus-visible::before {
+    transform: rotate(45deg) translate(3px, -3px);
   }
 
   .menu-list li:last-child {
     border-bottom: none;
+  }
+
+  /* Contato fecha o menu como ação principal, em cápsula — é o mesmo papel que
+     o `.contact-button` tem no header do desktop, onde ele fica oculto no
+     mobile e o item virava só mais uma linha da lista. */
+  .menu-list li.mobile-only {
+    margin-top: var(--space-6);
+    padding: 0 var(--space-6);
+  }
+
+  .menu-list li.mobile-only a {
+    justify-content: center;
+    gap: var(--space-3);
+    min-height: 52px;
+    color: #fff;
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background-color: var(--warm-900);
+    border-radius: var(--radius-full);
+  }
+
+  .menu-list li.mobile-only a::before {
+    border-color: rgba(255, 255, 255, 0.92);
+  }
+
+  .menu-list li.mobile-only a:hover,
+  .menu-list li.mobile-only:hover a,
+  .menu-list li.mobile-only a:focus-visible {
+    color: #fff;
+    /* --warm-700 e não --hover-sand: branco sobre o bege fica em 3,67:1, abaixo
+       do mínimo de 4,5:1 que a WCAG pede para texto. */
+    background-color: var(--warm-700);
+    padding-left: var(--space-6);
   }
 
   .mobile-menu {

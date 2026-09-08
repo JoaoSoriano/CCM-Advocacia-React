@@ -38,7 +38,7 @@
 .entre-em-contato p {
     font-size: var(--text-lg);
     line-height: var(--leading-relaxed);
-    color: var(--text-muted);
+    color: black;
     max-width: 48ch;
     margin: 0;
     text-wrap: pretty;
