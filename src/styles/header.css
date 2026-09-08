@@ -195,7 +195,7 @@ nav .header-logo img:hover {
 }
 
 .mobile-menu:hover {
-  background-color: var(--surface-muted);
+  background-color: var(--surface);
 }
 
 .mobile-menu div {
