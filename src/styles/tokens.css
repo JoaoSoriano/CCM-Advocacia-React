@@ -175,10 +175,9 @@
         .team-two__single,
         .service,
         .titulo-diferenciais,
-            .box-info-container,
-            .imagem-container img,
-        .imagem-container-dados img,
-        .entre-em-contato {
+        .box-info-container,
+        .imagem-container img,
+        .imagem-container-dados img {
             animation: ccm-reveal linear both;
             animation-timeline: view();
             animation-range: entry 0% entry 70%;
@@ -187,7 +186,6 @@
         /* Só opacidade: preserva o translateY do hover nos cards. */
         .ccm-fade,
         .card,
-        .contact-item,
         .profile-section {
             animation: ccm-fade linear both;
             animation-timeline: view();

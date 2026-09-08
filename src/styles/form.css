@@ -3,33 +3,16 @@
    Único proprietário dos estilos de campo — antes duplicado em contato.css.
    ========================================================================== */
 
+/* O <form> é ele próprio o `.form-container`, e vive na coluna de conteúdo de
+   uma PerfilSection — quem dá fundo, respiro e cabeçalho é a seção. O painel
+   com borda e sombra que existia aqui duplicaria essa moldura. */
 .form-container {
-    width: 100%;
-    max-width: 760px;
-    margin: 0 auto var(--section-y);
-    padding: clamp(var(--space-6), 4vw, var(--space-12));
-    /* Painel levemente tingido com campos brancos: o contraste vem de dentro
-       para fora, já que a página é branca. */
-    background-color: var(--surface-subtle);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-2xl);
-    box-shadow: var(--shadow-lg);
-}
-
-.form-container h1 {
-    text-align: center;
-    font-size: var(--text-3xl);
-    font-weight: 600;
-    line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-display);
-    color: var(--text-strong);
-    margin: 0 0 var(--space-10);
-}
-
-.form-container form {
     display: flex;
     flex-direction: column;
     width: 100%;
+    /* A coluna da seção passa de 800px no desktop. Campo tão largo é difícil de
+       mirar e de reler; a medida abaixo mantém a linha confortável. */
+    max-width: 34rem;
 }
 
 .form-container .form-group {
@@ -120,7 +103,7 @@
     gap: var(--space-2);
     width: 100%;
     max-width: 220px;
-    margin: var(--space-4) auto 0;
+    margin: var(--space-6) 0 0;
     padding: var(--space-4) var(--space-8);
     color: var(--warm-700);
     font-family: var(--font-sans);
@@ -190,7 +173,6 @@
     padding: var(--space-4) var(--space-5);
     font-size: var(--text-sm);
     line-height: var(--leading-normal);
-    text-align: center;
     border-radius: var(--radius-md);
     text-wrap: pretty;
 }
@@ -217,7 +199,6 @@
 .form-status__acoes {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: var(--space-3);
     margin-top: var(--space-4);
 }
@@ -247,11 +228,7 @@
    Responsividade
    ========================================================================== */
 
-@media only screen and (max-width: 970px) {
-    .form-container {
-        max-width: 100%;
-    }
-
+@media only screen and (max-width: 600px) {
     .form-button {
         max-width: 100%;
     }

@@ -1,14 +1,10 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import PerfilLayout from "../components/perfil/PerfilLayout";
+import PerfilSection from "../components/perfil/PerfilSection";
 import { WHATSAPP_URL } from "../components/area/contact";
-import HeaderSimples from "../components/HeaderSimples";
-import Footer from "../components/Footer";
 import "../styles/contato.css";
 import "../styles/form.css";
-import "../styles/footer.css";
-import email from "../img/email .png";
-import phone from "../img/phone.svg";
-import address from "../img/maps-and-flags (1).png";
 
 /* Credenciais do EmailJS. A chave pública é feita para ficar exposta no
    cliente — é ela que identifica a conta no navegador. */
@@ -17,6 +13,43 @@ const TEMPLATE_ID = "template_mp62gib";
 const PUBLIC_KEY = "VfZHrEohvKZLPH_7V";
 
 const EMAIL_ESCRITORIO = "carrazzonicampelo@gmail.com";
+const TELEFONE = "+55 (81) 99115-8530";
+const TELEFONE_TEL = "+5581991158530";
+const ENDERECO =
+  "Empresarial Selecta Center, sala 404 — Rua Estado de Israel, nº 262, Ilha do Leite, Recife/PE, 50070-420";
+const MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=Selecta+Center+Rua+Estado+de+Israel+262+Recife";
+const MAPA_EMBED =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7900.737490775284!2d-34.89963024636929!3d-8.06381819196388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab18c55b56390f%3A0x76445ff5e4700008!2sSelecta%20Center!5e0!3m2!1spt-BR!2sbr!4v1729473561988!5m2!1spt-BR!2sbr";
+
+/* Um canal por linha, com a ação que ele abre. Telefone não entra como linha
+   própria: é o mesmo número do WhatsApp, e repetido pareceria erro — a ligação
+   fica como botão no topo, onde a ação é a mesma mas o gesto é outro. */
+const canais = [
+  {
+    label: "WhatsApp",
+    valor: TELEFONE,
+    href: WHATSAPP_URL,
+    externo: true
+  },
+  {
+    label: "E-mail",
+    valor: EMAIL_ESCRITORIO,
+    href: `mailto:${EMAIL_ESCRITORIO}`
+  },
+  {
+    label: "Endereço",
+    valor: ENDERECO,
+    href: MAPS_URL,
+    externo: true
+  }
+];
+
+const campos = [
+  { id: "name", label: "Nome", type: "text", autoComplete: "name" },
+  { id: "email", label: "E-mail", type: "email", autoComplete: "email" },
+  { id: "subject", label: "Assunto", type: "text", autoComplete: "off" }
+];
 
 const Contato = () => {
   const form = useRef();
@@ -94,98 +127,109 @@ const Contato = () => {
   };
 
   return (
-    <>
-      <HeaderSimples />
-
-      <section className="contact-section">
-        <div className="left-side">
-          <div className="entre-em-contato">
-            <h2>Contato</h2>
-            <p>Entre em contato com a gente para agendar uma consulta ou esclarecer dúvidas.</p>
-          </div>
-
-          <div className="contact-info">
-            <div className="contact-item">
-              <div className="icon-container">
-                <img src={email} alt="Ícone Email" loading="lazy" decoding="async" />
-              </div>
-              <div>
-                <strong>Email:</strong>
-                <p className="dados-contato">carrazzonicampelo@gmail.com</p>
-              </div>
-            </div>
-
-            <div className="contact-item">
-              <div className="icon-container">
-                <img src={phone} alt="Ícone Telefone" loading="lazy" decoding="async" />
-              </div>
-              <div>
-                <strong>Telefone:</strong>
-                <p className="dados-contato">+55 (81) 99115-8530</p>
-              </div>
-            </div>
-
-            <div className="contact-item">
-              <div className="icon-container">
-                <img src={address} alt="Ícone Endereço" loading="lazy" decoding="async" />
-              </div>
-              <div>
-                <strong>Endereço:</strong>
-                <p className="dados-contato">
-                  Empresarial Selecta Center, sala 404 - Rua Estado de Israel, nº 262, Ilha do Leite - Recife/PE, 50070-420
-                </p>
-              </div>
+    <PerfilLayout>
+      <section className="contato-hero">
+        <div className="contato-hero__inner">
+          <div className="contato-hero__copy">
+            <p className="perfil-eyebrow">Contato</p>
+            <h1 className="contato-hero__title">
+              Vamos conversar sobre o seu caso
+            </h1>
+            <p className="contato-hero__lede">
+            Entre em contato com a gente para agendar uma consulta ou esclarecer dúvidas.
+            </p>
+            <div className="contato-hero__actions">
+              <a
+                className="perfil-btn perfil-btn--solid"
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Falar pelo WhatsApp
+              </a>
+              <a
+                className="perfil-btn perfil-btn--ghost"
+                href={`tel:${TELEFONE_TEL}`}
+              >
+                Ligar agora
+              </a>
             </div>
           </div>
-        </div>
 
-        <div className="right-side">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7900.737490775284!2d-34.89963024636929!3d-8.06381819196388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab18c55b56390f%3A0x76445ff5e4700008!2sSelecta%20Center!5e0!3m2!1spt-BR!2sbr!4v1729473561988!5m2!1spt-BR!2sbr"
-            width="800"
-            height="600"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
+          {/* Símbolo da marca como peso gráfico do lado direito, onde a coluna
+              de texto deixa vazio. Decorativo: `aria-hidden` para leitor de tela
+              não anunciar nada, já que a logo do header já identifica o
+              escritório. */}
+          <span className="contato-hero__marca" aria-hidden="true" />
         </div>
       </section>
 
-      <div className="form-container">
-        <h1>Fale Conosco</h1>
-        <form ref={form} onSubmit={sendEmail}>
-          <div className="form-group">
-            <label htmlFor="name">Nome</label>
-            <input type="text" id="name" name="name" required />
-          </div>
+      <PerfilSection
+        eyebrow="Canais diretos"
+        title="Como nos encontrar"
+        intro="Escolha o canal que preferir para falar conosco, enviar uma mensagem ou nos fazer uma visita."
+        tone="plain"
+      >
+        <ul className="contato-canais">
+          {canais.map((canal) => (
+            <li key={canal.label}>
+              <a
+                className="contato-canal"
+                href={canal.href}
+                {...(canal.externo
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                <span className="contato-canal__label">{canal.label}</span>
+                <span className="contato-canal__valor">{canal.valor}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </PerfilSection>
+      <section className="contato-mapa">
+        <iframe
+          src={MAPA_EMBED}
+          title="Localização do escritório no Empresarial Selecta Center, Ilha do Leite, Recife"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </section>
 
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" required />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="subject">Assunto</label>
-            <input type="text" id="subject" name="subject" required />
-          </div>
+      <PerfilSection
+        eyebrow="Mensagem"
+        title="Escreva para o escritório"
+        intro="Descreva brevemente a sua situação para oferecermos uma resposta rápida e alinhada ao seu caso."
+        tone="subtle"
+      >
+        <form ref={form} onSubmit={sendEmail} className="form-container">
+          {campos.map((campo) => (
+            <div className="form-group" key={campo.id}>
+              <label htmlFor={campo.id}>{campo.label}</label>
+              <input
+                type={campo.type}
+                id={campo.id}
+                name={campo.id}
+                autoComplete={campo.autoComplete}
+                required
+              />
+            </div>
+          ))}
 
           <div className="form-group">
             <label htmlFor="message">Mensagem</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
+            <textarea id="message" name="message" rows="6" required></textarea>
           </div>
 
-          <div>
-            <button
-              type="submit"
-              className="form-button"
-              disabled={envio.estado === "enviando"}
-            >
-              <span className="button-text">
-                {envio.estado === "enviando" ? "Enviando…" : "Enviar"}
-              </span>
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="form-button"
+            disabled={envio.estado === "enviando"}
+          >
+            <span className="button-text">
+              {envio.estado === "enviando" ? "Enviando…" : "Enviar"}
+            </span>
+          </button>
 
           {/* `role="status"` com `aria-live` anuncia o resultado a leitor de
               tela — o `alert()` anterior fazia isso por acidente, ao roubar o
@@ -211,10 +255,12 @@ const Contato = () => {
             </div>
           )}
         </form>
-      </div>
+      </PerfilSection>
 
-      <Footer />
-    </>
+      {/* Faixa sangrada de ponta a ponta: fecha a página com a localização sem
+          precisar de mais um título. O endereço já foi dado acima como linha
+          clicável, então aqui o mapa é ilustração, não navegação. */}
+    </PerfilLayout>
   );
 };
 
