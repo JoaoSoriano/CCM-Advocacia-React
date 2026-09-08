@@ -46,9 +46,9 @@ const canais = [
 ];
 
 const campos = [
-  { id: "name", label: "Nome", type: "text", autoComplete: "name" },
-  { id: "email", label: "E-mail", type: "email", autoComplete: "email" },
-  { id: "subject", label: "Assunto", type: "text", autoComplete: "off" }
+  { id: "name", label: "Nome:", type: "text", autoComplete: "name" },
+  { id: "email", label: "E-mail:", type: "email", autoComplete: "email" },
+  { id: "subject", label: "Assunto:", type: "text", autoComplete: "off" }
 ];
 
 const Contato = () => {
@@ -217,7 +217,7 @@ const Contato = () => {
           ))}
 
           <div className="form-group">
-            <label htmlFor="message">Mensagem</label>
+            <label htmlFor="message">Mensagem:</label>
             <textarea id="message" name="message" rows="6" required></textarea>
           </div>
 
