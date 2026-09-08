@@ -239,11 +239,19 @@ nav .header-logo img:hover {
     top: 100%;
     right: 0;
     width: min(84vw, 380px);
-    /* Também em `svh`: o drawer fica no DOM o tempo todo (só sai de cena por
-       translate), então em `dvh` ele recalcularia a altura a cada mudança da
-       barra, mesmo fechado. */
+    /* `lvh`, e não `svh` nem `dvh`. As três medem coisas diferentes:
+         svh = altura COM a barra do navegador visível (a menor)
+         lvh = altura com a barra retraída (a maior)
+         dvh = acompanha a barra em tempo real
+       Em `svh` o painel ficava mais curto que a tela no momento em que a barra
+       se retraía na rolagem, e dava para ver a página por baixo dele. `lvh`
+       cobre o caso da barra escondida, que é o pior caso de altura, e continua
+       sendo um valor fixo — ao contrário de `dvh`, que redimensionaria o painel
+       a cada mudança da barra e traria de volta a trepidação na rolagem.
+       Com a barra visível a base do painel fica fora da tela, o que é inócuo:
+       o conteúdo são cinco itens no topo e o resto é respiro. */
     height: calc(100vh - var(--header-h));
-    height: calc(100svh - var(--header-h));
+    height: calc(100lvh - var(--header-h));
     padding: var(--space-6) 0 var(--space-16);
     background-color: var(--surface);
     flex-direction: column;
